@@ -1,0 +1,6 @@
+{
+	"AWSAccessKeyId": "AKxxxxxxxxxx",
+	"AWSSecretKey": "super-secret-key",
+	"region": "my-aws-region",
+	"bucket": "my-web-app-bucket"
+}
