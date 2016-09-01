@@ -1,8 +1,10 @@
 import 'babel-core/polyfill';
 import $ from 'jquery';
 import AppRouter from './router';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import createHistory from 'history/lib/createHashHistory';
+import {useRouterHistory} from 'react-router';
+import {createHashHistory} from 'history'
 import i18n from './i18n';
 import {ReactFormsUiOptions} from 'react-forms-ui';
 import numeral from 'numeral';
@@ -21,11 +23,9 @@ if (supportedLocales.indexOf(locale) === -1) {
 moment.locale(locale);
 
 // Opt-out of persistent state
-var history = createHistory({
-	queryKey: false
-});
+const appHistory = useRouterHistory(createHashHistory)({queryKey: false});
 
 numeral.language(locale);
 i18n.changeLanguage(locale, function () {
-	ReactDOM.render(<AppRouter history={history} locale={locale}/>, document.getElementById('app-content'));
+	ReactDOM.render(<AppRouter history={appHistory} locale={locale}/>, document.getElementById('app-content'));
 });
