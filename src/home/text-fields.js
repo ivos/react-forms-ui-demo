@@ -3,10 +3,11 @@ import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 import {Button, Panel, FormGroup, ControlLabel, FormControl, HelpBlock, Row, Col} from 'react-bootstrap'
-import {Field, reduxForm} from 'redux-form'
+import {Field, reduxForm, SubmissionError} from 'redux-form'
 import TextField from './TextField'
 import Form from './Form'
 import validate from './validate'
+import FormMessages from './FormMessages'
 
 const validations = {
 	textFree: {},
@@ -36,9 +37,20 @@ const validations = {
 	textReadonly: {},
 }
 
-const showSubmitted = values => (alert(`Submitted:\n\n${JSON.stringify(values, null, 2)}`))
+const showSubmitted = values => {
+	return Promise.resolve()
+		.then(() => {
+			if (values.textBackend.length < 3) {
+				throw new SubmissionError({
+					textBackend: ['Must have at least 3 characters.'],
+					_error: ['There is an error.'],
+				})
+			}
+			alert(`Submitted:\n\n${JSON.stringify(values, null, 2)}`)
+		})
+}
 
-const TextFields = ({handleSubmit}) => {
+const TextFields = ({error, handleSubmit}) => {
 	const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 	const buttonsClass = 'col-sm-offset-2 col-sm-10'
 	return (
@@ -76,7 +88,7 @@ const TextFields = ({handleSubmit}) => {
 					</div>
 				</FormGroup>
 
-				{/*<FormMessages form={this} ref="_form" className={buttonsClass}/>*/}
+				<FormMessages error={error} className={buttonsClass}/>
 			</Panel>
 		</Form>
 	)

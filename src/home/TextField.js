@@ -4,8 +4,7 @@ import {Field} from 'redux-form'
 import Messages from './Messages'
 
 const TextField = (props, context) => {
-	console.log('field props:', props)
-	console.log('field context:', context)
+	// console.log('field props:', props)
 	const {id, label, classes, readonly, children, input, meta: {error, active, touched, valid}} = props
 	const clazz = classes.split(',')
 	const {validations: {[id]: validation}} = context
@@ -33,7 +32,7 @@ const TextField = (props, context) => {
 }
 
 TextField.contextTypes = {
-	validations: React.PropTypes.object.isRequired
+	validations: React.PropTypes.object.isRequired,
 }
 
 const TextFieldWrapper = ({id, name = id, ...rest}) => (

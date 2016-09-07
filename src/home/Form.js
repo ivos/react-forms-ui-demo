@@ -20,7 +20,7 @@ class Form extends React.Component {
 }
 
 Form.childContextTypes = {
-	validations: React.PropTypes.object.isRequired
+	validations: React.PropTypes.object.isRequired,
 }
 
 export default Form
