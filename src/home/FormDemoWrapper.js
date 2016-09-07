@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Row, Col} from 'react-bootstrap'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 

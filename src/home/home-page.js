@@ -29,7 +29,9 @@ export default React.createClass({
 				{/*<DateFields/>*/}
 				{/*<DateRangeFields/>*/}
 				{/*<BooleanFields/>*/}
-				{/*<TableForm/>*/}
+				<FormDemoWrapper name="TableForm">
+					<TableForm/>
+				</FormDemoWrapper>
 
 			</Grid>
 		);

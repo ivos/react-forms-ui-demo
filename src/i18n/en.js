@@ -116,7 +116,11 @@ export default {
 				drROToEmpty: 'Dt.rg RO empty to'
 			},
 			table: {
-				title: 'Table form',
+				title: {
+					fields: 'Table form with explicit fields',
+					display: 'Table form with explicit display',
+					array: 'Table form with array',
+				},
 				text: 'Text (uppercase)',
 				password: 'Password',
 				number: 'Number',

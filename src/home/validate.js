@@ -42,7 +42,7 @@ const pattern = (errors, field, {pattern}, value) => {
 	}
 }
 
-const validate = validations => values => {
+export const validate = validations => values => {
 	const errors = {}
 	Object.keys(validations).forEach(field => {
 		const validation = validations[field]
@@ -57,4 +57,10 @@ const validate = validations => values => {
 	return errors
 }
 
-export default validate
+export const validateArray = (validations, name) => values => {
+	const errors = {[name]: []}
+	values[name].forEach((item, index) => {
+		errors[name][index] = validate(validations)(item)
+	})
+	return errors
+}
