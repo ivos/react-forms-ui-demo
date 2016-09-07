@@ -1,12 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import {emptyToNull} from '../ui/utils'
 import {ButtonSave} from '../ui/buttons'
-import {getList} from '../api'
+// import {getList} from '../api'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 import {Panel, Table} from 'react-bootstrap'
-import {Field, reduxForm, FieldArray} from 'redux-form'
+import {reduxForm, FieldArray} from 'redux-form'
 import Form from './Form'
 import {validateArray} from './validate'
 import Label from './Label'
@@ -40,8 +38,73 @@ const validations = {
 	// },
 }
 
+// const getListCompanies = (query, callback) => {
+// 	getList('companies', {
+// 		data: {name: query},
+// 		success: callback
+// 	})
+// }
+//
+// const formatItemCompany = item => {
+// 	return item.name
+// }
+
+const showSubmitted = values => {
+	alert(`Submitted:\n\n${JSON.stringify(values, null, 2)}`)
+}
+
 const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 const buttonsClass = 'col-sm-offset-2 col-sm-10'
+
+const renderValues = ({fields}) => {
+	fields.forEach(field => console.log('field', field))
+	return (
+		<tbody>
+		{fields.map((item, index) => {
+			if (index <= 1) {
+				return null
+			}
+			return (
+				<tr key={item}>
+					<td>
+						<TextField id={`${item}.text`} row={index} label={t('home.table.text')} classes={fieldClasses}/>
+					</td>
+					{/*<td>*/}
+					{/*<PasswordField form={this} ref={'password-'+index} id="password" row={index}*/}
+					{/*label={t('home.table.password')} classes={fieldClasses}*/}
+					{/*required/>*/}
+					{/*</td>*/}
+					{/*<td>*/}
+					{/*<NumberField form={this} ref={'number-'+index} id="number" row={index}*/}
+					{/*label={t('home.table.number')} classes={fieldClasses}*/}
+					{/*required/>*/}
+					{/*</td>*/}
+					{/*<td>*/}
+					{/*<DateField form={this} ref={'date-'+index} id="date" row={index}*/}
+					{/*label={t('home.table.date')} classes={fieldClasses} required/>*/}
+					{/*</td>*/}
+					{/*<td>*/}
+					{/*<DateRangeField form={this} ref={'dr-'+index} id="dr" row={index}*/}
+					{/*label={t('home.table.dr')} classes={fieldClasses}*/}
+					{/*required/>*/}
+					{/*</td>*/}
+					{/*<td>*/}
+					{/*<SelectField form={this} ref={'select-'+index} id="select" row={index}*/}
+					{/*label={t('home.table.select')} classes={fieldClasses}*/}
+					{/*getList={this.getListCompanies}*/}
+					{/*formatItem={this.formatItemCompany}/>*/}
+					{/*</td>*/}
+					{/*<td>*/}
+					{/*<BooleanField form={this} ref={'boolean-'+index} id="boolean" row={index}*/}
+					{/*label={t('home.table.boolean')} classes={fieldClasses}/>*/}
+					{/*</td>*/}
+				</tr>
+			)
+		})
+		}
+		</tbody>
+	)
+}
 
 const TableForm = ({error, handleSubmit}) => (
 	<Form horizontal validations={validations} onSubmit={handleSubmit(showSubmitted)} tableForm>
@@ -173,71 +236,6 @@ const TableForm = ({error, handleSubmit}) => (
 		<FormMessages error={error} className={buttonsClass}/>
 	</Form>
 )
-
-const renderValues = ({fields}) => {
-	fields.forEach(field => console.log('field', field))
-	return (
-		<tbody>
-		{fields.map((item, index) => {
-			if (index <= 1) {
-				return null
-			}
-			return (
-				<tr key={item}>
-					<td>
-						<TextField id={`${item}.text`} row={index} label={t('home.table.text')} classes={fieldClasses}/>
-					</td>
-					{/*<td>*/}
-					{/*<PasswordField form={this} ref={'password-'+index} id="password" row={index}*/}
-					{/*label={t('home.table.password')} classes={fieldClasses}*/}
-					{/*required/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<NumberField form={this} ref={'number-'+index} id="number" row={index}*/}
-					{/*label={t('home.table.number')} classes={fieldClasses}*/}
-					{/*required/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<DateField form={this} ref={'date-'+index} id="date" row={index}*/}
-					{/*label={t('home.table.date')} classes={fieldClasses} required/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<DateRangeField form={this} ref={'dr-'+index} id="dr" row={index}*/}
-					{/*label={t('home.table.dr')} classes={fieldClasses}*/}
-					{/*required/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<SelectField form={this} ref={'select-'+index} id="select" row={index}*/}
-					{/*label={t('home.table.select')} classes={fieldClasses}*/}
-					{/*getList={this.getListCompanies}*/}
-					{/*formatItem={this.formatItemCompany}/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<BooleanField form={this} ref={'boolean-'+index} id="boolean" row={index}*/}
-					{/*label={t('home.table.boolean')} classes={fieldClasses}/>*/}
-					{/*</td>*/}
-				</tr>
-			)
-		})
-		}
-		</tbody>
-	)
-}
-
-const getListCompanies = (query, callback) => {
-	getList('companies', {
-		data: {name: query},
-		success: callback
-	})
-}
-
-const formatItemCompany = item => {
-	return item.name
-}
-
-const showSubmitted = values => {
-	alert(`Submitted:\n\n${JSON.stringify(values, null, 2)}`)
-}
 
 export default reduxForm({
 	form: 'TableForm',

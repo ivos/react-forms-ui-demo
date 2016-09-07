@@ -116,7 +116,11 @@ export default {
 				drROToEmpty: 'Needit. int.dat prázdné do'
 			},
 			table: {
-				title: 'Formulář v tabulce',
+				title: {
+					fields: 'Formulář v tabulce s polemi',
+					display: 'Formulář v tabulce se zobrazením hodnot',
+					array: 'Formulář v tabulce s dynamickým počtem řádků',
+				},
 				text: 'Text (velká písmena)',
 				password: 'Heslo',
 				number: 'Číslo',

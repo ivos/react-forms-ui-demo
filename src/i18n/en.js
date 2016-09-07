@@ -119,7 +119,7 @@ export default {
 				title: {
 					fields: 'Table form with explicit fields',
 					display: 'Table form with explicit display',
-					array: 'Table form with array',
+					array: 'Table form with dynamic array of rows',
 				},
 				text: 'Text (uppercase)',
 				password: 'Password',

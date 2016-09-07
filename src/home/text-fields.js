@@ -2,8 +2,8 @@ import React from 'react'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
-import {Button, Panel, FormGroup, ControlLabel, FormControl, HelpBlock, Row, Col} from 'react-bootstrap'
-import {Field, reduxForm, SubmissionError} from 'redux-form'
+import {Panel, FormGroup, HelpBlock} from 'react-bootstrap'
+import {reduxForm, SubmissionError} from 'redux-form'
 import {TextField} from './TextField'
 import Form from './Form'
 import {validate} from './validate'
@@ -55,7 +55,7 @@ const buttonsClass = 'col-sm-offset-2 col-sm-10'
 
 const TextFields = ({error, handleSubmit}) => (
 	<Form horizontal validations={validations} onSubmit={handleSubmit(showSubmitted)}>
-		<Panel content="panel-body" header={(<h3>{t('home.text.title')}</h3>)}>
+		<Panel header={(<h3>{t('home.text.title')}</h3>)}>
 			<TextField id="textNotValidated" label={t('home.text.textNotValidated.label')} classes={fieldClasses}>
 				<HelpBlock>{t('home.text.textNotValidated.help')}</HelpBlock>
 			</TextField>
