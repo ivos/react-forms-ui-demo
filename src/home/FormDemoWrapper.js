@@ -12,7 +12,6 @@ const FormDemoWrapper = ({children, values}) => (
 )
 
 const mapStateToProps = (state, ownProps) => {
-	console.log('state:', state)
 	const formState = state.form[ownProps.name]
 	const values = (formState && undefined !== formState.values) ?
 		JSON.stringify(formState.values, null, 2) : 'undefined'
