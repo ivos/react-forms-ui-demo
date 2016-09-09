@@ -42,7 +42,7 @@ class NumberField_ extends Component {
 	}
 
 	render() {
-		const {customFormat, input} = this.props
+		const {customFormat, placeholder, label, input} = this.props
 		const {localValue} = this.state
 		const value = (null !== localValue) ? localValue : formatDisplay(customFormat)(input.value)
 		const customProps = Object.assign({}, this.props)
@@ -53,7 +53,7 @@ class NumberField_ extends Component {
 		})
 		return (
 			<Field {...customProps} component={FormControl} componentProps={{
-				placeholder: customProps.label,
+				placeholder: placeholder || label,
 				autoComplete: 'off',
 				className: 'text-right',
 			}} showFeedback={false}/>
@@ -68,9 +68,28 @@ export const NumberField = (props) => {
 	return wrap(NumberField_, Object.assign({parse}, customProps))
 }
 
-// TODO:
-const NumberDisplay_ = ({input: {value}}) => (
-	<span>{formatDisplay('   todo   ')(value)}</span>
+NumberField.propTypes = {
+	id: React.PropTypes.string.isRequired,
+	name: React.PropTypes.string,
+	label: React.PropTypes.string,
+	placeholder: React.PropTypes.string,
+	classes: React.PropTypes.string.isRequired,
+	readonly: React.PropTypes.bool,
+	format: React.PropTypes.string,
+}
+
+const NumberDisplay_ = ({customFormat, input: {value}}) => (
+	<span>{formatDisplay(customFormat)(value)}</span>
 )
 
-export const NumberDisplay = (props) => wrap(NumberDisplay_, props)
+export const NumberDisplay = (props) => {
+	const customFormat = props.format || defaultFormat
+	const customProps = {...props, customFormat}
+	delete customProps.format
+	return wrap(NumberDisplay_, customProps)
+}
+
+NumberDisplay.propTypes = {
+	id: React.PropTypes.string.isRequired,
+	format: React.PropTypes.string,
+}

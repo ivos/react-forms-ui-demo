@@ -40,19 +40,20 @@ const NumberFields = ({error, handleSubmit}) => (
 	<Form horizontal validations={validations} onSubmit={handleSubmit(showSubmitted)}>
 		<Panel header={(<h3>{t('home.number.title')}</h3>)}>
 			<NumberField id="numberFree" label={t('home.number.numberFree')} classes={fieldClasses}/>
-			<NumberField id="numberRequired" label={t('home.number.numberRequired')} classes={fieldClasses} required/>
+			<NumberField id="numberRequired" label={t('home.number.numberRequired')} classes={fieldClasses}/>
 			<NumberField id="numberValue" label={t('home.number.numberValue.label')} classes={fieldClasses}>
 				<span className="help-block">{t('home.number.numberValue.help')}</span>
 			</NumberField>
 			<NumberField id="numberValueRequired" label={t('home.number.numberValueRequired.label')}
-			             classes={fieldClasses} required>
+			             classes={fieldClasses}>
 				<span className="help-block">{t('home.number.numberValueRequired.help')}</span>
 			</NumberField>
 			<NumberField id="numberCustomFormat" label={t('home.number.numberCustomFormat.label')}
-			             classes={fieldClasses} required format="0.000">
+			             placeholder={t('home.number.numberCustomFormat.placeholder')} classes={fieldClasses}
+			             format="0.000">
 				<span className="help-block">{t('home.number.numberCustomFormat.help')}</span>
 			</NumberField>
-			<NumberField id="numberMinMax" label={t('home.number.numberMinMax.label')} classes={fieldClasses} required>
+			<NumberField id="numberMinMax" label={t('home.number.numberMinMax.label')} classes={fieldClasses}>
 				<span className="help-block">{t('home.number.numberMinMax.help')}</span>
 			</NumberField>
 			<NumberField id="numberReadonly" label={t('home.number.numberReadonly')} classes={fieldClasses} readonly/>

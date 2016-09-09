@@ -65,6 +65,7 @@ export default {
 				numberReadonlyEmpty: 'Number readonly empty',
 				numberCustomFormat: {
 					label: 'Number w/ fmt',
+					placeholder: 'Number with custom format',
 					help: 'Number with custom format with fixed 3 decimal places and no thousands separator: 0.000. Minimum value is 0.'
 				},
 				numberMinMax: {

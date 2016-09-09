@@ -10,31 +10,33 @@ import {validateArray} from './validate'
 import Label from './Label'
 import {TextField, TextDisplay} from './TextField'
 import FormMessages from './FormMessages'
+import {PasswordField, PasswordDisplay} from './PasswordField'
+import {NumberField, NumberDisplay} from './NumberField'
 
 const validations = {
 	text: {
 		required: true,
 		minLength: 4,
 		maxLength: 10,
-		pattern: /^[0-9A-Z ]*$/
+		pattern: /^[0-9A-Z ]*$/,
 	},
-	// password: {
-	// 	required: true
-	// },
-	// number: {
-	// 	required: true
-	// },
+	password: {
+		required: true,
+	},
+	number: {
+		required: true,
+	},
 	// date: {
-	// 	required: true
+	// 	required: true,
 	// },
 	// drFrom: {
-	// 	required: true
+	// 	required: true,
 	// },
 	// drTo: {
-	// 	required: true
+	// 	required: true,
 	// },
 	// select: {
-	// 	required: true
+	// 	required: true,
 	// },
 }
 
@@ -65,35 +67,32 @@ const renderValues = ({fields}) => (
 		return (
 			<tr key={item}>
 				<td>
-					<TextField id={`${item}.text`} row={index} label={t('home.table.text')} classes={fieldClasses}/>
+					<TextField id={`${item}.text`} placeholder={t('home.table.text')} classes={fieldClasses}/>
+				</td>
+				<td>
+					<PasswordField id={`${item}.password`} placeholder={t('home.table.password')}
+					               classes={fieldClasses}/>
+				</td>
+				<td>
+					<NumberField id={`${item}.number`} placeholder={t('home.table.number')} classes={fieldClasses}/>
 				</td>
 				{/*<td>*/}
-				{/*<PasswordField form={this} ref={'password-'+index} id="password" row={index}*/}
-				{/*label={t('home.table.password')} classes={fieldClasses}*/}
-				{/*required/>*/}
-				{/*</td>*/}
-				{/*<td>*/}
-				{/*<NumberField form={this} ref={'number-'+index} id="number" row={index}*/}
-				{/*label={t('home.table.number')} classes={fieldClasses}*/}
-				{/*required/>*/}
-				{/*</td>*/}
-				{/*<td>*/}
-				{/*<DateField form={this} ref={'date-'+index} id="date" row={index}*/}
+				{/*<DateField  ref={'date-'+index} id="date" */}
 				{/*label={t('home.table.date')} classes={fieldClasses} required/>*/}
 				{/*</td>*/}
 				{/*<td>*/}
-				{/*<DateRangeField form={this} ref={'dr-'+index} id="dr" row={index}*/}
+				{/*<DateRangeField  ref={'dr-'+index} id="dr" */}
 				{/*label={t('home.table.dr')} classes={fieldClasses}*/}
 				{/*required/>*/}
 				{/*</td>*/}
 				{/*<td>*/}
-				{/*<SelectField form={this} ref={'select-'+index} id="select" row={index}*/}
+				{/*<SelectField  ref={'select-'+index} id="select" */}
 				{/*label={t('home.table.select')} classes={fieldClasses}*/}
 				{/*getList={this.getListCompanies}*/}
 				{/*formatItem={this.formatItemCompany}/>*/}
 				{/*</td>*/}
 				{/*<td>*/}
-				{/*<BooleanField form={this} ref={'boolean-'+index} id="boolean" row={index}*/}
+				{/*<BooleanField  ref={'boolean-'+index} id="boolean" */}
 				{/*label={t('home.table.boolean')} classes={fieldClasses}/>*/}
 				{/*</td>*/}
 			</tr>
@@ -111,8 +110,8 @@ const TableForm = ({error, handleSubmit}) => (
 				<thead>
 				<tr>
 					<th><Label id="text">{t('home.table.text')}</Label></th>
-					{/*<th><Label required>{t('home.table.password')}</Label></th>*/}
-					{/*<th><Label required>{t('home.table.number')}</Label></th>*/}
+					<th><Label id="password">{t('home.table.password')}</Label></th>
+					<th><Label id="number">{t('home.table.number')}</Label></th>
 					{/*<th><Label required>{t('home.table.date')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.dr')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.select')}</Label></th>*/}
@@ -122,41 +121,44 @@ const TableForm = ({error, handleSubmit}) => (
 				<tbody>
 				<tr>
 					<td>
-						<TextField id="values[0].text" label={t('home.table.text')} classes={fieldClasses}/>
+						<TextField id="values[0].text" placeholder={t('home.table.text')} classes={fieldClasses}/>
+					</td>
+					<td>
+						<PasswordField id="values[0].password" placeholder={t('home.table.password')}
+						               classes={fieldClasses}/>
+					</td>
+					<td>
+						<NumberField id="values[0].number" placeholder={t('home.table.number')} classes={fieldClasses}/>
 					</td>
 					{/*<td>*/}
-					{/*<PasswordField form={this} ref="password-ro" id="password" row={0}*/}
-					{/*label={t('home.table.password')} classes={fieldClasses}*/}
-					{/*readonly/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<NumberField form={this} ref="number-ro" id="number" row={0}*/}
-					{/*label={t('home.table.number')} classes={fieldClasses}*/}
-					{/*readonly/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<DateField form={this} ref="date-ro" id="date" row={0}*/}
+					{/*<DateField  ref="date-ro" id="date" */}
 					{/*label={t('home.table.date')} classes={fieldClasses} readonly/>*/}
 					{/*</td>*/}
 					{/*<td>*/}
-					{/*<DateRangeField form={this} ref="dr-ro" id="dr" row={0}*/}
+					{/*<DateRangeField  ref="dr-ro" id="dr" */}
 					{/*label={t('home.table.dr')} classes={fieldClasses}*/}
 					{/*readonly/>*/}
 					{/*</td>*/}
 					{/*<td>*/}
-					{/*<SelectField form={this} ref="select-ro" id="select" row={0}*/}
+					{/*<SelectField  ref="select-ro" id="select" */}
 					{/*label={t('home.table.select')} classes={fieldClasses}*/}
 					{/*getList={this.getListCompanies}*/}
 					{/*formatItem={this.formatItemCompany} readonly/>*/}
 					{/*</td>*/}
 					{/*<td>*/}
-					{/*<BooleanField form={this} ref="boolean-ro" id="boolean" row={0}*/}
+					{/*<BooleanField  ref="boolean-ro" id="boolean" */}
 					{/*label={t('home.table.boolean')} classes={fieldClasses} readonly/>*/}
 					{/*</td>*/}
 				</tr>
 				<tr>
 					<td>
-						<TextField id="values[1].text" label={t('home.table.text')} classes={fieldClasses} readonly/>
+						<TextField id="values[1].text" classes={fieldClasses} readonly/>
+					</td>
+					<td>
+						<PasswordField id="values[1].password" classes={fieldClasses} readonly/>
+					</td>
+					<td>
+						<NumberField id="values[1].number" classes={fieldClasses} readonly/>
 					</td>
 				</tr>
 				</tbody>
@@ -168,8 +170,8 @@ const TableForm = ({error, handleSubmit}) => (
 				<thead>
 				<tr>
 					<th><Label id="text">{t('home.table.text')}</Label></th>
-					{/*<th><Label required>{t('home.table.password')}</Label></th>*/}
-					{/*<th><Label required>{t('home.table.number')}</Label></th>*/}
+					<th><Label id="password">{t('home.table.password')}</Label></th>
+					<th><Label id="number">{t('home.table.number')}</Label></th>
 					{/*<th><Label required>{t('home.table.date')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.dr')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.select')}</Label></th>*/}
@@ -181,12 +183,12 @@ const TableForm = ({error, handleSubmit}) => (
 					<td>
 						<TextDisplay id="values[1].text"/>
 					</td>
-					{/*<td>*/}
-					{/*<PasswordControl value={values[1].password} readonly/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<NumberControl value={values[1].number} readonly/>*/}
-					{/*</td>*/}
+					<td>
+						<PasswordDisplay id="values[1].password"/>
+					</td>
+					<td>
+						<NumberDisplay id="values[1].number" format="0,0.000"/>
+					</td>
 					{/*<td>*/}
 					{/*<DateControl value={values[1].date} readonly/>*/}
 					{/*</td>*/}
@@ -212,8 +214,8 @@ const TableForm = ({error, handleSubmit}) => (
 				<thead>
 				<tr>
 					<th><Label id="text">{t('home.table.text')}</Label></th>
-					{/*<th><Label required>{t('home.table.password')}</Label></th>*/}
-					{/*<th><Label required>{t('home.table.number')}</Label></th>*/}
+					<th><Label id="password">{t('home.table.password')}</Label></th>
+					<th><Label id="number">{t('home.table.number')}</Label></th>
 					{/*<th><Label required>{t('home.table.date')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.dr')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.select')}</Label></th>*/}
