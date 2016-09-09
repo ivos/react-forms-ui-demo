@@ -26,7 +26,9 @@ export default React.createClass({
 				<FormDemoWrapper name="PasswordFields">
 					<PasswordFields/>
 				</FormDemoWrapper>
-				{/*<NumberFields/>*/}
+				<FormDemoWrapper name="NumberFields">
+					<NumberFields/>
+				</FormDemoWrapper>
 				{/*<SelectFields/>*/}
 				{/*<DateFields/>*/}
 				{/*<DateRangeFields/>*/}

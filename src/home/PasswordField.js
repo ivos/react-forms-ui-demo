@@ -4,13 +4,19 @@ import {Field, wrap} from './Field'
 
 const formatDisplay = value => (value ? '********' : '')
 
-const PasswordField_ = (props) => (
-	<Field {...props} formatDisplay={formatDisplay} component={FormControl} componentProps={{
-		type: 'password',
-		placeholder: props.label,
-		autoComplete: 'off',
-	}}/>
-)
+const PasswordField_ = (props) => {
+	const {readonly, input: {value}} = props
+	if (readonly) {
+		props.input.value = formatDisplay(value)
+	}
+	return (
+		<Field {...props} component={FormControl} componentProps={{
+			type: 'password',
+			placeholder: props.label,
+			autoComplete: 'off',
+		}}/>
+	)
+}
 
 export const PasswordField = (props) => wrap(PasswordField_, props)
 

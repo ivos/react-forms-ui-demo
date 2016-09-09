@@ -6,7 +6,7 @@ import Label from './Label'
 
 export const Field = (props, context) => {
 	const {
-		id, label, classes, readonly, formatDisplay = v => v, component, componentProps, children, input,
+		id, label, classes, readonly, component, componentProps, children, input,
 		meta: {error, touched, valid}
 	} = props
 	const clazz = classes.split(',')
@@ -22,7 +22,7 @@ export const Field = (props, context) => {
 			{!tableForm && <Label id={id} className={clazz[0]}>{label}</Label>}
 			<div className={tableForm ? 'col-xs-12' : clazz[1]}>
 				{!readonly && React.createElement(component, Object.assign({}, {...input}, componentProps))}
-				{readonly && <FormControl.Static>{formatDisplay(input.value)}</FormControl.Static>}
+				{readonly && <FormControl.Static>{input.value}</FormControl.Static>}
 				<FormControl.Feedback />
 				{children}
 			</div>
@@ -44,7 +44,6 @@ Field.propTypes = {
 	label: React.PropTypes.string,
 	classes: React.PropTypes.string.isRequired,
 	readonly: React.PropTypes.bool,
-	formatDisplay: React.PropTypes.func,
 	component: React.PropTypes.func.isRequired,
 	componentProps: React.PropTypes.object,
 }

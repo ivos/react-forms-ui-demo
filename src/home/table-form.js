@@ -54,57 +54,54 @@ const showSubmitted = values => {
 }
 
 const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
-const buttonsClass = 'col-sm-offset-2 col-sm-10'
+const buttonsClass = 'col-sm-12'
 
-const renderValues = ({fields}) => {
-	fields.forEach(field => console.log('field', field))
-	return (
-		<tbody>
-		{fields.map((item, index) => {
-			if (index <= 1) {
-				return null
-			}
-			return (
-				<tr key={item}>
-					<td>
-						<TextField id={`${item}.text`} row={index} label={t('home.table.text')} classes={fieldClasses}/>
-					</td>
-					{/*<td>*/}
-					{/*<PasswordField form={this} ref={'password-'+index} id="password" row={index}*/}
-					{/*label={t('home.table.password')} classes={fieldClasses}*/}
-					{/*required/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<NumberField form={this} ref={'number-'+index} id="number" row={index}*/}
-					{/*label={t('home.table.number')} classes={fieldClasses}*/}
-					{/*required/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<DateField form={this} ref={'date-'+index} id="date" row={index}*/}
-					{/*label={t('home.table.date')} classes={fieldClasses} required/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<DateRangeField form={this} ref={'dr-'+index} id="dr" row={index}*/}
-					{/*label={t('home.table.dr')} classes={fieldClasses}*/}
-					{/*required/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<SelectField form={this} ref={'select-'+index} id="select" row={index}*/}
-					{/*label={t('home.table.select')} classes={fieldClasses}*/}
-					{/*getList={this.getListCompanies}*/}
-					{/*formatItem={this.formatItemCompany}/>*/}
-					{/*</td>*/}
-					{/*<td>*/}
-					{/*<BooleanField form={this} ref={'boolean-'+index} id="boolean" row={index}*/}
-					{/*label={t('home.table.boolean')} classes={fieldClasses}/>*/}
-					{/*</td>*/}
-				</tr>
-			)
-		})
+const renderValues = ({fields}) => (
+	<tbody>
+	{fields.map((item, index) => {
+		if (index <= 1) {
+			return null
 		}
-		</tbody>
-	)
-}
+		return (
+			<tr key={item}>
+				<td>
+					<TextField id={`${item}.text`} row={index} label={t('home.table.text')} classes={fieldClasses}/>
+				</td>
+				{/*<td>*/}
+				{/*<PasswordField form={this} ref={'password-'+index} id="password" row={index}*/}
+				{/*label={t('home.table.password')} classes={fieldClasses}*/}
+				{/*required/>*/}
+				{/*</td>*/}
+				{/*<td>*/}
+				{/*<NumberField form={this} ref={'number-'+index} id="number" row={index}*/}
+				{/*label={t('home.table.number')} classes={fieldClasses}*/}
+				{/*required/>*/}
+				{/*</td>*/}
+				{/*<td>*/}
+				{/*<DateField form={this} ref={'date-'+index} id="date" row={index}*/}
+				{/*label={t('home.table.date')} classes={fieldClasses} required/>*/}
+				{/*</td>*/}
+				{/*<td>*/}
+				{/*<DateRangeField form={this} ref={'dr-'+index} id="dr" row={index}*/}
+				{/*label={t('home.table.dr')} classes={fieldClasses}*/}
+				{/*required/>*/}
+				{/*</td>*/}
+				{/*<td>*/}
+				{/*<SelectField form={this} ref={'select-'+index} id="select" row={index}*/}
+				{/*label={t('home.table.select')} classes={fieldClasses}*/}
+				{/*getList={this.getListCompanies}*/}
+				{/*formatItem={this.formatItemCompany}/>*/}
+				{/*</td>*/}
+				{/*<td>*/}
+				{/*<BooleanField form={this} ref={'boolean-'+index} id="boolean" row={index}*/}
+				{/*label={t('home.table.boolean')} classes={fieldClasses}/>*/}
+				{/*</td>*/}
+			</tr>
+		)
+	})
+	}
+	</tbody>
+)
 
 const TableForm = ({error, handleSubmit}) => (
 	<Form horizontal validations={validations} onSubmit={handleSubmit(showSubmitted)} tableForm>
