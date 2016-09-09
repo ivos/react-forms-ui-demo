@@ -30,7 +30,9 @@ export default React.createClass({
 					<NumberFields/>
 				</FormDemoWrapper>
 				{/*<SelectFields/>*/}
-				{/*<DateFields/>*/}
+				<FormDemoWrapper name="DateFields">
+					<DateFields/>
+				</FormDemoWrapper>
 				{/*<DateRangeFields/>*/}
 				{/*<BooleanFields/>*/}
 				<FormDemoWrapper name="TableForm">

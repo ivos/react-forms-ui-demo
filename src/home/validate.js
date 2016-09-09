@@ -25,13 +25,13 @@ const maxLength = (errors, field, {maxLength}, value) => {
 }
 
 const min = (errors, field, {min}, value) => {
-	if ((null != min) && value && (typeof value === 'number') && (value < min)) {
+	if ((null != min) && value && (value < min)) {
 		add(errors, field, `Must be at least ${min}.`)
 	}
 }
 
 const max = (errors, field, {max}, value) => {
-	if ((null != max) && value && (typeof value === 'number') && (value > max)) {
+	if ((null != max) && value && (value > max)) {
 		add(errors, field, `Must be at most ${max}.`)
 	}
 }

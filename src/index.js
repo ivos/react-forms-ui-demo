@@ -9,8 +9,11 @@ import numeral from 'numeral';
 import numeralCs from 'numeral/languages/cs';
 numeral.language('cs', numeralCs);
 import moment from 'moment'
+import reactWidgetsLocalizer from 'react-widgets/lib/localizers/moment'
+reactWidgetsLocalizer(moment)
 import configureStore from './store'
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-widgets/dist/css/react-widgets.css'
 import 'react-forms-ui/lib/react-forms-ui.css'
 import './typeahead.css'
 import './index.css'
