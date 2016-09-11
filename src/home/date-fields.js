@@ -14,7 +14,6 @@ const validations = {
 	dateFree: {},
 	dateRequired: {
 		required: true,
-		min: '2016-10-10'
 	},
 	dateValue: {},
 	dateValueRequired: {
@@ -42,8 +41,8 @@ const DateFields = ({error, handleSubmit}) => (
 				<span className="help-block">{t('home.date.dateValueRequired.help')}</span>
 			</DateField>
 			<DateField id="dateMinMax" label={t('home.date.dateMinMax.label')} classes={fieldClasses}
-			           minDate={moment().startOf('day').subtract(7, 'days').toDate()}
-			           maxDate={moment().startOf('day').add(7, 'days').toDate()}>
+			           min={moment().startOf('day').subtract(7, 'days').toDate()}
+			           max={moment().startOf('day').add(7, 'days').toDate()}>
 				<span className="help-block">{t('home.date.dateMinMax.help')}</span>
 			</DateField>
 			<DateField id="dateReadonly" label={t('home.date.dateReadonly')} classes={fieldClasses} readonly/>

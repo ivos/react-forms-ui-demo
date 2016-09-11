@@ -16,8 +16,20 @@ const parse = value => {
 	return iso
 }
 
+const constrainValue = (value, min, max) => {
+	if (value) {
+		if (min && value < min) {
+			return min
+		}
+		if (max && value > max) {
+			return max
+		}
+	}
+	return value
+}
+
 const DateField_ = (props) => {
-	const {minDate, maxDate, readonly, placeholder, label, input: {value}} = props
+	const {min, max, readonly, placeholder, label, input: {value, onChange}} = props
 	if (readonly) {
 		props.input.value = value ? moment(value).format(displayFormat) : ''
 	}
@@ -26,8 +38,11 @@ const DateField_ = (props) => {
 			placeholder: placeholder || label,
 			time: false,
 			format: displayFormat,
-			min: minDate,
-			max: maxDate,
+			min,
+			max,
+			onChange: (value) => {
+				onChange(constrainValue(value, min, max))
+			}
 		}} showFeedback={false}/>
 	)
 }
@@ -41,8 +56,8 @@ DateField.propTypes = {
 	placeholder: React.PropTypes.string,
 	classes: React.PropTypes.string.isRequired,
 	readonly: React.PropTypes.bool,
-	minDate: React.PropTypes.any,
-	maxDate: React.PropTypes.any,
+	min: React.PropTypes.any,
+	max: React.PropTypes.any,
 }
 
 const DateDisplay_ = ({input: {value}}) => (
