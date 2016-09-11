@@ -5,12 +5,8 @@ import numeral from 'numeral'
 
 const defaultFormat = '0,0.[00]'
 
-const formatDisplay = customFormat => value => {
-	return ('' !== value) ? numeral(value).format(customFormat) : ''
-}
-const parse = value => {
-	return ('' !== value) ? numeral().unformat(value) : null
-}
+const formatDisplay = customFormat => value => ('' !== value) ? numeral(value).format(customFormat) : ''
+const parse = value => ('' !== value) ? numeral().unformat(value) : null
 
 class NumberField_ extends Component {
 	constructor(props) {
@@ -45,12 +41,13 @@ class NumberField_ extends Component {
 		const {customFormat, placeholder, label, input} = this.props
 		const {localValue} = this.state
 		const value = (null !== localValue) ? localValue : formatDisplay(customFormat)(input.value)
-		const customProps = Object.assign({}, this.props)
-		customProps.input = Object.assign({}, input, {
+		const customProps = {...this.props}
+		customProps.input = {
+			...input,
 			onChange: this.handleChange,
 			onBlur: this.handleBlur,
 			value,
-		})
+		}
 		return (
 			<Field {...customProps} component={FormControl} componentProps={{
 				placeholder: placeholder || label,
@@ -65,7 +62,7 @@ export const NumberField = (props) => {
 	const customFormat = props.format || defaultFormat
 	const customProps = {...props, customFormat}
 	delete customProps.format
-	return wrap(NumberField_, Object.assign({parse}, customProps))
+	return wrap(NumberField_, {parse, ...customProps})
 }
 
 NumberField.propTypes = {

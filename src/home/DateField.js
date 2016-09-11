@@ -7,7 +7,6 @@ const isoFormat = 'YYYY-MM-DD'
 const displayFormat = 'l'
 
 const format = value => value ? moment(value).toDate() : null
-
 const parse = value => {
 	const iso = value ? moment(value, displayFormat).format(isoFormat) : null
 	if ('Invalid date' === iso) {
@@ -15,6 +14,8 @@ const parse = value => {
 	}
 	return iso
 }
+
+const formatDisplay = value => value ? moment(value).format(displayFormat) : ''
 
 const constrainValue = (value, min, max) => {
 	if (value) {
@@ -31,7 +32,7 @@ const constrainValue = (value, min, max) => {
 const DateField_ = (props) => {
 	const {min, max, readonly, placeholder, label, input: {value, onChange}} = props
 	if (readonly) {
-		props.input.value = value ? moment(value).format(displayFormat) : ''
+		props.input.value = formatDisplay(value)
 	}
 	return (
 		<Field {...props} component={DateTimePicker} componentProps={{
@@ -61,7 +62,7 @@ DateField.propTypes = {
 }
 
 const DateDisplay_ = ({input: {value}}) => (
-	<span>{value}</span>
+	<span>{formatDisplay(value)}</span>
 )
 
 export const DateDisplay = (props) => wrap(DateDisplay_, props)

@@ -17,12 +17,11 @@ export const Field = (props, context) => {
 		(!valid ? 'error' : 'success') : null
 	const messages = touched ? error : null
 	const formGroupClass = (tableForm ? '_rfu-table-form-group' : '') + (!showFeedback ? ' _rfu-no-feedback-icon' : '')
-	const finalComponentProps = Object.assign({}, {...input}, componentProps)
 	return (
 		<FormGroup controlId={id} validationState={validationState} className={formGroupClass}>
 			{!tableForm && <Label id={id} className={clazz[0]}>{label}</Label>}
 			<div className={tableForm ? 'col-xs-12' : clazz[1]}>
-				{!readonly && React.createElement(component, finalComponentProps)}
+				{!readonly && React.createElement(component, {...input, ...componentProps})}
 				{readonly && <FormControl.Static>{input.value}</FormControl.Static>}
 				{showFeedback && <FormControl.Feedback />}
 				{children}

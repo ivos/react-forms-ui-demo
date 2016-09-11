@@ -12,6 +12,7 @@ import {TextField, TextDisplay} from './TextField'
 import FormMessages from './FormMessages'
 import {PasswordField, PasswordDisplay} from './PasswordField'
 import {NumberField, NumberDisplay} from './NumberField'
+import {DateField, DateDisplay} from './DateField'
 
 const validations = {
 	text: {
@@ -26,9 +27,9 @@ const validations = {
 	number: {
 		required: true,
 	},
-	// date: {
-	// 	required: true,
-	// },
+	date: {
+		required: true,
+	},
 	// drFrom: {
 	// 	required: true,
 	// },
@@ -76,10 +77,9 @@ const renderValues = ({fields}) => (
 				<td>
 					<NumberField id={`${item}.number`} placeholder={t('home.table.number')} classes={fieldClasses}/>
 				</td>
-				{/*<td>*/}
-				{/*<DateField  ref={'date-'+index} id="date" */}
-				{/*label={t('home.table.date')} classes={fieldClasses} required/>*/}
-				{/*</td>*/}
+				<td>
+					<DateField id={`${item}.date`} placeholder={t('home.table.date')} classes={fieldClasses}/>
+				</td>
 				{/*<td>*/}
 				{/*<DateRangeField  ref={'dr-'+index} id="dr" */}
 				{/*label={t('home.table.dr')} classes={fieldClasses}*/}
@@ -112,7 +112,7 @@ const TableForm = ({error, handleSubmit}) => (
 					<th><Label id="text">{t('home.table.text')}</Label></th>
 					<th><Label id="password">{t('home.table.password')}</Label></th>
 					<th><Label id="number">{t('home.table.number')}</Label></th>
-					{/*<th><Label required>{t('home.table.date')}</Label></th>*/}
+					<th><Label id="date">{t('home.table.date')}</Label></th>
 					{/*<th><Label required>{t('home.table.dr')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.select')}</Label></th>*/}
 					{/*<th>{t('home.table.boolean')}</th>*/}
@@ -130,10 +130,9 @@ const TableForm = ({error, handleSubmit}) => (
 					<td>
 						<NumberField id="values[0].number" placeholder={t('home.table.number')} classes={fieldClasses}/>
 					</td>
-					{/*<td>*/}
-					{/*<DateField  ref="date-ro" id="date" */}
-					{/*label={t('home.table.date')} classes={fieldClasses} readonly/>*/}
-					{/*</td>*/}
+					<td>
+						<DateField id="values[0].date" placeholder={t('home.table.date')} classes={fieldClasses}/>
+					</td>
 					{/*<td>*/}
 					{/*<DateRangeField  ref="dr-ro" id="dr" */}
 					{/*label={t('home.table.dr')} classes={fieldClasses}*/}
@@ -160,6 +159,9 @@ const TableForm = ({error, handleSubmit}) => (
 					<td>
 						<NumberField id="values[1].number" classes={fieldClasses} readonly/>
 					</td>
+					<td>
+						<DateField id="values[1].date" classes={fieldClasses} readonly/>
+					</td>
 				</tr>
 				</tbody>
 			</Table>
@@ -172,7 +174,7 @@ const TableForm = ({error, handleSubmit}) => (
 					<th><Label id="text">{t('home.table.text')}</Label></th>
 					<th><Label id="password">{t('home.table.password')}</Label></th>
 					<th><Label id="number">{t('home.table.number')}</Label></th>
-					{/*<th><Label required>{t('home.table.date')}</Label></th>*/}
+					<th><Label id="date">{t('home.table.date')}</Label></th>
 					{/*<th><Label required>{t('home.table.dr')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.select')}</Label></th>*/}
 					{/*<th>{t('home.table.boolean')}</th>*/}
@@ -189,9 +191,9 @@ const TableForm = ({error, handleSubmit}) => (
 					<td>
 						<NumberDisplay id="values[1].number" format="0,0.000"/>
 					</td>
-					{/*<td>*/}
-					{/*<DateControl value={values[1].date} readonly/>*/}
-					{/*</td>*/}
+					<td>
+						<DateDisplay id="values[1].date"/>
+					</td>
 					{/*<td>*/}
 					{/*<DateControl value={values[1].drFrom} readonly/>*/}
 					{/*{' – '}*/}
@@ -216,7 +218,7 @@ const TableForm = ({error, handleSubmit}) => (
 					<th><Label id="text">{t('home.table.text')}</Label></th>
 					<th><Label id="password">{t('home.table.password')}</Label></th>
 					<th><Label id="number">{t('home.table.number')}</Label></th>
-					{/*<th><Label required>{t('home.table.date')}</Label></th>*/}
+					<th><Label id="date">{t('home.table.date')}</Label></th>
 					{/*<th><Label required>{t('home.table.dr')}</Label></th>*/}
 					{/*<th><Label required>{t('home.table.select')}</Label></th>*/}
 					{/*<th>{t('home.table.boolean')}</th>*/}
