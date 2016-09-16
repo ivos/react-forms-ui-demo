@@ -1,14 +1,15 @@
-export default function (obj, ...keys) {
-	let res = {};
+export default (obj, ...keys) => {
+	const res = {}
 	if (typeof obj === 'object') {
-		let i = 0;
-		let len = keys.length;
+		let i = 0
+		let len = keys.length
 		while (len--) {
-			let key = keys[i++];
+			let key = keys[i]
+			i++
 			if (key in obj) {
-				res[key] = obj[key];
+				res[key] = obj[key]
 			}
 		}
 	}
-	return res;
-};
+	return res
+}

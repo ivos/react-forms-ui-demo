@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {setTitle, focusFirst} from '../ui/utils';
-import {FormMixin, Form, Panel, TextField} from 'react-forms-ui';
-import {LinkCreate} from '../ui/buttons';
-import {getList} from '../store';
+import React from 'react'
+import {withRouter} from 'react-router'
+import ReactDOM from 'react-dom'
+import {setTitle, focusFirst} from '../ui/utils'
+import {FormMixin, Form, Panel, TextField} from 'react-forms-ui'
+import {LinkCreate} from '../ui/buttons'
+import {getList} from '../store'
 
-export default React.createClass({
+export default withRouter(React.createClass({
 
 	mixins: [FormMixin],
 
@@ -14,12 +15,12 @@ export default React.createClass({
 			changed: false,
 			data: [],
 			values: {}
-		};
+		}
 	},
 
 	render() {
-		var {data, changed} = this.state;
-		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4';
+		var {data, changed} = this.state
+		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		return (
 			<Form ref="form" onSubmit={this._onSubmit}>
 				{this._reloaded && !changed && !data.length &&
@@ -41,43 +42,43 @@ export default React.createClass({
 							return (
 								<a ref={'row' + index} key={model.id} href={'#companies/' + model.id}
 								   className="list-group-item">{model.name}</a>
-							);
+							)
 						})}
 					</div>
 				</Panel>
 				}
 				{<LinkCreate href="#companies/new" title="Create new company."/>}
 			</Form>
-		);
+		)
 	},
 
 	reload(changed) {
-		var {values} = this.state;
-		changed = changed || false;
+		var {values} = this.state
+		changed = changed || false
 		getList('companies', {
 			data: values,
 			success: function (data) {
-				this._reloaded = true;
+				this._reloaded = true
 				this.setState({data, changed}, function () {
-					focusFirst(ReactDOM.findDOMNode(this.refs.form));
-				});
+					focusFirst(ReactDOM.findDOMNode(this.refs.form))
+				})
 			}.bind(this)
-		});
+		})
 	},
 
 	componentDidMount() {
-		setTitle('Companies');
-		this.reload();
+		setTitle('Companies')
+		this.reload()
 	},
 
 	onChange() {
-		this.reload(true);
+		this.reload(true)
 	},
 
 	onSubmit() {
-		var {history} = this.props;
-		var {data} = this.state;
-		history.pushState(null, '/companies/' + data[0].id);
+		var {router} = this.props
+		var {data} = this.state
+		router.push(null, '/companies/' + data[0].id)
 	}
 
-});
+}))
