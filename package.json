@@ -3,10 +3,10 @@
   "version": "0.2.0",
   "description": "Demo application showcasing the React Forms UI library.",
   "scripts": {
-    "start": "node tools/dev-server",
-    "build": "node_modules/.bin/grunt build",
-    "start-build": "node tools/build-server",
-    "deploy": "node_modules/.bin/grunt deploy"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy": "node_modules/.bin/grunt deploy",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -18,35 +18,18 @@
     "url": "https://github.com/ivos/react-forms-ui/issues"
   },
   "dependencies": {
-    "history": "~1.17.0",
-    "i18next": "~2.0.0-alpha.13",
-    "jquery": "~1.11.3",
+    "i18next": "^3.4.1",
+    "moment": "^2.14.1",
     "numeral": "^1.5.3",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-forms-ui": "~0.4.0",
+    "react-forms-ui": "^0.4.0",
     "react-router": "^2.7.0"
   },
   "devDependencies": {
-    "babel-core": "~5.8.22",
-    "babel-loader": "~5.3.2",
-    "css-loader": "~0.16.0",
-    "eslint": "~1.2.0",
-    "eslint-plugin-react": "~3.2.3",
-    "express": "~4.13.3",
-    "extract-text-webpack-plugin": "~0.8.2",
-    "grunt": "~0.4.5",
-    "grunt-aws-s3": "~0.14.0",
-    "grunt-cli": "~0.1.13",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-copy": "~0.8.0",
-    "grunt-contrib-cssmin": "~0.13.0",
-    "grunt-exec": "~0.4.6",
-    "http-proxy": "~1.11.1",
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1",
-    "style-loader": "~0.12.3",
-    "webpack": "~1.11.0",
-    "webpack-dev-server": "~1.10.1"
+    "grunt": "^1.0.1",
+    "grunt-aws-s3": "^0.14.5",
+    "grunt-cli": "^1.2.0",
+    "react-scripts": "0.2.3"
   }
 }
