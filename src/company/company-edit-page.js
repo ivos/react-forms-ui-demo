@@ -1,14 +1,15 @@
-import React from 'react';
-import {setTitle} from '../ui/utils';
-import {FormMixin, Panel, Form, TextField, FormMessages} from 'react-forms-ui';
-import Company from './company';
-import {ButtonSave, LinkBack} from '../ui/buttons';
-import Contact from '../contact/contact';
+import React from 'react'
+import {withRouter} from 'react-router'
+import {setTitle} from '../ui/utils'
+import {FormMixin, Panel, Form, TextField, FormMessages} from 'react-forms-ui'
+import Company from './company'
+import {ButtonSave, LinkBack} from '../ui/buttons'
+import Contact from '../contact/contact'
 import Nested from '../shared/nested'
 import pick from '../shared/pick'
-import {getOne, put, post} from '../store';
+import {getOne, put, post} from '../store'
 
-export default React.createClass({
+export default withRouter(React.createClass({
 
 	mixins: [FormMixin],
 
@@ -19,17 +20,17 @@ export default React.createClass({
 	),
 
 	getInitialState: function () {
-		var {id} = this.props.params;
+		var {id} = this.props.params
 		return {
 			values: {}
-		};
+		}
 	},
 
 	render() {
-		var {id} = this.props.params;
-		var {values} = this.state;
-		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4';
-		var buttonsClass = 'col-sm-offset-2 col-sm-10';
+		var {id} = this.props.params
+		var {values} = this.state
+		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
+		var buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body"
@@ -78,45 +79,45 @@ export default React.createClass({
 					<FormMessages form={this} ref="_form" className={buttonsClass}/>
 				</Panel>
 			</Form>
-		);
+		)
 	},
 
 	componentDidMount() {
-		var {id} = this.props.params;
+		var {id} = this.props.params
 		if (id) {
 			getOne('companies', id, {
 				success: function (data) {
-					var values = Nested.expand(data, 'invoicingContact');
+					var values = Nested.expand(data, 'invoicingContact')
 					this.setState({values}, function () {
-						this.focus();
-						setTitle(id ? 'Edit company' : 'Create company');
-					});
+						this.focus()
+						setTitle(id ? 'Edit company' : 'Create company')
+					})
 				}.bind(this)
 			})
 		}
 	},
 
 	onSubmit() {
-		var {history, params:{id}} = this.props;
-		var {values} = this.state;
-		values = Nested.collapse(values, 'invoicingContact');
-		var data = pick(values, 'id', 'name', 'taxId', 'companyId');
-		data.invoicingContact = values.invoicingContact;
+		var {router, params:{id}} = this.props
+		var {values} = this.state
+		values = Nested.collapse(values, 'invoicingContact')
+		var data = pick(values, 'id', 'name', 'taxId', 'companyId')
+		data.invoicingContact = values.invoicingContact
 		if (!id) {
 			post('companies', {
 				data,
 				success(data) {
-					history.pushState(null, '/companies/' + data.id);
+					router.push('/companies/' + data.id)
 				}
 			})
 		} else {
-			put('companies', data.id, {
+			put('companies', values.id, {
 				data,
 				success(data) {
-					history.pushState(null, '/companies/' + data.id);
+					router.push('/companies/' + values.id)
 				}
 			})
 		}
 	}
 
-});
+}))

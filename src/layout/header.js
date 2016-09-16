@@ -1,12 +1,14 @@
 import React from 'react';
+import flagCs from '../img/flag-cs.jpg'
+import flagEn from '../img/flag-en.jpg'
 
 export default React.createClass({
 
 	render() {
 		var {active, locale} = this.props;
 		var localeLabels = {
-			en: <span><img src="img/flag-en.jpg" height="14" width="23"/>&nbsp;English</span>,
-			cs: <span><img src="img/flag-cs.jpg" height="14" width="21"/>&nbsp;Česky</span>
+			en: <span><img src={flagEn} height="14" width="23"/>&nbsp;English</span>,
+			cs: <span><img src={flagCs} height="14" width="21"/>&nbsp;Česky</span>
 		};
 		var currentLocaleLabel = localeLabels[locale];
 		return (
