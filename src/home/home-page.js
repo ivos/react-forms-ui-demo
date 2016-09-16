@@ -20,24 +20,26 @@ export default React.createClass({
 			<Grid fluid>
 				<h2>React Forms UI</h2>
 
-				<FormDemoWrapper name="TextFields">
-					<TextFields ref="first"/>
+				{/*<FormDemoWrapper name="TextFields">*/}
+					{/*<TextFields ref="first"/>*/}
+				{/*</FormDemoWrapper>*/}
+				{/*<FormDemoWrapper name="PasswordFields">*/}
+					{/*<PasswordFields/>*/}
+				{/*</FormDemoWrapper>*/}
+				{/*<FormDemoWrapper name="NumberFields">*/}
+					{/*<NumberFields/>*/}
+				{/*</FormDemoWrapper>*/}
+				<FormDemoWrapper name="SelectFields">
+					<SelectFields/>
 				</FormDemoWrapper>
-				<FormDemoWrapper name="PasswordFields">
-					<PasswordFields/>
-				</FormDemoWrapper>
-				<FormDemoWrapper name="NumberFields">
-					<NumberFields/>
-				</FormDemoWrapper>
-				{/*<SelectFields/>*/}
-				<FormDemoWrapper name="DateFields">
-					<DateFields/>
-				</FormDemoWrapper>
+				{/*<FormDemoWrapper name="DateFields">*/}
+					{/*<DateFields/>*/}
+				{/*</FormDemoWrapper>*/}
 				{/*<DateRangeFields/>*/}
 				{/*<BooleanFields/>*/}
-				<FormDemoWrapper name="TableForm">
-					<TableForm/>
-				</FormDemoWrapper>
+				{/*<FormDemoWrapper name="TableForm">*/}
+					{/*<TableForm/>*/}
+				{/*</FormDemoWrapper>*/}
 
 			</Grid>
 		);
