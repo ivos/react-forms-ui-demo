@@ -1,15 +1,25 @@
-import AppRouter from './router'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {useRouterHistory} from 'react-router'
 import {createHashHistory} from 'history'
+import AppRouter from './router'
 import i18n from './i18n'
 import {ReactFormsUiOptions} from 'react-forms-ui'
 import numeral from 'numeral'
 import numeralCs from 'numeral/languages/cs'
 numeral.language('cs', numeralCs)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'select2/select2.css'
 import 'react-forms-ui/lib/react-forms-ui.css'
 import './index.css'
+
+const jQuery = require('jquery')
+window.jQuery = window.$ = jQuery
+require('select2')
+const moment = require('moment')
+window.moment = moment
+require('react-forms-ui/lib/bootstrap-datetimepicker/bootstrap-datetimepicker')
+require('bootstrap/js/dropdown')
 
 ReactFormsUiOptions.translate = i18n.t.bind(i18n)
 

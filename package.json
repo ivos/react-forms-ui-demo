@@ -18,13 +18,17 @@
     "url": "https://github.com/ivos/react-forms-ui/issues"
   },
   "dependencies": {
+    "bootstrap": "^3.3.5",
+    "eonasdan-bootstrap-datetimepicker": "^4.7.14",
     "i18next": "^3.4.1",
+    "jquery": "^2.2.4",
     "moment": "^2.14.1",
     "numeral": "^1.5.3",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-forms-ui": "^0.4.0",
-    "react-router": "^2.7.0"
+    "react-router": "^2.7.0",
+    "select2": "^3.5.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

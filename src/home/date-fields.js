@@ -5,6 +5,7 @@ import {FormMixin, Panel, Form, DateField, FormMessages} from 'react-forms-ui';
 import {ButtonSave} from '../ui/buttons';
 import i18n from '../i18n';
 var t = i18n.t.bind(i18n);
+import moment from 'moment'
 
 export default React.createClass({
 
