@@ -9,7 +9,7 @@ import Nested from '../shared/nested'
 import pick from '../shared/pick'
 import {getOne, put, post} from '../store'
 
-export default withRouter(React.createClass({
+const CompanyEdit = React.createClass({
 
 	mixins: [FormMixin],
 
@@ -20,48 +20,45 @@ export default withRouter(React.createClass({
 	),
 
 	getInitialState: function () {
-		var {id} = this.props.params
 		return {
 			values: {}
 		}
 	},
 
 	render() {
-		var {id} = this.props.params
-		var {values} = this.state
-		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
-		var buttonsClass = 'col-sm-offset-2 col-sm-10'
+		const {id} = this.props.params
+		const {values} = this.state
+		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
+		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body"
 				       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
 					<div className="well well-sm well-white">
-						<TextField form={this} ref="name" id="name" label="Name" classes={fieldClasses} required/>
-						<TextField form={this} ref="taxId" id="taxId" label="Tax id" classes={fieldClasses}>
+						<TextField ref="name" id="name" label="Name" classes={fieldClasses} required/>
+						<TextField ref="taxId" id="taxId" label="Tax id" classes={fieldClasses}>
 							<span
 								className="help-block">Two upper-case letters and 2-14 digits or upper-case letters.</span>
 						</TextField>
-						<TextField form={this} ref="companyId" id="companyId" label="Company id"
-						           classes={fieldClasses}>
+						<TextField ref="companyId" id="companyId" label="Company id" classes={fieldClasses}>
 							<span className="help-block">Eight digits.</span>
 						</TextField>
 					</div>
 
 					<Panel title="Invoicing contact" content="panel-body">
-						<TextField form={this} ref="invoicingContact.name" id="invoicingContact.name" label="Name"
+						<TextField ref="invoicingContact.name" id="invoicingContact.name" label="Name"
 						           classes={fieldClasses} required/>
-						<TextField form={this} ref="invoicingContact.phone" id="invoicingContact.phone" label="Phone"
+						<TextField ref="invoicingContact.phone" id="invoicingContact.phone" label="Phone"
 						           classes={fieldClasses}/>
-						<TextField form={this} ref="invoicingContact.email" id="invoicingContact.email" label="E-mail"
+						<TextField ref="invoicingContact.email" id="invoicingContact.email" label="E-mail"
 						           classes={fieldClasses}/>
-						<TextField form={this} ref="invoicingContact.country" id="invoicingContact.country"
-						           label="Country"
+						<TextField ref="invoicingContact.country" id="invoicingContact.country" label="Country"
 						           classes={fieldClasses}/>
-						<TextField form={this} ref="invoicingContact.city" id="invoicingContact.city" label="City"
+						<TextField ref="invoicingContact.city" id="invoicingContact.city" label="City"
 						           classes={fieldClasses}/>
-						<TextField form={this} ref="invoicingContact.street" id="invoicingContact.street" label="Street"
+						<TextField ref="invoicingContact.street" id="invoicingContact.street" label="Street"
 						           classes={fieldClasses}/>
-						<TextField form={this} ref="invoicingContact.zip" id="invoicingContact.zip" label="ZIP"
+						<TextField ref="invoicingContact.zip" id="invoicingContact.zip" label="ZIP"
 						           classes={fieldClasses}/>
 					</Panel>
 
@@ -83,11 +80,11 @@ export default withRouter(React.createClass({
 	},
 
 	componentDidMount() {
-		var {id} = this.props.params
+		const {id} = this.props.params
 		if (id) {
 			getOne('companies', id, {
 				success: function (data) {
-					var values = Nested.expand(data, 'invoicingContact')
+					const values = Nested.expand(data, 'invoicingContact')
 					this.setState({values}, function () {
 						this.focus()
 						setTitle(id ? 'Edit company' : 'Create company')
@@ -98,10 +95,10 @@ export default withRouter(React.createClass({
 	},
 
 	onSubmit() {
-		var {router, params:{id}} = this.props
-		var {values} = this.state
+		const {router, params:{id}} = this.props
+		let {values} = this.state
 		values = Nested.collapse(values, 'invoicingContact')
-		var data = pick(values, 'id', 'name', 'taxId', 'companyId')
+		const data = pick(values, 'id', 'name', 'taxId', 'companyId')
 		data.invoicingContact = values.invoicingContact
 		if (!id) {
 			post('companies', {
@@ -118,6 +115,12 @@ export default withRouter(React.createClass({
 				}
 			})
 		}
-	}
+	},
 
-}))
+})
+
+CompanyEdit.childContextTypes = {
+	form: React.PropTypes.object
+}
+
+export default withRouter(CompanyEdit)

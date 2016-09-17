@@ -1,28 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {setTitle, focusFirst} from '../ui/utils';
-import {FormMixin, Panel, TextField, PlainField} from 'react-forms-ui';
-import {LinkEdit, LinkBack} from '../ui/buttons';
-import ContactDetail from '../contact/contact-detail';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {setTitle, focusFirst} from '../ui/utils'
+import {FormMixin, Panel, TextField, PlainField} from 'react-forms-ui'
+import {LinkEdit, LinkBack} from '../ui/buttons'
+import ContactDetail from '../contact/contact-detail'
 import Nested from '../shared/nested'
-import {getOne} from '../store';
+import {getOne} from '../store'
 
-export default React.createClass({
+const CompanyDetail = React.createClass({
 
 	mixins: [FormMixin],
 
 	getInitialState() {
-		var {id} = this.props.params;
 		return {
 			values: {}
-		};
+		}
 	},
 
 	render() {
-		var {id} = this.props.params;
-		var {values} = this.state;
-		var fieldClasses = 'col-sm-2,col-sm-10';
-		var buttonsClass = 'col-sm-offset-2 col-sm-10';
+		const {id} = this.props.params
+		const {values} = this.state
+		const fieldClasses = 'col-sm-2,col-sm-10'
+		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
 			<Panel className="form-horizontal" content="panel-body"
 			       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
@@ -47,20 +46,26 @@ export default React.createClass({
 					<LinkBack href="#companies" title="Back to companies list."/>
 				</div>
 			</Panel>
-		);
+		)
 	},
 
 	componentDidMount() {
-		var {id} = this.props.params;
+		const {id} = this.props.params
 		getOne('companies', id, {
 			success: function (data) {
-				var values = Nested.expand(data, 'invoicingContact');
+				const values = Nested.expand(data, 'invoicingContact')
 				this.setState({values}, function () {
-					focusFirst(ReactDOM.findDOMNode(this.refs.buttons));
-					setTitle('Company');
-				});
+					focusFirst(ReactDOM.findDOMNode(this.refs.buttons))
+					setTitle('Company')
+				})
 			}.bind(this)
 		})
-	}
+	},
 
-});
+})
+
+CompanyDetail.childContextTypes = {
+	form: React.PropTypes.object
+}
+
+export default CompanyDetail

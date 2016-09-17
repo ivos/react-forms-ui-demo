@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {emptyToNull} from '../ui/utils';
-import {FormMixin, Panel, Form, Label, FormMessages,
-	TextField, PasswordField, NumberField,DateField, DateRangeField, SelectField, BooleanField,
-	TextControl, PasswordControl, NumberControl,DateControl, SelectControl, BooleanControl
-} from 'react-forms-ui';
-import {ButtonSave} from '../ui/buttons';
-import {getList, getOne} from '../store';
-import i18n from '../i18n';
-var t = i18n.t.bind(i18n);
+import React from 'react'
+import {emptyToNull} from '../ui/utils'
+import {
+	FormMixin, Panel, Form, Label, FormMessages,
+	TextField, PasswordField, NumberField, DateField, DateRangeField, SelectField, BooleanField,
+	TextControl, PasswordControl, NumberControl, DateControl, SelectControl, BooleanControl
+} from 'react-forms-ui'
+import {ButtonSave} from '../ui/buttons'
+import {getList} from '../store'
+import i18n from '../i18n'
+const t = i18n.t.bind(i18n)
 
-export default React.createClass({
+const TableForm = React.createClass({
 
 	mixins: [FormMixin],
 	tableForm: true,
@@ -43,12 +43,12 @@ export default React.createClass({
 	},
 
 	render() {
-		var {values} = this.state;
+		const {values} = this.state
 		if (!values) {
-			return <div></div>;
+			return <div></div>
 		}
-		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4';
-		var buttonsClass = 'col-sm-offset-2 col-sm-10';
+		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
+		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.table.title')}>
@@ -69,37 +69,33 @@ export default React.createClass({
 							<tbody>
 							<tr>
 								<td>
-									<TextField form={this} ref="text-ro" id="text" row={0}
-									           label={t('home.table.text')} classes={fieldClasses} readonly/>
+									<TextField ref="text-ro" id="text" row={0} label={t('home.table.text')}
+									           classes={fieldClasses} readonly/>
 								</td>
 								<td>
-									<PasswordField form={this} ref="password-ro" id="password" row={0}
-									               label={t('home.table.password')} classes={fieldClasses}
-									               readonly/>
+									<PasswordField ref="password-ro" id="password" row={0}
+									               label={t('home.table.password')} classes={fieldClasses} readonly/>
 								</td>
 								<td>
-									<NumberField form={this} ref="number-ro" id="number" row={0}
-									             label={t('home.table.number')} classes={fieldClasses}
-									             readonly/>
+									<NumberField ref="number-ro" id="number" row={0} label={t('home.table.number')}
+									             classes={fieldClasses} readonly/>
 								</td>
 								<td>
-									<DateField form={this} ref="date-ro" id="date" row={0}
-									           label={t('home.table.date')} classes={fieldClasses} readonly/>
+									<DateField ref="date-ro" id="date" row={0} label={t('home.table.date')}
+									           classes={fieldClasses} readonly/>
 								</td>
 								<td>
-									<DateRangeField form={this} ref="dr-ro" id="dr" row={0}
-									                label={t('home.table.dr')} classes={fieldClasses}
-									                readonly/>
+									<DateRangeField ref="dr-ro" id="dr" row={0} label={t('home.table.dr')}
+									                classes={fieldClasses} readonly/>
 								</td>
 								<td>
-									<SelectField form={this} ref="select-ro" id="select" row={0}
-									             label={t('home.table.select')} classes={fieldClasses}
-									             getList={this.getListCompanies}
+									<SelectField ref="select-ro" id="select" row={0} label={t('home.table.select')}
+									             classes={fieldClasses} getList={this.getListCompanies}
 									             formatItem={this.formatItemCompany} readonly/>
 								</td>
 								<td>
-									<BooleanField form={this} ref="boolean-ro" id="boolean" row={0}
-									              label={t('home.table.boolean')} classes={fieldClasses} readonly/>
+									<BooleanField ref="boolean-ro" id="boolean" row={0} label={t('home.table.boolean')}
+									              classes={fieldClasses} readonly/>
 								</td>
 							</tr>
 							<tr>
@@ -130,45 +126,44 @@ export default React.createClass({
 							</tr>
 							{values.map(function (item, index) {
 								if (index <= 1) {
-									return;
+									return
 								}
 								return (
 									<tr ref={'row-' + index} key={item.id}>
 										<td>
-											<TextField form={this} ref={'text-'+index} id="text" row={index}
+											<TextField ref={'text-' + index} id="text" row={index}
 											           label={t('home.table.text')} classes={fieldClasses} required/>
 										</td>
 										<td>
-											<PasswordField form={this} ref={'password-'+index} id="password" row={index}
+											<PasswordField ref={'password-' + index} id="password" row={index}
 											               label={t('home.table.password')} classes={fieldClasses}
 											               required/>
 										</td>
 										<td>
-											<NumberField form={this} ref={'number-'+index} id="number" row={index}
+											<NumberField ref={'number-' + index} id="number" row={index}
 											             label={t('home.table.number')} classes={fieldClasses}
 											             required/>
 										</td>
 										<td>
-											<DateField form={this} ref={'date-'+index} id="date" row={index}
+											<DateField ref={'date-' + index} id="date" row={index}
 											           label={t('home.table.date')} classes={fieldClasses} required/>
 										</td>
 										<td>
-											<DateRangeField form={this} ref={'dr-'+index} id="dr" row={index}
-											                label={t('home.table.dr')} classes={fieldClasses}
-											                required/>
+											<DateRangeField ref={'dr-' + index} id="dr" row={index}
+											                label={t('home.table.dr')} classes={fieldClasses} required/>
 										</td>
 										<td>
-											<SelectField form={this} ref={'select-'+index} id="select" row={index}
+											<SelectField ref={'select-' + index} id="select" row={index}
 											             label={t('home.table.select')} classes={fieldClasses}
 											             getList={this.getListCompanies}
 											             formatItem={this.formatItemCompany}/>
 										</td>
 										<td>
-											<BooleanField form={this} ref={'boolean-'+index} id="boolean" row={index}
+											<BooleanField ref={'boolean-' + index} id="boolean" row={index}
 											              label={t('home.table.boolean')} classes={fieldClasses}/>
 										</td>
 									</tr>
-								);
+								)
 							}.bind(this))}
 							</tbody>
 						</table>
@@ -182,11 +177,11 @@ export default React.createClass({
 
 					<FormMessages form={this} ref="_form" className={buttonsClass}/>
 
-					{t('home.sent')}
-					<pre ref="output"/>
+					{t('home.values')}
+					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>
 				</Panel>
 			</Form>
-		);
+		)
 	},
 
 	componentDidMount() {
@@ -240,24 +235,30 @@ export default React.createClass({
 					id: 4
 				}
 			]
-		});
+		})
 	},
 
 	getListCompanies(query, callback) {
 		getList('companies', {
 			data: {name: query},
 			success: callback
-		});
+		})
 	},
 
 	formatItemCompany(item) {
-		return item.name;
+		return item.name
 	},
 
 	onSubmit() {
-		var {values} = this.state;
-		$(ReactDOM.findDOMNode(this.refs.output)).html(JSON.stringify(values, emptyToNull, 2));
-		console.log(values);
-	}
+		const {values} = this.state
+		alert(t('home.sent') + `:\n\n${JSON.stringify(values, null, 2)}`)
+		console.log(t('home.sent'), values)
+	},
 
-});
+})
+
+TableForm.childContextTypes = {
+	form: React.PropTypes.object
+}
+
+export default TableForm

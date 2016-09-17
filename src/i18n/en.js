@@ -6,6 +6,7 @@ export default {
 		home: {
 			title: 'Home',
 			sent: 'Sent',
+			values: 'Values',
 			text: {
 				title: 'Text field',
 				textNotValidated: {

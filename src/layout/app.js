@@ -5,6 +5,7 @@ import Header from './header';
 import Footer from './footer';
 import i18n from '../i18n';
 import numeral from 'numeral';
+import moment from 'moment'
 
 export default React.createClass({
 

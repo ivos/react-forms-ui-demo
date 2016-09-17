@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {emptyToNull} from '../ui/utils';
-import {FormMixin, Panel, Form, TextField, FormMessages} from 'react-forms-ui';
-import {ButtonSave} from '../ui/buttons';
-import i18n from '../i18n';
-var t = i18n.t.bind(i18n);
+import React from 'react'
+import {emptyToNull} from '../ui/utils'
+import {FormMixin, Panel, Form, TextField, FormMessages} from 'react-forms-ui'
+import {ButtonSave} from '../ui/buttons'
+import i18n from '../i18n'
+const t = i18n.t.bind(i18n)
 
-export default React.createClass({
+const TextFields = React.createClass({
 
 	mixins: [FormMixin],
 
@@ -39,39 +38,36 @@ export default React.createClass({
 	},
 
 	render() {
-		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4';
-		var buttonsClass = 'col-sm-offset-2 col-sm-10';
+		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
+		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.text.title')}>
-					<TextField form={this} ref="textNotValidated" id="textNotValidated"
+					<TextField ref="textNotValidated" id="textNotValidated"
 					           label={t('home.text.textNotValidated.label')} classes={fieldClasses}>
 						<span className="help-block">{t('home.text.textNotValidated.help')}</span>
 					</TextField>
-					<TextField form={this} ref="textFree" id="textFree" label={t('home.text.textFree')}
-					           classes={fieldClasses}/>
-					<TextField form={this} ref="textRequired" id="textRequired" label={t('home.text.textRequired')}
+					<TextField ref="textFree" id="textFree" label={t('home.text.textFree')} classes={fieldClasses}/>
+					<TextField ref="textRequired" id="textRequired" label={t('home.text.textRequired')}
 					           classes={fieldClasses} required/>
-					<TextField form={this} ref="textMinMax" id="textMinMax" label={t('home.text.textMinMax.label')}
+					<TextField ref="textMinMax" id="textMinMax" label={t('home.text.textMinMax.label')}
 					           placeholder={t('home.text.textMinMax.placeholder')} classes={fieldClasses}/>
-					<TextField form={this} ref="textMinMaxReq" id="textMinMaxReq"
-					           label={t('home.text.textMinMaxReq.label')}
+					<TextField ref="textMinMaxReq" id="textMinMaxReq" label={t('home.text.textMinMaxReq.label')}
 					           placeholder={t('home.text.textMinMaxReq.placeholder')} classes={fieldClasses} required>
 						<span className="help-block">{t('home.text.textMinMaxReq.help')}</span>
 					</TextField>
-					<TextField form={this} ref="textNumbers" id="textNumbers" label={t('home.text.textNumbers')}
+					<TextField ref="textNumbers" id="textNumbers" label={t('home.text.textNumbers')}
 					           classes={fieldClasses}/>
-					<TextField form={this} ref="textBackend" id="textBackend" label={t('home.text.textBackend.label')}
+					<TextField ref="textBackend" id="textBackend" label={t('home.text.textBackend.label')}
 					           placeholder={t('home.text.textBackend.placeholder')} classes={fieldClasses} required>
 						<span className="help-block">{t('home.text.textBackend.help')}</span>
 					</TextField>
-					<TextField form={this} ref="textValue" id="textValue" label={t('home.text.textValue')}
-					           classes={fieldClasses}/>
-					<TextField form={this} ref="textValueRequired" id="textValueRequired"
-					           label={t('home.text.textValueRequired')} classes={fieldClasses} required/>
-					<TextField form={this} ref="textReadonly" id="textReadonly" label={t('home.text.textReadonly')}
+					<TextField ref="textValue" id="textValue" label={t('home.text.textValue')} classes={fieldClasses}/>
+					<TextField ref="textValueRequired" id="textValueRequired" label={t('home.text.textValueRequired')}
+					           classes={fieldClasses} required/>
+					<TextField ref="textReadonly" id="textReadonly" label={t('home.text.textReadonly')}
 					           classes={fieldClasses} readonly/>
-					<TextField form={this} ref="textReadonlyEmpty" id="textReadonlyEmpty"
+					<TextField ref="textReadonlyEmpty" id="textReadonlyEmpty"
 					           label={t('home.text.textReadonlyEmpty')} classes={fieldClasses} readonly/>
 
 					<div className="form-group">
@@ -82,11 +78,11 @@ export default React.createClass({
 
 					<FormMessages form={this} ref="_form" className={buttonsClass}/>
 
-					{t('home.sent')}
-					<pre ref="output"/>
+					{t('home.values')}
+					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>
 				</Panel>
 			</Form>
-		);
+		)
 	},
 
 	componentDidMount() {
@@ -97,13 +93,19 @@ export default React.createClass({
 				textReadonly: 'Read-only value',
 				textReadonlyEmpty: null
 			}
-		});
+		})
 	},
 
 	onSubmit() {
-		var {values} = this.state;
-		$(ReactDOM.findDOMNode(this.refs.output)).html(JSON.stringify(values, emptyToNull, 2));
-		console.log(values);
-	}
+		const {values} = this.state
+		alert(t('home.sent') + `:\n\n${JSON.stringify(values, null, 2)}`)
+		console.log(t('home.sent'), values)
+	},
 
-});
+})
+
+TextFields.childContextTypes = {
+	form: React.PropTypes.object
+}
+
+export default TextFields

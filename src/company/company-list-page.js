@@ -6,7 +6,7 @@ import {FormMixin, Form, Panel, TextField} from 'react-forms-ui'
 import {LinkCreate} from '../ui/buttons'
 import {getList} from '../store'
 
-export default withRouter(React.createClass({
+const CompanyList = React.createClass({
 
 	mixins: [FormMixin],
 
@@ -19,8 +19,8 @@ export default withRouter(React.createClass({
 	},
 
 	render() {
-		var {data, changed} = this.state
-		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
+		const {data, changed} = this.state
+		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		return (
 			<Form ref="form" onSubmit={this._onSubmit}>
 				{this._reloaded && !changed && !data.length &&
@@ -53,7 +53,7 @@ export default withRouter(React.createClass({
 	},
 
 	reload(changed) {
-		var {values} = this.state
+		const {values} = this.state
 		changed = changed || false
 		getList('companies', {
 			data: values,
@@ -76,9 +76,15 @@ export default withRouter(React.createClass({
 	},
 
 	onSubmit() {
-		var {router} = this.props
-		var {data} = this.state
+		const {router} = this.props
+		const {data} = this.state
 		router.push(null, '/companies/' + data[0].id)
-	}
+	},
 
-}))
+})
+
+CompanyList.childContextTypes = {
+	form: React.PropTypes.object
+}
+
+export default withRouter(CompanyList)

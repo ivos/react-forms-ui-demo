@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {emptyToNull} from '../ui/utils';
-import {FormMixin, Panel, Form, SelectField, FormMessages} from 'react-forms-ui';
-import {ButtonSave} from '../ui/buttons';
-import {getList, getOne} from '../store';
-import i18n from '../i18n';
-var t = i18n.t.bind(i18n);
+import React from 'react'
+import {emptyToNull} from '../ui/utils'
+import {FormMixin, Panel, Form, SelectField, FormMessages} from 'react-forms-ui'
+import {ButtonSave} from '../ui/buttons'
+import {getList} from '../store'
+import i18n from '../i18n'
+const t = i18n.t.bind(i18n)
 
-export default React.createClass({
+const SelectFields = React.createClass({
 
 	mixins: [FormMixin],
 
@@ -29,43 +28,41 @@ export default React.createClass({
 	getInitialState: function () {
 		return {
 			values: {}
-		};
+		}
 	},
 
 	render() {
-		var {values} = this.state;
-		var groupEmpty = (!values.selectGroup && 0 !== values.selectGroup);
-		var fieldClasses = 'col-sm-2,col-sm-6,col-sm-4';
-		var buttonsClass = 'col-sm-offset-2 col-sm-10';
+		const {values} = this.state
+		const groupEmpty = (!values.selectGroup && 0 !== values.selectGroup)
+		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
+		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.select.title')}>
-					<SelectField form={this} ref="selectFree" id="selectFree" label={t('home.select.selectFree')}
+					<SelectField ref="selectFree" id="selectFree" label={t('home.select.selectFree')}
 					             classes={fieldClasses} getList={this.getListCompanies}
 					             formatItem={this.formatItemCompany}/>
-					<SelectField form={this} ref="selectRequired" id="selectRequired"
-					             label={t('home.select.selectRequired')} classes={fieldClasses}
-					             getList={this.getListCompanies}
+					<SelectField ref="selectRequired" id="selectRequired" label={t('home.select.selectRequired')}
+					             classes={fieldClasses} getList={this.getListCompanies}
 					             formatItem={this.formatItemCompany} required/>
-					<SelectField form={this} ref="selectValue" id="selectValue" label={t('home.select.selectValue')}
+					<SelectField ref="selectValue" id="selectValue" label={t('home.select.selectValue')}
 					             classes={fieldClasses} getList={this.getListCompanies}
 					             formatItem={this.formatItemCompany}/>
-					<SelectField form={this} ref="selectValueRequired" id="selectValueRequired"
+					<SelectField ref="selectValueRequired" id="selectValueRequired"
 					             label={t('home.select.selectValueRequired')} classes={fieldClasses}
 					             getList={this.getListCompanies} formatItem={this.formatItemCompany} required/>
-					<SelectField form={this} ref="selectReadonly" id="selectReadonly"
+					<SelectField ref="selectReadonly" id="selectReadonly"
 					             label={t('home.select.selectReadonly')} classes={fieldClasses}
 					             formatItem={this.formatItemCompany} readonly/>
-					<SelectField form={this} ref="selectReadonlyEmpty" id="selectReadonlyEmpty"
+					<SelectField ref="selectReadonlyEmpty" id="selectReadonlyEmpty"
 					             label={t('home.select.selectReadonlyEmpty')} classes={fieldClasses}
 					             formatItem={this.formatItemCompany} readonly/>
-					<SelectField form={this} ref="selectGroup" id="selectGroup" label={t('home.select.selectGroup')}
+					<SelectField ref="selectGroup" id="selectGroup" label={t('home.select.selectGroup')}
 					             classes={fieldClasses} getList={this.getListGroups}
 					             formatItem={this.formatItemGroup} required/>
-					<SelectField form={this} ref="selectProduct" id="selectProduct"
-					             label={t('home.select.selectProduct')} classes={fieldClasses}
-					             getList={this.getListProducts} formatItem={this.formatItemProduct}
-					             disabled={groupEmpty}/>
+					<SelectField ref="selectProduct" id="selectProduct" label={t('home.select.selectProduct')}
+					             classes={fieldClasses} getList={this.getListProducts}
+					             formatItem={this.formatItemProduct} disabled={groupEmpty}/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -75,11 +72,11 @@ export default React.createClass({
 
 					<FormMessages form={this} ref="_form" className={buttonsClass}/>
 
-					{t('home.sent')}
-					<pre ref="output"/>
+					{t('home.values')}
+					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>
 				</Panel>
 			</Form>
-		);
+		)
 	},
 
 	componentDidMount() {
@@ -93,62 +90,68 @@ export default React.createClass({
 					selectGroup: {id: 0, name: 'Tea'},
 					selectProduct: {id: 0, name: 'Earl grey tea'}
 				}
-			});
-		}.bind(this), 100);
+			})
+		}.bind(this), 100)
 	},
 
 	getListCompanies(query, callback) {
 		getList('companies', {
 			data: {name: query},
 			success: callback
-		});
+		})
 	},
 
 	formatItemCompany(item) {
-		return item.name;
+		return item.name
 	},
 
 	getListGroups(query, callback) {
 		getList('groups', {
 			data: {name: query},
 			success: callback
-		});
+		})
 	},
 
 	formatItemGroup(item) {
-		return item.name;
+		return item.name
 	},
 
 	getListProducts(query, callback) {
-		var group = this.state.values.selectGroup.id;
+		const group = this.state.values.selectGroup.id
 		getList('products', {
 			data: {group, name: query},
 			success: callback
-		});
+		})
 	},
 
 	formatItemProduct(item) {
-		return item.name;
+		return item.name
 	},
 
 	componentDidUpdate(prevProps, prevState) {
-		var {values} = this.state;
-		var group = values.selectGroup;
-		var prevGroup = prevState.values.selectGroup;
+		let {values} = this.state
+		const group = values.selectGroup
+		const prevGroup = prevState.values.selectGroup
 		if (prevGroup !== undefined && group !== prevGroup) {
 			//TODO
-			this.refs.selectProduct.initWidgetValue(null);
+			this.refs.selectProduct.initWidgetValue(null)
 			values = Object.assign({}, values, {
 				selectProduct: null
-			});
-			this.setState({values});
+			})
+			this.setState({values})
 		}
 	},
 
 	onSubmit() {
-		var {values} = this.state;
-		$(ReactDOM.findDOMNode(this.refs.output)).html(JSON.stringify(values, emptyToNull, 2));
-		console.log(values);
-	}
+		const {values} = this.state
+		alert(t('home.sent') + `:\n\n${JSON.stringify(values, null, 2)}`)
+		console.log(t('home.sent'), values)
+	},
 
-});
+})
+
+SelectFields.childContextTypes = {
+	form: React.PropTypes.object
+}
+
+export default SelectFields

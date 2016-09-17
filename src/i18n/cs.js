@@ -5,6 +5,7 @@ export default {
 		},
 		home: {
 			title: 'Úvod',
+			values: 'Hodnoty',
 			sent: 'Odesláno',
 			text: {
 				title: 'Textové pole',

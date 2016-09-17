@@ -7,8 +7,8 @@ export default React.createClass({
 	render() {
 		var {active, locale} = this.props;
 		var localeLabels = {
-			en: <span><img src={flagEn} height="14" width="23"/>&nbsp;English</span>,
-			cs: <span><img src={flagCs} height="14" width="21"/>&nbsp;Česky</span>
+			en: <span><img src={flagEn} height="14" width="23" alt="English"/>&nbsp;English</span>,
+			cs: <span><img src={flagCs} height="14" width="21" alt="Česky"/>&nbsp;Česky</span>
 		};
 		var currentLocaleLabel = localeLabels[locale];
 		return (

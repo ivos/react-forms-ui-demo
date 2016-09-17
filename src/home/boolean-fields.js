@@ -1,29 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {emptyToNull} from '../ui/utils';
-import {FormMixin, Panel, Form, BooleanField, FormMessages} from 'react-forms-ui';
-import {ButtonSave} from '../ui/buttons';
-import i18n from '../i18n';
-var t = i18n.t.bind(i18n);
+import React from 'react'
+import {emptyToNull} from '../ui/utils'
+import {FormMixin, Panel, Form, BooleanField, FormMessages} from 'react-forms-ui'
+import {ButtonSave} from '../ui/buttons'
+import i18n from '../i18n'
+const t = i18n.t.bind(i18n)
 
-export default React.createClass({
+const BooleanFields = React.createClass({
 
 	mixins: [FormMixin],
 
 	validations: {},
 
 	render() {
-		var fieldClasses = 'col-sm-offset-2 col-sm-10,,col-sm-4';
-		var buttonsClass = 'col-sm-offset-2 col-sm-10';
+		const fieldClasses = 'col-sm-offset-2 col-sm-10,,col-sm-4'
+		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.boolean.title')}>
-					<BooleanField form={this} ref="bool" id="bool" label={t('home.boolean.bool')}
+					<BooleanField ref="bool" id="bool" label={t('home.boolean.bool')} classes={fieldClasses}/>
+					<BooleanField ref="boolChecked" id="boolChecked" label={t('home.boolean.boolChecked')}
 					              classes={fieldClasses}/>
-					<BooleanField form={this} ref="boolChecked" id="boolChecked" label={t('home.boolean.boolChecked')}
-					              classes={fieldClasses}/>
-					<BooleanField form={this} ref="boolRO" id="boolRO" label={t('home.boolean.boolRO')}
-					              classes={fieldClasses} readonly/>
+					<BooleanField ref="boolRO" id="boolRO" label={t('home.boolean.boolRO')} classes={fieldClasses}
+					              readonly/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -33,11 +31,11 @@ export default React.createClass({
 
 					<FormMessages form={this} ref="_form" className={buttonsClass}/>
 
-					{t('home.sent')}
-					<pre ref="output"/>
+					{t('home.values')}
+					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>
 				</Panel>
 			</Form>
-		);
+		)
 	},
 
 	componentDidMount() {
@@ -46,13 +44,19 @@ export default React.createClass({
 				boolChecked: true,
 				boolRO: true
 			}
-		});
+		})
 	},
 
 	onSubmit() {
-		var {values} = this.state;
-		$(ReactDOM.findDOMNode(this.refs.output)).html(JSON.stringify(values, emptyToNull, 2));
-		console.log(values);
-	}
+		const {values} = this.state
+		alert(t('home.sent') + `:\n\n${JSON.stringify(values, null, 2)}`)
+		console.log(t('home.sent'), values)
+	},
 
-});
+})
+
+BooleanFields.childContextTypes = {
+	form: React.PropTypes.object
+}
+
+export default BooleanFields
