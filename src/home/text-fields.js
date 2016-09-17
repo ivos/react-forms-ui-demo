@@ -76,7 +76,7 @@ const TextFields = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages form={this} ref="_form" className={buttonsClass}/>
+					<FormMessages ref="_form" className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>
@@ -98,6 +98,17 @@ const TextFields = React.createClass({
 
 	onSubmit() {
 		const {values} = this.state
+
+		if (values.textBackend.length < 3) {
+			this.setState({
+				messages: {
+					textBackend: ['Must have at least 3 characters.'],
+					_form: ['There is an error.'],
+				}
+			}, this.focusError())
+			return
+		}
+
 		alert(t('home.sent') + `:\n\n${JSON.stringify(values, null, 2)}`)
 		console.log(t('home.sent'), values)
 	},

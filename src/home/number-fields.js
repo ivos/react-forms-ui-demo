@@ -67,7 +67,7 @@ const NumberFields = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages form={this} ref="_form" className={buttonsClass}/>
+					<FormMessages ref="_form" className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>

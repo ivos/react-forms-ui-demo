@@ -11,8 +11,8 @@ export default React.createClass({
 		var fieldClasses = labelClass + ',' + fieldClass;
 		return (
 			<Panel title={label} content="panel-body">
-				<TextField form={form} id={id + '.name'} label="Name" classes={fieldClasses} readonly/>
-				<TextField form={form} id={id + '.phone'} label="Phone" classes={fieldClasses} readonly/>
+				<TextField id={id + '.name'} label="Name" classes={fieldClasses} readonly/>
+				<TextField id={id + '.phone'} label="Phone" classes={fieldClasses} readonly/>
 				<PlainField id={id + '.email'} label="E-mail" classes={fieldClasses} readonly>
 					<p className="form-control-static">
 						<a href={'mailto:' + values.email} target="_blank">{values[id + '.email']}</a>

@@ -27,7 +27,7 @@ const CompanyDetail = React.createClass({
 			       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
 				<div className="well well-sm well-white">
 
-					<TextField form={this} id="name" label="Name" classes={fieldClasses} readonly/>
+					<TextField id="name" label="Name" classes={fieldClasses} readonly/>
 
 					<PlainField id="taxId" label="Tax id" classes={fieldClasses} readonly>
 						<p className="form-control-static">{values.taxId ? <code>{values.taxId}</code> : ''}</p>

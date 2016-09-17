@@ -73,7 +73,7 @@ const CompanyEdit = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages form={this} ref="_form" className={buttonsClass}/>
+					<FormMessages ref="_form" className={buttonsClass}/>
 				</Panel>
 			</Form>
 		)

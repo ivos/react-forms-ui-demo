@@ -34,7 +34,7 @@ const CompanyList = React.createClass({
 				<Panel title={<span>Companies <span className="badge pull-right">{data.length}</span></span>}>
 
 					<div className="panel-body">
-						<TextField form={this} ref="name" id="name" label="Name" classes={fieldClasses}/>
+						<TextField ref="name" id="name" label="Name" classes={fieldClasses}/>
 					</div>
 
 					<div className="list-group">
