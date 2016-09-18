@@ -69,32 +69,32 @@ const TableForm = React.createClass({
 							<tbody>
 							<tr>
 								<td>
-									<TextField ref="text-ro" id="text" row={0} label={t('home.table.text')}
-									           classes={fieldClasses} readonly/>
+									<TextField id="text" row={0} label={t('home.table.text')} classes={fieldClasses}
+									           readonly/>
 								</td>
 								<td>
-									<PasswordField ref="password-ro" id="password" row={0}
-									               label={t('home.table.password')} classes={fieldClasses} readonly/>
+									<PasswordField id="password" row={0} label={t('home.table.password')}
+									               classes={fieldClasses} readonly/>
 								</td>
 								<td>
-									<NumberField ref="number-ro" id="number" row={0} label={t('home.table.number')}
+									<NumberField id="number" row={0} label={t('home.table.number')}
 									             classes={fieldClasses} readonly/>
 								</td>
 								<td>
-									<DateField ref="date-ro" id="date" row={0} label={t('home.table.date')}
-									           classes={fieldClasses} readonly/>
+									<DateField id="date" row={0} label={t('home.table.date')} classes={fieldClasses}
+									           readonly/>
 								</td>
 								<td>
-									<DateRangeField ref="dr-ro" id="dr" row={0} label={t('home.table.dr')}
-									                classes={fieldClasses} readonly/>
+									<DateRangeField id="dr" row={0} label={t('home.table.dr')} classes={fieldClasses}
+									                readonly/>
 								</td>
 								<td>
-									<SelectField ref="select-ro" id="select" row={0} label={t('home.table.select')}
+									<SelectField id="select" row={0} label={t('home.table.select')}
 									             classes={fieldClasses} getList={this.getListCompanies}
 									             formatItem={this.formatItemCompany} readonly/>
 								</td>
 								<td>
-									<BooleanField ref="boolean-ro" id="boolean" row={0} label={t('home.table.boolean')}
+									<BooleanField id="boolean" row={0} label={t('home.table.boolean')}
 									              classes={fieldClasses} readonly/>
 								</td>
 							</tr>
@@ -129,38 +129,35 @@ const TableForm = React.createClass({
 									return
 								}
 								return (
-									<tr ref={'row-' + index} key={item.id}>
+									<tr key={item.id}>
 										<td>
-											<TextField ref={'text-' + index} id="text" row={index}
-											           label={t('home.table.text')} classes={fieldClasses} required/>
+											<TextField id="text" row={index} label={t('home.table.text')}
+											           classes={fieldClasses} required/>
 										</td>
 										<td>
-											<PasswordField ref={'password-' + index} id="password" row={index}
-											               label={t('home.table.password')} classes={fieldClasses}
-											               required/>
+											<PasswordField id="password" row={index} label={t('home.table.password')}
+											               classes={fieldClasses} required/>
 										</td>
 										<td>
-											<NumberField ref={'number-' + index} id="number" row={index}
-											             label={t('home.table.number')} classes={fieldClasses}
-											             required/>
+											<NumberField id="number" row={index} label={t('home.table.number')}
+											             classes={fieldClasses} required/>
 										</td>
 										<td>
-											<DateField ref={'date-' + index} id="date" row={index}
-											           label={t('home.table.date')} classes={fieldClasses} required/>
+											<DateField id="date" row={index} label={t('home.table.date')}
+											           classes={fieldClasses} required/>
 										</td>
 										<td>
-											<DateRangeField ref={'dr-' + index} id="dr" row={index}
-											                label={t('home.table.dr')} classes={fieldClasses} required/>
+											<DateRangeField id="dr" row={index} label={t('home.table.dr')}
+											                classes={fieldClasses} required/>
 										</td>
 										<td>
-											<SelectField ref={'select-' + index} id="select" row={index}
-											             label={t('home.table.select')} classes={fieldClasses}
-											             getList={this.getListCompanies}
+											<SelectField id="select" row={index} label={t('home.table.select')}
+											             classes={fieldClasses} getList={this.getListCompanies}
 											             formatItem={this.formatItemCompany}/>
 										</td>
 										<td>
-											<BooleanField ref={'boolean-' + index} id="boolean" row={index}
-											              label={t('home.table.boolean')} classes={fieldClasses}/>
+											<BooleanField id="boolean" row={index} label={t('home.table.boolean')}
+											              classes={fieldClasses}/>
 										</td>
 									</tr>
 								)
@@ -175,7 +172,7 @@ const TableForm = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages ref="_form" className={buttonsClass}/>
+					<FormMessages className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>

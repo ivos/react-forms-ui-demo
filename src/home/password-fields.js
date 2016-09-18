@@ -26,21 +26,19 @@ const PasswordFields = React.createClass({
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.password.title')}>
-					<PasswordField ref="passwordFree" id="passwordFree" label={t('home.password.passwordFree')}
+					<PasswordField id="passwordFree" label={t('home.password.passwordFree')} classes={fieldClasses}/>
+					<PasswordField id="passwordRequired" label={t('home.password.passwordRequired')}
+					               classes={fieldClasses} required/>
+					<PasswordField id="passwordValue" label={t('home.password.passwordValue')}
 					               classes={fieldClasses}/>
-					<PasswordField ref="passwordRequired" id="passwordRequired"
-					               label={t('home.password.passwordRequired')} classes={fieldClasses} required/>
-					<PasswordField ref="passwordValue" id="passwordValue" label={t('home.password.passwordValue')}
-					               classes={fieldClasses}/>
-					<PasswordField ref="passwordValueRequired" id="passwordValueRequired"
-					               label={t('home.password.passwordValueRequired.label')} classes={fieldClasses}
-					               required>
+					<PasswordField id="passwordValueRequired" label={t('home.password.passwordValueRequired.label')}
+					               classes={fieldClasses} required>
 						<span className="help-block">{t('home.password.passwordValueRequired.help')}</span>
 					</PasswordField>
-					<PasswordField ref="passwordReadonly" id="passwordReadonly"
-					               label={t('home.password.passwordReadonly')} classes={fieldClasses} readonly/>
-					<PasswordField ref="passwordReadonlyEmpty" id="passwordReadonlyEmpty"
-					               label={t('home.password.passwordReadonlyEmpty')} classes={fieldClasses} readonly/>
+					<PasswordField id="passwordReadonly" label={t('home.password.passwordReadonly')}
+					               classes={fieldClasses} readonly/>
+					<PasswordField id="passwordReadonlyEmpty" label={t('home.password.passwordReadonlyEmpty')}
+					               classes={fieldClasses} readonly/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -48,7 +46,7 @@ const PasswordFields = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages ref="_form" className={buttonsClass}/>
+					<FormMessages className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>

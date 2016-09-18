@@ -36,26 +36,22 @@ const DateRangeFields = React.createClass({
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.daterange.title')}>
-					<DateRangeField ref="drFree" id="drFree" label={t('home.daterange.drFree')}
-					                classes={fieldClasses}/>
-					<DateRangeField ref="drReq" id="drReq" label={t('home.daterange.drReq.label')}
+					<DateRangeField id="drFree" label={t('home.daterange.drFree')} classes={fieldClasses}/>
+					<DateRangeField id="drReq" label={t('home.daterange.drReq.label')}
 					                placeholderFrom={t('home.daterange.drReq.placeholderFrom')}
 					                placeholderTo={t('home.daterange.drReq.placeholderTo')} classes={fieldClasses}
 					                required/>
-					<DateRangeField ref="drValue" id="drValue" label={t('home.daterange.drValue')}
-					                classes={fieldClasses}/>
-					<DateRangeField ref="drFromReq" id="drFromReq" label={t('home.daterange.drFromReq')}
-					                classes={fieldClasses} required/>
-					<DateRangeField ref="drToReq" id="drToReq" label={t('home.daterange.drToReq')}
-					                classes={fieldClasses} required/>
-					<DateRangeField ref="drRO" id="drRO" label={t('home.daterange.drRO')} classes={fieldClasses}
+					<DateRangeField id="drValue" label={t('home.daterange.drValue')} classes={fieldClasses}/>
+					<DateRangeField id="drFromReq" label={t('home.daterange.drFromReq')} classes={fieldClasses}
+					                required/>
+					<DateRangeField id="drToReq" label={t('home.daterange.drToReq')} classes={fieldClasses} required/>
+					<DateRangeField id="drRO" label={t('home.daterange.drRO')} classes={fieldClasses} readonly/>
+					<DateRangeField id="drROEmpty" label={t('home.daterange.drROEmpty')} classes={fieldClasses}
 					                readonly/>
-					<DateRangeField ref="drROEmpty" id="drROEmpty" label={t('home.daterange.drROEmpty')}
-					                classes={fieldClasses} readonly/>
-					<DateRangeField ref="drROFromEmpty" id="drROFromEmpty" label={t('home.daterange.drROFromEmpty')}
-					                classes={fieldClasses} readonly/>
-					<DateRangeField ref="drROToEmpty" id="drROToEmpty" label={t('home.daterange.drROToEmpty')}
-					                classes={fieldClasses} readonly/>
+					<DateRangeField id="drROFromEmpty" label={t('home.daterange.drROFromEmpty')} classes={fieldClasses}
+					                readonly/>
+					<DateRangeField id="drROToEmpty" label={t('home.daterange.drROToEmpty')} classes={fieldClasses}
+					                readonly/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -63,7 +59,7 @@ const DateRangeFields = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages ref="_form" className={buttonsClass}/>
+					<FormMessages className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>

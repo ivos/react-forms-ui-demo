@@ -43,32 +43,30 @@ const TextFields = React.createClass({
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.text.title')}>
-					<TextField ref="textNotValidated" id="textNotValidated"
-					           label={t('home.text.textNotValidated.label')} classes={fieldClasses}>
+					<TextField id="textNotValidated" label={t('home.text.textNotValidated.label')}
+					           classes={fieldClasses}>
 						<span className="help-block">{t('home.text.textNotValidated.help')}</span>
 					</TextField>
-					<TextField ref="textFree" id="textFree" label={t('home.text.textFree')} classes={fieldClasses}/>
-					<TextField ref="textRequired" id="textRequired" label={t('home.text.textRequired')}
-					           classes={fieldClasses} required/>
-					<TextField ref="textMinMax" id="textMinMax" label={t('home.text.textMinMax.label')}
+					<TextField id="textFree" label={t('home.text.textFree')} classes={fieldClasses}/>
+					<TextField id="textRequired" label={t('home.text.textRequired')} classes={fieldClasses} required/>
+					<TextField id="textMinMax" label={t('home.text.textMinMax.label')}
 					           placeholder={t('home.text.textMinMax.placeholder')} classes={fieldClasses}/>
-					<TextField ref="textMinMaxReq" id="textMinMaxReq" label={t('home.text.textMinMaxReq.label')}
+					<TextField id="textMinMaxReq" label={t('home.text.textMinMaxReq.label')}
 					           placeholder={t('home.text.textMinMaxReq.placeholder')} classes={fieldClasses} required>
 						<span className="help-block">{t('home.text.textMinMaxReq.help')}</span>
 					</TextField>
-					<TextField ref="textNumbers" id="textNumbers" label={t('home.text.textNumbers')}
-					           classes={fieldClasses}/>
-					<TextField ref="textBackend" id="textBackend" label={t('home.text.textBackend.label')}
+					<TextField id="textNumbers" label={t('home.text.textNumbers')} classes={fieldClasses}/>
+					<TextField id="textBackend" label={t('home.text.textBackend.label')}
 					           placeholder={t('home.text.textBackend.placeholder')} classes={fieldClasses} required>
 						<span className="help-block">{t('home.text.textBackend.help')}</span>
 					</TextField>
-					<TextField ref="textValue" id="textValue" label={t('home.text.textValue')} classes={fieldClasses}/>
-					<TextField ref="textValueRequired" id="textValueRequired" label={t('home.text.textValueRequired')}
-					           classes={fieldClasses} required/>
-					<TextField ref="textReadonly" id="textReadonly" label={t('home.text.textReadonly')}
+					<TextField id="textValue" label={t('home.text.textValue')} classes={fieldClasses}/>
+					<TextField id="textValueRequired" label={t('home.text.textValueRequired')} classes={fieldClasses}
+					           required/>
+					<TextField id="textReadonly" label={t('home.text.textReadonly')}
 					           classes={fieldClasses} readonly/>
-					<TextField ref="textReadonlyEmpty" id="textReadonlyEmpty"
-					           label={t('home.text.textReadonlyEmpty')} classes={fieldClasses} readonly/>
+					<TextField id="textReadonlyEmpty" label={t('home.text.textReadonlyEmpty')} classes={fieldClasses}
+					           readonly/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -76,7 +74,7 @@ const TextFields = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages ref="_form" className={buttonsClass}/>
+					<FormMessages className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>

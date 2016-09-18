@@ -30,23 +30,21 @@ const DateFields = React.createClass({
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.date.title')}>
-					<DateField ref="dateFree" id="dateFree" label={t('home.date.dateFree')} classes={fieldClasses}/>
-					<DateField ref="dateRequired" id="dateRequired" label={t('home.date.dateRequired')}
-					           classes={fieldClasses} required/>
-					<DateField ref="dateValue" id="dateValue" label={t('home.date.dateValue')} classes={fieldClasses}/>
-					<DateField ref="dateValueRequired" id="dateValueRequired"
-					           label={t('home.date.dateValueRequired.label')} classes={fieldClasses} required>
+					<DateField id="dateFree" label={t('home.date.dateFree')} classes={fieldClasses}/>
+					<DateField id="dateRequired" label={t('home.date.dateRequired')} classes={fieldClasses} required/>
+					<DateField id="dateValue" label={t('home.date.dateValue')} classes={fieldClasses}/>
+					<DateField id="dateValueRequired" label={t('home.date.dateValueRequired.label')}
+					           classes={fieldClasses} required>
 						<span className="help-block">{t('home.date.dateValueRequired.help')}</span>
 					</DateField>
-					<DateField ref="dateMinMax" id="dateMinMax" label={t('home.date.dateMinMax.label')}
-					           classes={fieldClasses} required min={moment().startOf('day').subtract(7, 'days')}
+					<DateField id="dateMinMax" label={t('home.date.dateMinMax.label')} classes={fieldClasses} required
+					           min={moment().startOf('day').subtract(7, 'days')}
 					           max={moment().startOf('day').add(7, 'days')}>
 						<span className="help-block">{t('home.date.dateMinMax.help')}</span>
 					</DateField>
-					<DateField ref="dateReadonly" id="dateReadonly" label={t('home.date.dateReadonly')}
-					           classes={fieldClasses} readonly/>
-					<DateField ref="dateReadonlyEmpty" id="dateReadonlyEmpty" label={t('home.date.dateReadonlyEmpty')}
-					           classes={fieldClasses} readonly/>
+					<DateField id="dateReadonly" label={t('home.date.dateReadonly')} classes={fieldClasses} readonly/>
+					<DateField id="dateReadonlyEmpty" label={t('home.date.dateReadonlyEmpty')} classes={fieldClasses}
+					           readonly/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -54,7 +52,7 @@ const DateFields = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages ref="_form" className={buttonsClass}/>
+					<FormMessages className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>

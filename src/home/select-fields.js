@@ -39,30 +39,24 @@ const SelectFields = React.createClass({
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.select.title')}>
-					<SelectField ref="selectFree" id="selectFree" label={t('home.select.selectFree')}
-					             classes={fieldClasses} getList={this.getListCompanies}
-					             formatItem={this.formatItemCompany}/>
-					<SelectField ref="selectRequired" id="selectRequired" label={t('home.select.selectRequired')}
+					<SelectField id="selectFree" label={t('home.select.selectFree')} classes={fieldClasses}
+					             getList={this.getListCompanies} formatItem={this.formatItemCompany}/>
+					<SelectField id="selectRequired" label={t('home.select.selectRequired')} classes={fieldClasses}
+					             getList={this.getListCompanies} formatItem={this.formatItemCompany} required/>
+					<SelectField id="selectValue" label={t('home.select.selectValue')} classes={fieldClasses}
+					             getList={this.getListCompanies} formatItem={this.formatItemCompany}/>
+					<SelectField id="selectValueRequired" label={t('home.select.selectValueRequired')}
 					             classes={fieldClasses} getList={this.getListCompanies}
 					             formatItem={this.formatItemCompany} required/>
-					<SelectField ref="selectValue" id="selectValue" label={t('home.select.selectValue')}
-					             classes={fieldClasses} getList={this.getListCompanies}
-					             formatItem={this.formatItemCompany}/>
-					<SelectField ref="selectValueRequired" id="selectValueRequired"
-					             label={t('home.select.selectValueRequired')} classes={fieldClasses}
-					             getList={this.getListCompanies} formatItem={this.formatItemCompany} required/>
-					<SelectField ref="selectReadonly" id="selectReadonly"
-					             label={t('home.select.selectReadonly')} classes={fieldClasses}
+					<SelectField id="selectReadonly" label={t('home.select.selectReadonly')} classes={fieldClasses}
 					             formatItem={this.formatItemCompany} readonly/>
-					<SelectField ref="selectReadonlyEmpty" id="selectReadonlyEmpty"
-					             label={t('home.select.selectReadonlyEmpty')} classes={fieldClasses}
-					             formatItem={this.formatItemCompany} readonly/>
-					<SelectField ref="selectGroup" id="selectGroup" label={t('home.select.selectGroup')}
-					             classes={fieldClasses} getList={this.getListGroups}
-					             formatItem={this.formatItemGroup} required/>
-					<SelectField ref="selectProduct" id="selectProduct" label={t('home.select.selectProduct')}
-					             classes={fieldClasses} getList={this.getListProducts}
-					             formatItem={this.formatItemProduct} disabled={groupEmpty}/>
+					<SelectField id="selectReadonlyEmpty" label={t('home.select.selectReadonlyEmpty')}
+					             classes={fieldClasses} formatItem={this.formatItemCompany} readonly/>
+					<SelectField id="selectGroup" label={t('home.select.selectGroup')} classes={fieldClasses}
+					             getList={this.getListGroups} formatItem={this.formatItemGroup} required/>
+					<SelectField id="selectProduct" label={t('home.select.selectProduct')} classes={fieldClasses}
+					             getList={this.getListProducts} formatItem={this.formatItemProduct}
+					             disabled={groupEmpty}/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -70,7 +64,7 @@ const SelectFields = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages ref="_form" className={buttonsClass}/>
+					<FormMessages className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>

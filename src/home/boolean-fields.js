@@ -17,11 +17,9 @@ const BooleanFields = React.createClass({
 		return (
 			<Form onSubmit={this._onSubmit}>
 				<Panel content="panel-body" title={t('home.boolean.title')}>
-					<BooleanField ref="bool" id="bool" label={t('home.boolean.bool')} classes={fieldClasses}/>
-					<BooleanField ref="boolChecked" id="boolChecked" label={t('home.boolean.boolChecked')}
-					              classes={fieldClasses}/>
-					<BooleanField ref="boolRO" id="boolRO" label={t('home.boolean.boolRO')} classes={fieldClasses}
-					              readonly/>
+					<BooleanField id="bool" label={t('home.boolean.bool')} classes={fieldClasses}/>
+					<BooleanField id="boolChecked" label={t('home.boolean.boolChecked')} classes={fieldClasses}/>
+					<BooleanField id="boolRO" label={t('home.boolean.boolRO')} classes={fieldClasses} readonly/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -29,7 +27,7 @@ const BooleanFields = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages ref="_form" className={buttonsClass}/>
+					<FormMessages className={buttonsClass}/>
 
 					{t('home.values')}
 					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>
