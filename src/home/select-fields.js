@@ -1,43 +1,40 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {FormMixin, Panel, Form, SelectField, FormMessages} from 'react-forms-ui'
+import {Panel, Form, SelectField, FormMessages} from 'react-forms-ui'
 import {ButtonSave} from '../ui/buttons'
 import {getList} from '../store'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 
+const validations = {
+	selectFree: {},
+	selectRequired: {
+		required: true
+	},
+	selectValue: {},
+	selectValueRequired: {
+		required: true
+	},
+	selectGroup: {
+		required: true
+	},
+	selectProduct: {}
+}
+
 const SelectFields = React.createClass({
 
-	mixins: [FormMixin],
-
-	validations: {
-		selectFree: {},
-		selectRequired: {
-			required: true
-		},
-		selectValue: {},
-		selectValueRequired: {
-			required: true
-		},
-		selectGroup: {
-			required: true
-		},
-		selectProduct: {}
-	},
-
-	getInitialState: function () {
-		return {
-			values: {}
-		}
+	getInitialState() {
+		return {}
 	},
 
 	render() {
 		const {values} = this.state
-		const groupEmpty = (!values.selectGroup && 0 !== values.selectGroup)
+		const groupEmpty = !values || (!values.selectGroup && 0 !== values.selectGroup)
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.select.title')}>
 					<SelectField id="selectFree" label={t('home.select.selectFree')} classes={fieldClasses}
 					             getList={this.getListCompanies} formatItem={this.formatItemCompany}/>
@@ -54,9 +51,9 @@ const SelectFields = React.createClass({
 					             classes={fieldClasses} formatItem={this.formatItemCompany} readonly/>
 					<SelectField id="selectGroup" label={t('home.select.selectGroup')} classes={fieldClasses}
 					             getList={this.getListGroups} formatItem={this.formatItemGroup} required/>
-					<SelectField id="selectProduct" label={t('home.select.selectProduct')} classes={fieldClasses}
-					             getList={this.getListProducts} formatItem={this.formatItemProduct}
-					             disabled={groupEmpty}/>
+					<SelectField ref="selectProduct" id="selectProduct" label={t('home.select.selectProduct')}
+					             classes={fieldClasses} getList={this.getListProducts}
+					             formatItem={this.formatItemProduct} disabled={groupEmpty}/>
 
 					<div className="form-group">
 						<div className={buttonsClass}>
@@ -123,16 +120,15 @@ const SelectFields = React.createClass({
 	},
 
 	componentDidUpdate(prevProps, prevState) {
-		let {values} = this.state
-		const group = values.selectGroup
-		const prevGroup = prevState.values.selectGroup
-		if (prevGroup !== undefined && group !== prevGroup) {
-			//TODO
-			this.refs.selectProduct.initWidgetValue(null)
-			values = Object.assign({}, values, {
-				selectProduct: null
-			})
-			this.setState({values})
+		if (prevState.values) {
+			const {values} = this.state
+			const group = values.selectGroup
+			const prevGroup = prevState.values.selectGroup
+			if (prevGroup !== undefined && group !== prevGroup) {
+				//TODO
+				this.refs.selectProduct.initWidgetValue(null)
+				this.setState({values: {...values, selectProduct: null}})
+			}
 		}
 	},
 
@@ -143,9 +139,5 @@ const SelectFields = React.createClass({
 	},
 
 })
-
-SelectFields.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default SelectFields

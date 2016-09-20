@@ -1,39 +1,42 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {FormMixin, Panel, Form, NumberField, FormMessages} from 'react-forms-ui'
+import {Panel, Form, NumberField, FormMessages} from 'react-forms-ui'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 
+const validations = {
+	numberFree: {},
+	numberRequired: {
+		required: true
+	},
+	numberValue: {},
+	numberValueRequired: {
+		required: true
+	},
+	numberCustomFormat: {
+		required: true,
+		min: 0
+	},
+	numberMinMax: {
+		required: true,
+		min: 3,
+		max: 30
+	}
+}
+
 const NumberFields = React.createClass({
 
-	mixins: [FormMixin],
-
-	validations: {
-		numberFree: {},
-		numberRequired: {
-			required: true
-		},
-		numberValue: {},
-		numberValueRequired: {
-			required: true
-		},
-		numberCustomFormat: {
-			required: true,
-			min: 0
-		},
-		numberMinMax: {
-			required: true,
-			min: 3,
-			max: 30
-		}
+	getInitialState() {
+		return {}
 	},
 
 	render() {
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.number.title')}>
 					<NumberField id="numberFree" label={t('home.number.numberFree')} classes={fieldClasses}/>
 					<NumberField id="numberRequired" label={t('home.number.numberRequired')} classes={fieldClasses}
@@ -91,9 +94,5 @@ const NumberFields = React.createClass({
 	},
 
 })
-
-NumberFields.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default NumberFields

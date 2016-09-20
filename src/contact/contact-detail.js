@@ -1,14 +1,14 @@
-import React from 'react';
-import {Panel, TextField, PlainField, Label} from 'react-forms-ui';
+import React from 'react'
+import {Panel, TextField, PlainField, Label} from 'react-forms-ui'
 
 export default React.createClass({
 
 	render() {
-		var {id, form, label} = this.props;
-		var values = form.state.values;
-		var labelClass = 'col-sm-2';
-		var fieldClass = 'col-sm-10';
-		var fieldClasses = labelClass + ',' + fieldClass;
+		const {id, form, label} = this.props
+		const {values = {}}= form.state
+		const labelClass = 'col-sm-2'
+		const fieldClass = 'col-sm-10'
+		const fieldClasses = labelClass + ',' + fieldClass
 		return (
 			<Panel title={label} content="panel-body">
 				<TextField id={id + '.name'} label="Name" classes={fieldClasses} readonly/>
@@ -32,7 +32,7 @@ export default React.createClass({
 					</div>
 				</div>
 			</Panel>
-		);
+		)
 	}
 
-});
+})

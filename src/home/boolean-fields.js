@@ -1,21 +1,24 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {FormMixin, Panel, Form, BooleanField, FormMessages} from 'react-forms-ui'
+import {Panel, Form, BooleanField, FormMessages} from 'react-forms-ui'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 
+const validations = {}
+
 const BooleanFields = React.createClass({
 
-	mixins: [FormMixin],
-
-	validations: {},
+	getInitialState() {
+		return {}
+	},
 
 	render() {
 		const fieldClasses = 'col-sm-offset-2 col-sm-10,,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.boolean.title')}>
 					<BooleanField id="bool" label={t('home.boolean.bool')} classes={fieldClasses}/>
 					<BooleanField id="boolChecked" label={t('home.boolean.boolChecked')} classes={fieldClasses}/>
@@ -52,9 +55,5 @@ const BooleanFields = React.createClass({
 	},
 
 })
-
-BooleanFields.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default BooleanFields

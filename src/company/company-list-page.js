@@ -2,13 +2,11 @@ import React from 'react'
 import {withRouter} from 'react-router'
 import ReactDOM from 'react-dom'
 import {setTitle, focusFirst} from '../ui/utils'
-import {FormMixin, Form, Panel, TextField} from 'react-forms-ui'
+import {Form, Panel, TextField} from 'react-forms-ui'
 import {LinkCreate} from '../ui/buttons'
 import {getList} from '../store'
 
 const CompanyList = React.createClass({
-
-	mixins: [FormMixin],
 
 	getInitialState() {
 		return {
@@ -22,7 +20,8 @@ const CompanyList = React.createClass({
 		const {data, changed} = this.state
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		return (
-			<Form ref="form" onSubmit={this._onSubmit}>
+			<Form ref="form" className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      onChange={this.onChange} onSubmit={this.onSubmit}>
 				{this._reloaded && !changed && !data.length &&
 				<div className="alert alert-info">
 					<p><strong>You have no company defined now.</strong></p>
@@ -34,13 +33,13 @@ const CompanyList = React.createClass({
 				<Panel title={<span>Companies <span className="badge pull-right">{data.length}</span></span>}>
 
 					<div className="panel-body">
-						<TextField ref="name" id="name" label="Name" classes={fieldClasses}/>
+						<TextField id="name" label="Name" classes={fieldClasses}/>
 					</div>
 
 					<div className="list-group">
 						{data.map(function (model, index) {
 							return (
-								<a ref={'row' + index} key={model.id} href={'#companies/' + model.id}
+								<a key={model.id} href={'#companies/' + model.id}
 								   className="list-group-item">{model.name}</a>
 							)
 						})}
@@ -78,13 +77,9 @@ const CompanyList = React.createClass({
 	onSubmit() {
 		const {router} = this.props
 		const {data} = this.state
-		router.push(null, '/companies/' + data[0].id)
+		router.push('/companies/' + data[0].id)
 	},
 
 })
-
-CompanyList.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default withRouter(CompanyList)

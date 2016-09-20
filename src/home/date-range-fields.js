@@ -1,40 +1,43 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {FormMixin, Panel, Form, DateRangeField, FormMessages} from 'react-forms-ui'
+import {Panel, Form, DateRangeField, FormMessages} from 'react-forms-ui'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 
+const validations = {
+	drFreeFrom: {},
+	drFreeTo: {},
+	drReqFrom: {
+		required: true
+	},
+	drReqTo: {
+		required: true
+	},
+	drValueFrom: {},
+	drValueTo: {},
+	drFromReqFrom: {
+		required: true
+	},
+	drFromReqTo: {},
+	drToReqFrom: {},
+	drToReqTo: {
+		required: true
+	}
+}
+
 const DateRangeFields = React.createClass({
 
-	mixins: [FormMixin],
-
-	validations: {
-		drFreeFrom: {},
-		drFreeTo: {},
-		drReqFrom: {
-			required: true
-		},
-		drReqTo: {
-			required: true
-		},
-		drValueFrom: {},
-		drValueTo: {},
-		drFromReqFrom: {
-			required: true
-		},
-		drFromReqTo: {},
-		drToReqFrom: {},
-		drToReqTo: {
-			required: true
-		}
+	getInitialState() {
+		return {}
 	},
 
 	render() {
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.daterange.title')}>
 					<DateRangeField id="drFree" label={t('home.daterange.drFree')} classes={fieldClasses}/>
 					<DateRangeField id="drReq" label={t('home.daterange.drReq.label')}
@@ -92,9 +95,5 @@ const DateRangeFields = React.createClass({
 	},
 
 })
-
-DateRangeFields.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default DateRangeFields

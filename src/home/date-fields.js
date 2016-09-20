@@ -1,34 +1,37 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {FormMixin, Panel, Form, DateField, FormMessages} from 'react-forms-ui'
+import {Panel, Form, DateField, FormMessages} from 'react-forms-ui'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 import moment from 'moment'
 
+const validations = {
+	dateFree: {},
+	dateRequired: {
+		required: true
+	},
+	dateValue: {},
+	dateValueRequired: {
+		required: true
+	},
+	dateMinMax: {
+		required: true
+	}
+}
+
 const DateFields = React.createClass({
 
-	mixins: [FormMixin],
-
-	validations: {
-		dateFree: {},
-		dateRequired: {
-			required: true
-		},
-		dateValue: {},
-		dateValueRequired: {
-			required: true
-		},
-		dateMinMax: {
-			required: true
-		}
+	getInitialState() {
+		return {}
 	},
 
 	render() {
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.date.title')}>
 					<DateField id="dateFree" label={t('home.date.dateFree')} classes={fieldClasses}/>
 					<DateField id="dateRequired" label={t('home.date.dateRequired')} classes={fieldClasses} required/>
@@ -79,9 +82,5 @@ const DateFields = React.createClass({
 	},
 
 })
-
-DateFields.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default DateFields

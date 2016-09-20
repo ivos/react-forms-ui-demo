@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router'
 import {setTitle} from '../ui/utils'
-import {FormMixin, Panel, Form, TextField, FormMessages} from 'react-forms-ui'
+import {Panel, Form, TextField, FormMessages} from 'react-forms-ui'
 import Company from './company'
 import {ButtonSave, LinkBack} from '../ui/buttons'
 import Contact from '../contact/contact'
@@ -9,57 +9,46 @@ import Nested from '../shared/nested'
 import pick from '../shared/pick'
 import {getOne, put, post} from '../store'
 
+const validations = Object.assign(
+	{...Company.validations},
+	Nested.expand({invoicingContact: Contact.validations}, 'invoicingContact')
+)
+
 const CompanyEdit = React.createClass({
 
-	mixins: [FormMixin],
-
-	validations: Object.assign(
-		{},
-		Company.validations,
-		Nested.expand({invoicingContact: Contact.validations}, 'invoicingContact')
-	),
-
 	getInitialState: function () {
-		return {
-			values: {}
-		}
+		return {}
 	},
 
 	render() {
 		const {id} = this.props.params
-		const {values} = this.state
+		const {values = {}} = this.state
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form ref="form" className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body"
 				       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
 					<div className="well well-sm well-white">
-						<TextField ref="name" id="name" label="Name" classes={fieldClasses} required/>
-						<TextField ref="taxId" id="taxId" label="Tax id" classes={fieldClasses}>
+						<TextField id="name" label="Name" classes={fieldClasses} required/>
+						<TextField id="taxId" label="Tax id" classes={fieldClasses}>
 							<span
 								className="help-block">Two upper-case letters and 2-14 digits or upper-case letters.</span>
 						</TextField>
-						<TextField ref="companyId" id="companyId" label="Company id" classes={fieldClasses}>
+						<TextField id="companyId" label="Company id" classes={fieldClasses}>
 							<span className="help-block">Eight digits.</span>
 						</TextField>
 					</div>
 
 					<Panel title="Invoicing contact" content="panel-body">
-						<TextField ref="invoicingContact.name" id="invoicingContact.name" label="Name"
-						           classes={fieldClasses} required/>
-						<TextField ref="invoicingContact.phone" id="invoicingContact.phone" label="Phone"
-						           classes={fieldClasses}/>
-						<TextField ref="invoicingContact.email" id="invoicingContact.email" label="E-mail"
-						           classes={fieldClasses}/>
-						<TextField ref="invoicingContact.country" id="invoicingContact.country" label="Country"
-						           classes={fieldClasses}/>
-						<TextField ref="invoicingContact.city" id="invoicingContact.city" label="City"
-						           classes={fieldClasses}/>
-						<TextField ref="invoicingContact.street" id="invoicingContact.street" label="Street"
-						           classes={fieldClasses}/>
-						<TextField ref="invoicingContact.zip" id="invoicingContact.zip" label="ZIP"
-						           classes={fieldClasses}/>
+						<TextField id="invoicingContact.name" label="Name" classes={fieldClasses} required/>
+						<TextField id="invoicingContact.phone" label="Phone" classes={fieldClasses}/>
+						<TextField id="invoicingContact.email" label="E-mail" classes={fieldClasses}/>
+						<TextField id="invoicingContact.country" label="Country" classes={fieldClasses}/>
+						<TextField id="invoicingContact.city" label="City" classes={fieldClasses}/>
+						<TextField id="invoicingContact.street" label="Street" classes={fieldClasses}/>
+						<TextField id="invoicingContact.zip" label="ZIP" classes={fieldClasses}/>
 					</Panel>
 
 					<div className="form-group">
@@ -73,7 +62,7 @@ const CompanyEdit = React.createClass({
 						</div>
 					</div>
 
-					<FormMessages ref="_form" className={buttonsClass}/>
+					<FormMessages className={buttonsClass}/>
 				</Panel>
 			</Form>
 		)
@@ -86,7 +75,7 @@ const CompanyEdit = React.createClass({
 				success: function (data) {
 					const values = Nested.expand(data, 'invoicingContact')
 					this.setState({values}, function () {
-						this.focus()
+						this.refs.form.focus()
 						setTitle(id ? 'Edit company' : 'Create company')
 					})
 				}.bind(this)
@@ -118,9 +107,5 @@ const CompanyEdit = React.createClass({
 	},
 
 })
-
-CompanyEdit.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default withRouter(CompanyEdit)

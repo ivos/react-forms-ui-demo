@@ -1,47 +1,50 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {FormMixin, Panel, Form, TextField, FormMessages} from 'react-forms-ui'
+import {Panel, Form, TextField, FormMessages} from 'react-forms-ui'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 
+const validations = {
+	textFree: {},
+	textRequired: {
+		required: true
+	},
+	textMinMax: {
+		minLength: 4,
+		maxLength: 10
+	},
+	textMinMaxReq: {
+		required: true,
+		minLength: 4,
+		maxLength: 10
+	},
+	textNumbers: {
+		pattern: /^[0-9]*$/
+	},
+	textBackend: {
+		required: true,
+		autoSuccess: false
+	},
+	textValue: {},
+	textValueRequired: {
+		required: true
+	},
+	textReadonly: {}
+}
+
 const TextFields = React.createClass({
 
-	mixins: [FormMixin],
-
-	validations: {
-		textFree: {},
-		textRequired: {
-			required: true
-		},
-		textMinMax: {
-			minLength: 4,
-			maxLength: 10
-		},
-		textMinMaxReq: {
-			required: true,
-			minLength: 4,
-			maxLength: 10
-		},
-		textNumbers: {
-			pattern: /^[0-9]*$/
-		},
-		textBackend: {
-			required: true,
-			autoSuccess: false
-		},
-		textValue: {},
-		textValueRequired: {
-			required: true
-		},
-		textReadonly: {}
+	getInitialState() {
+		return {}
 	},
 
 	render() {
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.text.title')}>
 					<TextField id="textNotValidated" label={t('home.text.textNotValidated.label')}
 					           classes={fieldClasses}>
@@ -98,12 +101,11 @@ const TextFields = React.createClass({
 		const {values} = this.state
 
 		if (values.textBackend.length < 3) {
-			this.setState({
-				messages: {
-					textBackend: ['Must have at least 3 characters.'],
-					_form: ['There is an error.'],
-				}
-			}, this.focusError())
+			const messages = {
+				textBackend: ['Must have at least 3 characters.'],
+				_form: ['There is an error.'],
+			}
+			this.setState({messages})
 			return
 		}
 
@@ -112,9 +114,5 @@ const TextFields = React.createClass({
 	},
 
 })
-
-TextFields.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default TextFields

@@ -1,7 +1,7 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
 import {
-	FormMixin, Panel, Form, Label, FormMessages,
+	Panel, Form, Label, FormMessages,
 	TextField, PasswordField, NumberField, DateField, DateRangeField, SelectField, BooleanField,
 	TextControl, PasswordControl, NumberControl, DateControl, SelectControl, BooleanControl
 } from 'react-forms-ui'
@@ -10,36 +10,37 @@ import {getList} from '../store'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 
+const validations = {
+	text: {
+		required: true,
+		minLength: 4,
+		maxLength: 10,
+		pattern: /^[0-9A-Z ]*$/
+	},
+	password: {
+		required: true
+	},
+	number: {
+		required: true
+	},
+	date: {
+		required: true
+	},
+	drFrom: {
+		required: true
+	},
+	drTo: {
+		required: true
+	},
+	select: {
+		required: true
+	}
+}
+
 const TableForm = React.createClass({
 
-	mixins: [FormMixin],
-	tableForm: true,
-
-	validations: {
-		text: {
-			required: true,
-			minLength: 4,
-			maxLength: 10,
-			pattern: /^[0-9A-Z ]*$/
-		},
-		password: {
-			required: true
-		},
-		number: {
-			required: true
-		},
-		date: {
-			required: true
-		},
-		drFrom: {
-			required: true
-		},
-		drTo: {
-			required: true
-		},
-		select: {
-			required: true
-		}
+	getInitialState() {
+		return {}
 	},
 
 	render() {
@@ -50,7 +51,8 @@ const TableForm = React.createClass({
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form tableForm className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.table.title')}>
 
 					<Panel title={t('activityItems.title')}>
@@ -253,9 +255,5 @@ const TableForm = React.createClass({
 	},
 
 })
-
-TableForm.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default TableForm

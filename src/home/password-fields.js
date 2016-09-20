@@ -1,30 +1,33 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {FormMixin, Panel, Form, PasswordField, FormMessages} from 'react-forms-ui'
+import {Panel, Form, PasswordField, FormMessages} from 'react-forms-ui'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 
+const validations = {
+	passwordFree: {},
+	passwordRequired: {
+		required: true
+	},
+	passwordValue: {},
+	passwordValueRequired: {
+		required: true
+	}
+}
+
 const PasswordFields = React.createClass({
 
-	mixins: [FormMixin],
-
-	validations: {
-		passwordFree: {},
-		passwordRequired: {
-			required: true
-		},
-		passwordValue: {},
-		passwordValueRequired: {
-			required: true
-		}
+	getInitialState() {
+		return {}
 	},
 
 	render() {
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form onSubmit={this._onSubmit}>
+			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
+			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.password.title')}>
 					<PasswordField id="passwordFree" label={t('home.password.passwordFree')} classes={fieldClasses}/>
 					<PasswordField id="passwordRequired" label={t('home.password.passwordRequired')}
@@ -73,9 +76,5 @@ const PasswordFields = React.createClass({
 	},
 
 })
-
-PasswordFields.childContextTypes = {
-	form: React.PropTypes.object
-}
 
 export default PasswordFields
