@@ -92,7 +92,7 @@ const TableForm = React.createClass({
 								</td>
 								<td>
 									<SelectField id="select" row={0} label={t('home.table.select')}
-									             classes={fieldClasses} getList={this.listCompanies}
+									             classes={fieldClasses} load={this.listCompanies}
 									             formatItem={this.formatItemCompany} readonly/>
 								</td>
 								<td>
@@ -154,7 +154,7 @@ const TableForm = React.createClass({
 										</td>
 										<td>
 											<SelectField id="select" row={index} label={t('home.table.select')}
-											             classes={fieldClasses} getList={this.listCompanies}
+											             classes={fieldClasses} load={this.listCompanies}
 											             formatItem={this.formatItemCompany}/>
 										</td>
 										<td>

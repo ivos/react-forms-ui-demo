@@ -37,22 +37,22 @@ const SelectFields = React.createClass({
 			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.select.title')}>
 					<SelectField id="selectFree" label={t('home.select.selectFree')} classes={fieldClasses}
-					             getList={this.listCompanies} formatItem={this.formatItemCompany}/>
+					             load={this.listCompanies} formatItem={this.formatItemCompany}/>
 					<SelectField id="selectRequired" label={t('home.select.selectRequired')} classes={fieldClasses}
-					             getList={this.listCompanies} formatItem={this.formatItemCompany} required/>
+					             load={this.listCompanies} formatItem={this.formatItemCompany} required/>
 					<SelectField id="selectValue" label={t('home.select.selectValue')} classes={fieldClasses}
-					             getList={this.listCompanies} formatItem={this.formatItemCompany}/>
+					             load={this.listCompanies} formatItem={this.formatItemCompany}/>
 					<SelectField id="selectValueRequired" label={t('home.select.selectValueRequired')}
-					             classes={fieldClasses} getList={this.listCompanies} formatItem={this.formatItemCompany}
+					             classes={fieldClasses} load={this.listCompanies} formatItem={this.formatItemCompany}
 					             required/>
 					<SelectField id="selectReadonly" label={t('home.select.selectReadonly')} classes={fieldClasses}
 					             formatItem={this.formatItemCompany} readonly/>
 					<SelectField id="selectReadonlyEmpty" label={t('home.select.selectReadonlyEmpty')}
 					             classes={fieldClasses} formatItem={this.formatItemCompany} readonly/>
 					<SelectField id="selectGroup" label={t('home.select.selectGroup')} classes={fieldClasses}
-					             getList={this.listGroups} formatItem={this.formatItemGroup} required/>
+					             load={this.listGroups} formatItem={this.formatItemGroup} required/>
 					<SelectField ref="selectProduct" id="selectProduct" label={t('home.select.selectProduct')}
-					             classes={fieldClasses} getList={this.listProducts} formatItem={this.formatItemProduct}
+					             classes={fieldClasses} load={this.listProducts} formatItem={this.formatItemProduct}
 					             disabled={groupEmpty}/>
 
 					<div className="form-group">
