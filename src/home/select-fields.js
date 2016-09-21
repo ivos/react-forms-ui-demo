@@ -21,6 +21,23 @@ const validations = {
 	selectProduct: {}
 }
 
+const listCompanies = name => {
+	return list('companies', {name})
+}
+
+const listGroups = name => {
+	return list('groups', {name})
+}
+
+const listProducts = values => name => {
+	const group = values.selectGroup.id
+	return list('products', {group, name})
+}
+
+const itemName = item => {
+	return item.name
+}
+
 const SelectFields = React.createClass({
 
 	getInitialState() {
@@ -37,22 +54,21 @@ const SelectFields = React.createClass({
 			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.select.title')}>
 					<SelectField id="selectFree" label={t('home.select.selectFree')} classes={fieldClasses}
-					             load={this.listCompanies} formatItem={this.formatItemCompany}/>
+					             load={listCompanies} formatItem={itemName}/>
 					<SelectField id="selectRequired" label={t('home.select.selectRequired')} classes={fieldClasses}
-					             load={this.listCompanies} formatItem={this.formatItemCompany} required/>
+					             load={listCompanies} formatItem={itemName} required/>
 					<SelectField id="selectValue" label={t('home.select.selectValue')} classes={fieldClasses}
-					             load={this.listCompanies} formatItem={this.formatItemCompany}/>
+					             load={listCompanies} formatItem={itemName}/>
 					<SelectField id="selectValueRequired" label={t('home.select.selectValueRequired')}
-					             classes={fieldClasses} load={this.listCompanies} formatItem={this.formatItemCompany}
-					             required/>
+					             classes={fieldClasses} load={listCompanies} formatItem={itemName} required/>
 					<SelectField id="selectReadonly" label={t('home.select.selectReadonly')} classes={fieldClasses}
-					             formatItem={this.formatItemCompany} readonly/>
+					             formatItem={itemName} readonly/>
 					<SelectField id="selectReadonlyEmpty" label={t('home.select.selectReadonlyEmpty')}
-					             classes={fieldClasses} formatItem={this.formatItemCompany} readonly/>
+					             classes={fieldClasses} formatItem={itemName} readonly/>
 					<SelectField id="selectGroup" label={t('home.select.selectGroup')} classes={fieldClasses}
-					             load={this.listGroups} formatItem={this.formatItemGroup} required/>
+					             load={listGroups} formatItem={itemName} required/>
 					<SelectField ref="selectProduct" id="selectProduct" label={t('home.select.selectProduct')}
-					             classes={fieldClasses} load={this.listProducts} formatItem={this.formatItemProduct}
+					             classes={fieldClasses} load={listProducts(values)} formatItem={itemName}
 					             disabled={groupEmpty}/>
 
 					<div className="form-group">
@@ -83,31 +99,6 @@ const SelectFields = React.createClass({
 				}
 			})
 		}.bind(this), 100)
-	},
-
-	listCompanies(name) {
-		return list('companies', {name})
-	},
-
-	formatItemCompany(item) {
-		return item.name
-	},
-
-	listGroups(name) {
-		return list('groups', {name})
-	},
-
-	formatItemGroup(item) {
-		return item.name
-	},
-
-	listProducts(name) {
-		const group = this.state.values.selectGroup.id
-		return list('products', {group, name})
-	},
-
-	formatItemProduct(item) {
-		return item.name
 	},
 
 	componentDidUpdate(prevProps, prevState) {

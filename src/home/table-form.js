@@ -37,6 +37,14 @@ const validations = {
 	}
 }
 
+const listCompanies = name => {
+	return list('companies', {name})
+}
+
+const itemName = item => {
+	return item.name
+}
+
 const TableForm = React.createClass({
 
 	getInitialState() {
@@ -92,8 +100,8 @@ const TableForm = React.createClass({
 								</td>
 								<td>
 									<SelectField id="select" row={0} label={t('home.table.select')}
-									             classes={fieldClasses} load={this.listCompanies}
-									             formatItem={this.formatItemCompany} readonly/>
+									             classes={fieldClasses} load={listCompanies} formatItem={itemName}
+									             readonly/>
 								</td>
 								<td>
 									<BooleanField id="boolean" row={0} label={t('home.table.boolean')}
@@ -119,8 +127,7 @@ const TableForm = React.createClass({
 									<DateControl value={values[1].drTo} readonly/>
 								</td>
 								<td>
-									<SelectControl value={values[1].select} formatItem={this.formatItemCompany}
-									               readonly/>
+									<SelectControl value={values[1].select} formatItem={itemName} readonly/>
 								</td>
 								<td>
 									<BooleanControl value={values[1].boolean} readonly/>
@@ -154,8 +161,8 @@ const TableForm = React.createClass({
 										</td>
 										<td>
 											<SelectField id="select" row={index} label={t('home.table.select')}
-											             classes={fieldClasses} load={this.listCompanies}
-											             formatItem={this.formatItemCompany}/>
+											             classes={fieldClasses} load={listCompanies}
+											             formatItem={itemName}/>
 										</td>
 										<td>
 											<BooleanField id="boolean" row={index} label={t('home.table.boolean')}
@@ -235,14 +242,6 @@ const TableForm = React.createClass({
 				}
 			]
 		})
-	},
-
-	listCompanies(name) {
-		return list('companies', {name})
-	},
-
-	formatItemCompany(item) {
-		return item.name
 	},
 
 	onSubmit() {
