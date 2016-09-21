@@ -6,7 +6,7 @@ import {
 	TextControl, PasswordControl, NumberControl, DateControl, SelectControl, BooleanControl
 } from 'react-forms-ui'
 import {ButtonSave} from '../ui/buttons'
-import {getList} from '../store'
+import {list} from '../api'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
 
@@ -92,7 +92,7 @@ const TableForm = React.createClass({
 								</td>
 								<td>
 									<SelectField id="select" row={0} label={t('home.table.select')}
-									             classes={fieldClasses} getList={this.getListCompanies}
+									             classes={fieldClasses} getList={this.listCompanies}
 									             formatItem={this.formatItemCompany} readonly/>
 								</td>
 								<td>
@@ -154,7 +154,7 @@ const TableForm = React.createClass({
 										</td>
 										<td>
 											<SelectField id="select" row={index} label={t('home.table.select')}
-											             classes={fieldClasses} getList={this.getListCompanies}
+											             classes={fieldClasses} getList={this.listCompanies}
 											             formatItem={this.formatItemCompany}/>
 										</td>
 										<td>
@@ -237,11 +237,8 @@ const TableForm = React.createClass({
 		})
 	},
 
-	getListCompanies(query, callback) {
-		getList('companies', {
-			data: {name: query},
-			success: callback
-		})
+	listCompanies(name) {
+		return list('companies', {name})
 	},
 
 	formatItemCompany(item) {

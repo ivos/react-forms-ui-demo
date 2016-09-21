@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import {setTitle, focusFirst} from '../ui/utils'
 import {Form, Panel, TextField} from 'react-forms-ui'
 import {LinkCreate} from '../ui/buttons'
-import {getList} from '../store'
+import {list} from '../api'
 
 const CompanyList = React.createClass({
 
@@ -54,15 +54,13 @@ const CompanyList = React.createClass({
 	reload(changed) {
 		const {values} = this.state
 		changed = changed || false
-		getList('companies', {
-			data: values,
-			success: function (data) {
+		list('companies', values).then(data => {
 				this._reloaded = true
 				this.setState({data, changed}, function () {
 					focusFirst(ReactDOM.findDOMNode(this.refs.form))
 				})
-			}.bind(this)
-		})
+			}
+		)
 	},
 
 	componentDidMount() {

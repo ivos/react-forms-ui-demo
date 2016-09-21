@@ -7,7 +7,7 @@ import {ButtonSave, LinkBack} from '../ui/buttons'
 import Contact from '../contact/contact'
 import Nested from '../shared/nested'
 import pick from '../shared/pick'
-import {getOne, put, post} from '../store'
+import {read, put, post} from '../api'
 
 const validations = Object.assign(
 	{...Company.validations},
@@ -71,15 +71,14 @@ const CompanyEdit = React.createClass({
 	componentDidMount() {
 		const {id} = this.props.params
 		if (id) {
-			getOne('companies', id, {
-				success: function (data) {
+			read('companies', id).then(data => {
 					const values = Nested.expand(data, 'invoicingContact')
 					this.setState({values}, function () {
 						this.refs.form.focus()
 						setTitle(id ? 'Edit company' : 'Create company')
 					})
-				}.bind(this)
-			})
+				}
+			)
 		}
 	},
 
@@ -90,18 +89,12 @@ const CompanyEdit = React.createClass({
 		const data = pick(values, 'id', 'name', 'taxId', 'companyId')
 		data.invoicingContact = values.invoicingContact
 		if (!id) {
-			post('companies', {
-				data,
-				success(data) {
-					router.push('/companies/' + data.id)
-				}
+			post('companies', data).then(data => {
+				router.push('/companies/' + data.id)
 			})
 		} else {
-			put('companies', values.id, {
-				data,
-				success(data) {
-					router.push('/companies/' + values.id)
-				}
+			put('companies', values.id, data).then(data => {
+				router.push('/companies/' + values.id)
 			})
 		}
 	},

@@ -5,7 +5,7 @@ import {Form, Panel, TextField, PlainField} from 'react-forms-ui'
 import {LinkEdit, LinkBack} from '../ui/buttons'
 import ContactDetail from '../contact/contact-detail'
 import Nested from '../shared/nested'
-import {getOne} from '../store'
+import {read} from '../api'
 
 const CompanyDetail = React.createClass({
 
@@ -50,15 +50,14 @@ const CompanyDetail = React.createClass({
 
 	componentDidMount() {
 		const {id} = this.props.params
-		getOne('companies', id, {
-			success: function (data) {
+		read('companies', id).then(data => {
 				const values = Nested.expand(data, 'invoicingContact')
-				this.setState({values}, function () {
+				this.setState({values}, () => {
 					focusFirst(ReactDOM.findDOMNode(this.refs.buttons))
 					setTitle('Company')
 				})
-			}.bind(this)
-		})
+			}
+		)
 	},
 
 })
