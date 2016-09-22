@@ -8,11 +8,11 @@ const t = i18n.t.bind(i18n)
 const validations = {
 	passwordFree: {},
 	passwordRequired: {
-		required: true
+		required: true,
 	},
 	passwordValue: {},
 	passwordValueRequired: {
-		required: true
+		required: true,
 	}
 }
 
@@ -31,11 +31,11 @@ const PasswordFields = React.createClass({
 				<Panel content="panel-body" title={t('home.password.title')}>
 					<PasswordField id="passwordFree" label={t('home.password.passwordFree')} classes={fieldClasses}/>
 					<PasswordField id="passwordRequired" label={t('home.password.passwordRequired')}
-					               classes={fieldClasses} required/>
+					               classes={fieldClasses}/>
 					<PasswordField id="passwordValue" label={t('home.password.passwordValue')}
 					               classes={fieldClasses}/>
 					<PasswordField id="passwordValueRequired" label={t('home.password.passwordValueRequired.label')}
-					               classes={fieldClasses} required>
+					               classes={fieldClasses}>
 						<span className="help-block">{t('home.password.passwordValueRequired.help')}</span>
 					</PasswordField>
 					<PasswordField id="passwordReadonly" label={t('home.password.passwordReadonly')}

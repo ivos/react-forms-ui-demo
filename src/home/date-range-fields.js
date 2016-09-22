@@ -9,20 +9,20 @@ const validations = {
 	drFreeFrom: {},
 	drFreeTo: {},
 	drReqFrom: {
-		required: true
+		required: true,
 	},
 	drReqTo: {
-		required: true
+		required: true,
 	},
 	drValueFrom: {},
 	drValueTo: {},
 	drFromReqFrom: {
-		required: true
+		required: true,
 	},
 	drFromReqTo: {},
 	drToReqFrom: {},
 	drToReqTo: {
-		required: true
+		required: true,
 	}
 }
 
@@ -42,12 +42,10 @@ const DateRangeFields = React.createClass({
 					<DateRangeField id="drFree" label={t('home.daterange.drFree')} classes={fieldClasses}/>
 					<DateRangeField id="drReq" label={t('home.daterange.drReq.label')}
 					                placeholderFrom={t('home.daterange.drReq.placeholderFrom')}
-					                placeholderTo={t('home.daterange.drReq.placeholderTo')} classes={fieldClasses}
-					                required/>
+					                placeholderTo={t('home.daterange.drReq.placeholderTo')} classes={fieldClasses}/>
 					<DateRangeField id="drValue" label={t('home.daterange.drValue')} classes={fieldClasses}/>
-					<DateRangeField id="drFromReq" label={t('home.daterange.drFromReq')} classes={fieldClasses}
-					                required/>
-					<DateRangeField id="drToReq" label={t('home.daterange.drToReq')} classes={fieldClasses} required/>
+					<DateRangeField id="drFromReq" label={t('home.daterange.drFromReq')} classes={fieldClasses}/>
+					<DateRangeField id="drToReq" label={t('home.daterange.drToReq')} classes={fieldClasses}/>
 					<DateRangeField id="drRO" label={t('home.daterange.drRO')} classes={fieldClasses} readonly/>
 					<DateRangeField id="drROEmpty" label={t('home.daterange.drROEmpty')} classes={fieldClasses}
 					                readonly/>

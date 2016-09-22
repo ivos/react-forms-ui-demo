@@ -9,14 +9,14 @@ const t = i18n.t.bind(i18n)
 const validations = {
 	selectFree: {},
 	selectRequired: {
-		required: true
+		required: true,
 	},
 	selectValue: {},
 	selectValueRequired: {
-		required: true
+		required: true,
 	},
 	selectGroup: {
-		required: true
+		required: true,
 	},
 	selectProduct: {}
 }
@@ -56,17 +56,17 @@ const SelectFields = React.createClass({
 					<SelectField id="selectFree" label={t('home.select.selectFree')} classes={fieldClasses}
 					             load={listCompanies} formatItem={itemName}/>
 					<SelectField id="selectRequired" label={t('home.select.selectRequired')} classes={fieldClasses}
-					             load={listCompanies} formatItem={itemName} required/>
+					             load={listCompanies} formatItem={itemName}/>
 					<SelectField id="selectValue" label={t('home.select.selectValue')} classes={fieldClasses}
 					             load={listCompanies} formatItem={itemName}/>
 					<SelectField id="selectValueRequired" label={t('home.select.selectValueRequired')}
-					             classes={fieldClasses} load={listCompanies} formatItem={itemName} required/>
+					             classes={fieldClasses} load={listCompanies} formatItem={itemName}/>
 					<SelectField id="selectReadonly" label={t('home.select.selectReadonly')} classes={fieldClasses}
 					             formatItem={itemName} readonly/>
 					<SelectField id="selectReadonlyEmpty" label={t('home.select.selectReadonlyEmpty')}
 					             classes={fieldClasses} formatItem={itemName} readonly/>
 					<SelectField id="selectGroup" label={t('home.select.selectGroup')} classes={fieldClasses}
-					             load={listGroups} formatItem={itemName} required/>
+					             load={listGroups} formatItem={itemName}/>
 					<SelectField ref="selectProduct" id="selectProduct" label={t('home.select.selectProduct')}
 					             classes={fieldClasses} load={listProducts(values)} formatItem={itemName}
 					             disabled={groupEmpty}/>

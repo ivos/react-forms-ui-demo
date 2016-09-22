@@ -9,14 +9,14 @@ import moment from 'moment'
 const validations = {
 	dateFree: {},
 	dateRequired: {
-		required: true
+		required: true,
 	},
 	dateValue: {},
 	dateValueRequired: {
-		required: true
+		required: true,
 	},
 	dateMinMax: {
-		required: true
+		required: true,
 	}
 }
 
@@ -34,13 +34,13 @@ const DateFields = React.createClass({
 			      validations={validations} onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.date.title')}>
 					<DateField id="dateFree" label={t('home.date.dateFree')} classes={fieldClasses}/>
-					<DateField id="dateRequired" label={t('home.date.dateRequired')} classes={fieldClasses} required/>
+					<DateField id="dateRequired" label={t('home.date.dateRequired')} classes={fieldClasses}/>
 					<DateField id="dateValue" label={t('home.date.dateValue')} classes={fieldClasses}/>
 					<DateField id="dateValueRequired" label={t('home.date.dateValueRequired.label')}
-					           classes={fieldClasses} required>
+					           classes={fieldClasses}>
 						<span className="help-block">{t('home.date.dateValueRequired.help')}</span>
 					</DateField>
-					<DateField id="dateMinMax" label={t('home.date.dateMinMax.label')} classes={fieldClasses} required
+					<DateField id="dateMinMax" label={t('home.date.dateMinMax.label')} classes={fieldClasses}
 					           min={moment().startOf('day').subtract(7, 'days')}
 					           max={moment().startOf('day').add(7, 'days')}>
 						<span className="help-block">{t('home.date.dateMinMax.help')}</span>

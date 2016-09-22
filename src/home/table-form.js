@@ -15,26 +15,27 @@ const validations = {
 		required: true,
 		minLength: 4,
 		maxLength: 10,
-		pattern: /^[0-9A-Z ]*$/
+		pattern: /^[0-9A-Z ]*$/,
 	},
 	password: {
-		required: true
+		required: true,
 	},
 	number: {
-		required: true
+		required: true,
 	},
 	date: {
-		required: true
+		required: true,
 	},
 	drFrom: {
-		required: true
+		required: true,
 	},
 	drTo: {
-		required: true
+		required: true,
 	},
 	select: {
-		required: true
-	}
+		required: true,
+	},
+	boolean: {},
 }
 
 const listCompanies = name => {
@@ -135,29 +136,29 @@ const TableForm = React.createClass({
 							</tr>
 							{values.map(function (item, index) {
 								if (index <= 1) {
-									return
+									return null
 								}
 								return (
 									<tr key={item.id}>
 										<td>
 											<TextField id="text" row={index} label={t('home.table.text')}
-											           classes={fieldClasses} required/>
+											           classes={fieldClasses}/>
 										</td>
 										<td>
 											<PasswordField id="password" row={index} label={t('home.table.password')}
-											               classes={fieldClasses} required/>
+											               classes={fieldClasses}/>
 										</td>
 										<td>
 											<NumberField id="number" row={index} label={t('home.table.number')}
-											             classes={fieldClasses} required/>
+											             classes={fieldClasses}/>
 										</td>
 										<td>
 											<DateField id="date" row={index} label={t('home.table.date')}
-											           classes={fieldClasses} required/>
+											           classes={fieldClasses}/>
 										</td>
 										<td>
 											<DateRangeField id="dr" row={index} label={t('home.table.dr')}
-											                classes={fieldClasses} required/>
+											                classes={fieldClasses}/>
 										</td>
 										<td>
 											<SelectField id="select" row={index} label={t('home.table.select')}
@@ -170,7 +171,7 @@ const TableForm = React.createClass({
 										</td>
 									</tr>
 								)
-							}.bind(this))}
+							})}
 							</tbody>
 						</table>
 					</Panel>

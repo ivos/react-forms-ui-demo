@@ -31,7 +31,7 @@ const CompanyEdit = React.createClass({
 				<Panel content="panel-body"
 				       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
 					<div className="well well-sm well-white">
-						<TextField id="name" label="Name" classes={fieldClasses} required/>
+						<TextField id="name" label="Name" classes={fieldClasses}/>
 						<TextField id="taxId" label="Tax id" classes={fieldClasses}>
 							<span
 								className="help-block">Two upper-case letters and 2-14 digits or upper-case letters.</span>
@@ -42,7 +42,7 @@ const CompanyEdit = React.createClass({
 					</div>
 
 					<Panel title="Invoicing contact" content="panel-body">
-						<TextField id="invoicingContact.name" label="Name" classes={fieldClasses} required/>
+						<TextField id="invoicingContact.name" label="Name" classes={fieldClasses}/>
 						<TextField id="invoicingContact.phone" label="Phone" classes={fieldClasses}/>
 						<TextField id="invoicingContact.email" label="E-mail" classes={fieldClasses}/>
 						<TextField id="invoicingContact.country" label="Country" classes={fieldClasses}/>

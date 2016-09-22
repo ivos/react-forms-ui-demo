@@ -8,27 +8,27 @@ const t = i18n.t.bind(i18n)
 const validations = {
 	textFree: {},
 	textRequired: {
-		required: true
+		required: true,
 	},
 	textMinMax: {
 		minLength: 4,
-		maxLength: 10
+		maxLength: 10,
 	},
 	textMinMaxReq: {
 		required: true,
 		minLength: 4,
-		maxLength: 10
+		maxLength: 10,
 	},
 	textNumbers: {
-		pattern: /^[0-9]*$/
+		pattern: /^[0-9]*$/,
 	},
 	textBackend: {
 		required: true,
-		autoSuccess: false
+		autoSuccess: false,
 	},
 	textValue: {},
 	textValueRequired: {
-		required: true
+		required: true,
 	},
 	textReadonly: {}
 }
@@ -51,21 +51,20 @@ const TextFields = React.createClass({
 						<span className="help-block">{t('home.text.textNotValidated.help')}</span>
 					</TextField>
 					<TextField id="textFree" label={t('home.text.textFree')} classes={fieldClasses}/>
-					<TextField id="textRequired" label={t('home.text.textRequired')} classes={fieldClasses} required/>
+					<TextField id="textRequired" label={t('home.text.textRequired')} classes={fieldClasses}/>
 					<TextField id="textMinMax" label={t('home.text.textMinMax.label')}
 					           placeholder={t('home.text.textMinMax.placeholder')} classes={fieldClasses}/>
 					<TextField id="textMinMaxReq" label={t('home.text.textMinMaxReq.label')}
-					           placeholder={t('home.text.textMinMaxReq.placeholder')} classes={fieldClasses} required>
+					           placeholder={t('home.text.textMinMaxReq.placeholder')} classes={fieldClasses}>
 						<span className="help-block">{t('home.text.textMinMaxReq.help')}</span>
 					</TextField>
 					<TextField id="textNumbers" label={t('home.text.textNumbers')} classes={fieldClasses}/>
 					<TextField id="textBackend" label={t('home.text.textBackend.label')}
-					           placeholder={t('home.text.textBackend.placeholder')} classes={fieldClasses} required>
+					           placeholder={t('home.text.textBackend.placeholder')} classes={fieldClasses}>
 						<span className="help-block">{t('home.text.textBackend.help')}</span>
 					</TextField>
 					<TextField id="textValue" label={t('home.text.textValue')} classes={fieldClasses}/>
-					<TextField id="textValueRequired" label={t('home.text.textValueRequired')} classes={fieldClasses}
-					           required/>
+					<TextField id="textValueRequired" label={t('home.text.textValueRequired')} classes={fieldClasses}/>
 					<TextField id="textReadonly" label={t('home.text.textReadonly')}
 					           classes={fieldClasses} readonly/>
 					<TextField id="textReadonlyEmpty" label={t('home.text.textReadonlyEmpty')} classes={fieldClasses}
