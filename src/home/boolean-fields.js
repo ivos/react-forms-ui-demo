@@ -17,8 +17,8 @@ const BooleanFields = React.createClass({
 		const fieldClasses = 'col-sm-offset-2 col-sm-10,,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
-			      validations={validations} onSubmit={this.onSubmit}>
+			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
+			      onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.boolean.title')}>
 					<BooleanField id="bool" label={t('home.boolean.bool')} classes={fieldClasses}/>
 					<BooleanField id="boolChecked" label={t('home.boolean.boolChecked')} classes={fieldClasses}/>

@@ -26,8 +26,8 @@ const PasswordFields = React.createClass({
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
-			      validations={validations} onSubmit={this.onSubmit}>
+			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
+			      onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.password.title')}>
 					<PasswordField id="passwordFree" label={t('home.password.passwordFree')} classes={fieldClasses}/>
 					<PasswordField id="passwordRequired" label={t('home.password.passwordRequired')}

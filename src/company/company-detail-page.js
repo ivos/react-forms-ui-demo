@@ -19,7 +19,7 @@ const CompanyDetail = React.createClass({
 		const fieldClasses = 'col-sm-2,col-sm-10'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}>
+			<Form state={this.state} setState={this.setState.bind(this)}>
 				<Panel content="panel-body"
 				       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
 					<div className="well well-sm well-white">

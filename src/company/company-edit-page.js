@@ -26,8 +26,8 @@ const CompanyEdit = React.createClass({
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form ref="form" className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
-			      validations={validations} onSubmit={this.onSubmit}>
+			<Form ref="form" state={this.state} setState={this.setState.bind(this)} validations={validations}
+			      onSubmit={this.onSubmit}>
 				<Panel content="panel-body"
 				       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
 					<div className="well well-sm well-white">

@@ -20,8 +20,8 @@ const CompanyList = React.createClass({
 		const {data, changed} = this.state
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		return (
-			<Form ref="form" className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
-			      onChange={this.onChange} onSubmit={this.onSubmit}>
+			<Form ref="form" state={this.state} setState={this.setState.bind(this)} onChange={this.onChange}
+			      onSubmit={this.onSubmit}>
 				{this._reloaded && !changed && !data.length &&
 				<div className="alert alert-info">
 					<p><strong>You have no company defined now.</strong></p>

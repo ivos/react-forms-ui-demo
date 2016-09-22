@@ -35,8 +35,8 @@ const NumberFields = React.createClass({
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
-			      validations={validations} onSubmit={this.onSubmit}>
+			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
+			      onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.number.title')}>
 					<NumberField id="numberFree" label={t('home.number.numberFree')} classes={fieldClasses}/>
 					<NumberField id="numberRequired" label={t('home.number.numberRequired')} classes={fieldClasses}/>

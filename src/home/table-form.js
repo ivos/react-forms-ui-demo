@@ -60,8 +60,8 @@ const TableForm = React.createClass({
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
-			<Form tableForm className="form-horizontal" state={this.state} setState={this.setState.bind(this)}
-			      validations={validations} onSubmit={this.onSubmit}>
+			<Form tableForm state={this.state} setState={this.setState.bind(this)} validations={validations}
+			      onSubmit={this.onSubmit}>
 				<Panel content="panel-body" title={t('home.table.title')}>
 
 					<Panel title={t('activityItems.title')}>
