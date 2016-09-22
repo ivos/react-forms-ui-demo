@@ -26,6 +26,11 @@ const DateFields = React.createClass({
 		return {}
 	},
 
+	componentWillMount(){
+		this.todayMinus7Days = moment().startOf('day').subtract(7, 'days')
+		this.todayPlus7Days = moment().startOf('day').add(7, 'days')
+	},
+
 	render() {
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
@@ -41,8 +46,7 @@ const DateFields = React.createClass({
 						<span className="help-block">{t('home.date.dateValueRequired.help')}</span>
 					</DateField>
 					<DateField id="dateMinMax" label={t('home.date.dateMinMax.label')} classes={fieldClasses}
-					           min={moment().startOf('day').subtract(7, 'days')}
-					           max={moment().startOf('day').add(7, 'days')}>
+					           min={this.todayMinus7Days} max={this.todayPlus7Days}>
 						<span className="help-block">{t('home.date.dateMinMax.help')}</span>
 					</DateField>
 					<DateField id="dateReadonly" label={t('home.date.dateReadonly')} classes={fieldClasses} readonly/>
