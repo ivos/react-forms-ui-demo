@@ -9,6 +9,7 @@ import numeral from 'numeral'
 import numeralCs from 'numeral/languages/cs'
 numeral.language('cs', numeralCs)
 import 'bootstrap/dist/css/bootstrap.css'
+import 'font-awesome/css/font-awesome.css'
 import 'select2/select2.css'
 import 'react-forms-ui/lib/react-forms-ui.css'
 import './index.css'

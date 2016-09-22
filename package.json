@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
-    "eonasdan-bootstrap-datetimepicker": "^4.7.14",
+    "font-awesome": "^4.6.3",
     "i18next": "^3.4.1",
     "jquery": "^2.2.4",
     "moment": "^2.14.1",
