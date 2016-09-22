@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 			deployProduction: {
 				files: [{
 					expand: true,
-					cwd: 'target/build/',
+					cwd: 'build/',
 					src: ['**'],
 					dest: '/app/',
 					stream: true
