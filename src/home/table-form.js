@@ -58,135 +58,132 @@ const TableForm = React.createClass({
 			return <div></div>
 		}
 		const fieldClasses = 'col-sm-2,col-sm-6,col-sm-4'
-		const buttonsClass = 'col-sm-offset-2 col-sm-10'
+		const buttonsClass = 'col-sm-12'
 		return (
 			<Form tableForm state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel content="panel-body" title={t('home.table.title')}>
+				<Panel title={t('home.table.title')}>
 
-					<Panel title={t('activityItems.title')}>
-						<table className="table table-bordered table-condensed">
-							<thead>
-							<tr>
-								<th><Label required>{t('home.table.text')}</Label></th>
-								<th><Label required>{t('home.table.password')}</Label></th>
-								<th><Label required>{t('home.table.number')}</Label></th>
-								<th><Label required>{t('home.table.date')}</Label></th>
-								<th><Label required>{t('home.table.dr')}</Label></th>
-								<th><Label required>{t('home.table.select')}</Label></th>
-								<th>{t('home.table.boolean')}</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<TextField id="text" row={0} label={t('home.table.text')} classes={fieldClasses}
-									           readonly/>
-								</td>
-								<td>
-									<PasswordField id="password" row={0} label={t('home.table.password')}
-									               classes={fieldClasses} readonly/>
-								</td>
-								<td>
-									<NumberField id="number" row={0} label={t('home.table.number')}
-									             classes={fieldClasses} readonly/>
-								</td>
-								<td>
-									<DateField id="date" row={0} label={t('home.table.date')} classes={fieldClasses}
-									           readonly/>
-								</td>
-								<td>
-									<DateRangeField id="dr" row={0} label={t('home.table.dr')} classes={fieldClasses}
-									                readonly/>
-								</td>
-								<td>
-									<SelectField id="select" row={0} label={t('home.table.select')}
-									             classes={fieldClasses} load={listCompanies} formatItem={itemName}
-									             readonly/>
-								</td>
-								<td>
-									<BooleanField id="boolean" row={0} label={t('home.table.boolean')}
-									              classes={fieldClasses} readonly/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<TextControl value={values[1].text} readonly/>
-								</td>
-								<td>
-									<PasswordControl value={values[1].password} readonly/>
-								</td>
-								<td>
-									<NumberControl value={values[1].number} readonly/>
-								</td>
-								<td>
-									<DateControl value={values[1].date} readonly/>
-								</td>
-								<td>
-									<DateControl value={values[1].drFrom} readonly/>
-									{' – '}
-									<DateControl value={values[1].drTo} readonly/>
-								</td>
-								<td>
-									<SelectControl value={values[1].select} formatItem={itemName} readonly/>
-								</td>
-								<td>
-									<BooleanControl value={values[1].boolean} readonly/>
-								</td>
-							</tr>
-							{values.map(function (item, index) {
-								if (index <= 1) {
-									return null
-								}
-								return (
-									<tr key={item.id}>
-										<td>
-											<TextField id="text" row={index} label={t('home.table.text')}
-											           classes={fieldClasses}/>
-										</td>
-										<td>
-											<PasswordField id="password" row={index} label={t('home.table.password')}
-											               classes={fieldClasses}/>
-										</td>
-										<td>
-											<NumberField id="number" row={index} label={t('home.table.number')}
-											             classes={fieldClasses}/>
-										</td>
-										<td>
-											<DateField id="date" row={index} label={t('home.table.date')}
-											           classes={fieldClasses}/>
-										</td>
-										<td>
-											<DateRangeField id="dr" row={index} label={t('home.table.dr')}
-											                classes={fieldClasses}/>
-										</td>
-										<td>
-											<SelectField id="select" row={index} label={t('home.table.select')}
-											             classes={fieldClasses} load={listCompanies}
-											             formatItem={itemName}/>
-										</td>
-										<td>
-											<BooleanField id="boolean" row={index} label={t('home.table.boolean')}
-											              classes={fieldClasses}/>
-										</td>
-									</tr>
-								)
-							})}
-							</tbody>
-						</table>
-					</Panel>
-
-					<div className="form-group">
-						<div className={buttonsClass}>
-							<ButtonSave />
-						</div>
-					</div>
-
-					<FormMessages className={buttonsClass}/>
-
-					{t('home.values')}
-					<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>
+					<table className="table table-bordered table-condensed">
+						<thead>
+						<tr>
+							<th><Label required>{t('home.table.text')}</Label></th>
+							<th><Label required>{t('home.table.password')}</Label></th>
+							<th><Label required>{t('home.table.number')}</Label></th>
+							<th><Label required>{t('home.table.date')}</Label></th>
+							<th><Label required>{t('home.table.dr')}</Label></th>
+							<th><Label required>{t('home.table.select')}</Label></th>
+							<th>{t('home.table.boolean')}</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>
+								<TextField id="text" row={0} label={t('home.table.text')} classes={fieldClasses}
+								           readonly/>
+							</td>
+							<td>
+								<PasswordField id="password" row={0} label={t('home.table.password')}
+								               classes={fieldClasses} readonly/>
+							</td>
+							<td>
+								<NumberField id="number" row={0} label={t('home.table.number')} classes={fieldClasses}
+								             readonly/>
+							</td>
+							<td>
+								<DateField id="date" row={0} label={t('home.table.date')} classes={fieldClasses}
+								           readonly/>
+							</td>
+							<td>
+								<DateRangeField id="dr" row={0} label={t('home.table.dr')} classes={fieldClasses}
+								                readonly/>
+							</td>
+							<td>
+								<SelectField id="select" row={0} label={t('home.table.select')} classes={fieldClasses}
+								             load={listCompanies} formatItem={itemName} readonly/>
+							</td>
+							<td>
+								<BooleanField id="boolean" row={0} label={t('home.table.boolean')}
+								              classes={fieldClasses} readonly/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<TextControl value={values[1].text} readonly/>
+							</td>
+							<td>
+								<PasswordControl value={values[1].password} readonly/>
+							</td>
+							<td>
+								<NumberControl value={values[1].number} readonly/>
+							</td>
+							<td>
+								<DateControl value={values[1].date} readonly/>
+							</td>
+							<td>
+								<DateControl value={values[1].drFrom} readonly/>
+								{' – '}
+								<DateControl value={values[1].drTo} readonly/>
+							</td>
+							<td>
+								<SelectControl value={values[1].select} formatItem={itemName} readonly/>
+							</td>
+							<td>
+								<BooleanControl value={values[1].boolean} readonly/>
+							</td>
+						</tr>
+						{values.map(function (item, index) {
+							if (index <= 1) {
+								return null
+							}
+							return (
+								<tr key={item.id}>
+									<td>
+										<TextField id="text" row={index} label={t('home.table.text')}
+										           classes={fieldClasses}/>
+									</td>
+									<td>
+										<PasswordField id="password" row={index} label={t('home.table.password')}
+										               classes={fieldClasses}/>
+									</td>
+									<td>
+										<NumberField id="number" row={index} label={t('home.table.number')}
+										             classes={fieldClasses}/>
+									</td>
+									<td>
+										<DateField id="date" row={index} label={t('home.table.date')}
+										           classes={fieldClasses}/>
+									</td>
+									<td>
+										<DateRangeField id="dr" row={index} label={t('home.table.dr')}
+										                classes={fieldClasses}/>
+									</td>
+									<td>
+										<SelectField id="select" row={index} label={t('home.table.select')}
+										             classes={fieldClasses} load={listCompanies}
+										             formatItem={itemName}/>
+									</td>
+									<td>
+										<BooleanField id="boolean" row={index} label={t('home.table.boolean')}
+										              classes={fieldClasses}/>
+									</td>
+								</tr>
+							)
+						})}
+						</tbody>
+					</table>
 				</Panel>
+
+				<div className="form-group">
+					<div className={buttonsClass}>
+						<ButtonSave />
+					</div>
+				</div>
+
+				<FormMessages className={buttonsClass}/>
+
+				{t('home.values')}
+				<pre>{JSON.stringify(this.state.values, emptyToNull, 2)}</pre>
 			</Form>
 		)
 	},
