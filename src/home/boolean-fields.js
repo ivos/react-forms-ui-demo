@@ -1,6 +1,7 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {Panel, Form, BooleanField, FormMessages} from 'react-forms-ui'
+import {Form, BooleanField, FormMessages} from 'react-forms-ui'
+import {Panel, FormGroup} from 'react-bootstrap'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
@@ -19,16 +20,16 @@ const BooleanFields = React.createClass({
 		return (
 			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel content="panel-body" title={t('home.boolean.title')}>
+				<Panel header={<h3>{t('home.boolean.title')}</h3>}>
 					<BooleanField id="bool" label={t('home.boolean.bool')} classes={fieldClasses}/>
 					<BooleanField id="boolChecked" label={t('home.boolean.boolChecked')} classes={fieldClasses}/>
 					<BooleanField id="boolRO" label={t('home.boolean.boolRO')} classes={fieldClasses} readonly/>
 
-					<div className="form-group">
+					<FormGroup>
 						<div className={buttonsClass}>
 							<ButtonSave />
 						</div>
-					</div>
+					</FormGroup>
 
 					<FormMessages className={buttonsClass}/>
 

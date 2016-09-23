@@ -1,7 +1,8 @@
 import React from 'react'
 import {withRouter} from 'react-router'
 import {setTitle} from '../ui/utils'
-import {Panel, Form, TextField, FormMessages} from 'react-forms-ui'
+import {Form, TextField, FormMessages} from 'react-forms-ui'
+import {Panel, FormGroup, HelpBlock} from 'react-bootstrap'
 import Company from './company'
 import {ButtonSave, LinkBack} from '../ui/buttons'
 import Contact from '../contact/contact'
@@ -28,20 +29,20 @@ const CompanyEdit = React.createClass({
 		return (
 			<Form ref="form" state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel content="panel-body"
-				       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
-					<div className="well well-sm well-white">
+				<Panel header={<h3>
+					<span className="text-muted">Company</span> <strong>{values.name}</strong>
+				</h3>}>
+					<Panel>
 						<TextField id="name" label="Name" classes={fieldClasses}/>
 						<TextField id="taxId" label="Tax id" classes={fieldClasses}>
-							<span
-								className="help-block">Two upper-case letters and 2-14 digits or upper-case letters.</span>
+							<HelpBlock>Two upper-case letters and 2-14 digits or upper-case letters.</HelpBlock>
 						</TextField>
 						<TextField id="companyId" label="Company id" classes={fieldClasses}>
-							<span className="help-block">Eight digits.</span>
+							<HelpBlock>Eight digits.</HelpBlock>
 						</TextField>
-					</div>
+					</Panel>
 
-					<Panel title="Invoicing contact" content="panel-body">
+					<Panel header={<h3>Invoicing contact</h3>}>
 						<TextField id="invoicingContact.name" label="Name" classes={fieldClasses}/>
 						<TextField id="invoicingContact.phone" label="Phone" classes={fieldClasses}/>
 						<TextField id="invoicingContact.email" label="E-mail" classes={fieldClasses}/>
@@ -51,7 +52,7 @@ const CompanyEdit = React.createClass({
 						<TextField id="invoicingContact.zip" label="ZIP" classes={fieldClasses}/>
 					</Panel>
 
-					<div className="form-group">
+					<FormGroup>
 						<div className={buttonsClass}>
 							<ButtonSave />
 							{id ?
@@ -60,7 +61,7 @@ const CompanyEdit = React.createClass({
 								<LinkBack href={'#companies'} title="Back to companies list."/>
 							}
 						</div>
-					</div>
+					</FormGroup>
 
 					<FormMessages className={buttonsClass}/>
 				</Panel>

@@ -2,7 +2,8 @@ import React from 'react'
 import {withRouter} from 'react-router'
 import ReactDOM from 'react-dom'
 import {setTitle, focusFirst} from '../ui/utils'
-import {Form, Panel, TextField} from 'react-forms-ui'
+import {Form, TextField} from 'react-forms-ui'
+import {Panel, ListGroup, ListGroupItem} from 'react-bootstrap'
 import {LinkCreate} from '../ui/buttons'
 import {list} from '../api'
 
@@ -30,20 +31,20 @@ const CompanyList = React.createClass({
 				</div>
 				}
 				{this._reloaded && (changed || data.length > 0) &&
-				<Panel title={<span>Companies <span className="badge pull-right">{data.length}</span></span>}>
+				<Panel header={<h3>
+					Companies <span className="badge pull-right">{data.length}</span>
+				</h3>}>
 
-					<div className="panel-body">
-						<TextField id="name" label="Name" classes={fieldClasses}/>
-					</div>
+					<TextField id="name" label="Name" classes={fieldClasses}/>
 
-					<div className="list-group">
+					<ListGroup fill>
 						{data.map(function (model, index) {
 							return (
-								<a key={model.id} href={'#companies/' + model.id}
-								   className="list-group-item">{model.name}</a>
+								<ListGroupItem key={model.id} href={'#companies/' + model.id}
+								               className="list-group-item">{model.name}</ListGroupItem>
 							)
 						})}
-					</div>
+					</ListGroup>
 				</Panel>
 				}
 				{<LinkCreate href="#companies/new" title="Create new company."/>}

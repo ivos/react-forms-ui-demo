@@ -1,10 +1,11 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
 import {
-	Panel, Form, Label, FormMessages,
+	Form, Label, FormMessages,
 	TextField, PasswordField, NumberField, DateField, DateRangeField, SelectField, BooleanField,
 	TextControl, PasswordControl, NumberControl, DateControl, SelectControl, BooleanControl
 } from 'react-forms-ui'
+import {Panel, Table, FormGroup} from 'react-bootstrap'
 import {ButtonSave} from '../ui/buttons'
 import {list} from '../api'
 import i18n from '../i18n'
@@ -62,9 +63,9 @@ const TableForm = React.createClass({
 		return (
 			<Form tableForm state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel title={t('home.table.title')}>
+				<Panel header={<h3>{t('home.table.title')}</h3>}>
 
-					<table className="table table-bordered table-condensed">
+					<Table fill bordered condensed>
 						<thead>
 						<tr>
 							<th><Label required>{t('home.table.text')}</Label></th>
@@ -171,14 +172,14 @@ const TableForm = React.createClass({
 							)
 						})}
 						</tbody>
-					</table>
+					</Table>
 				</Panel>
 
-				<div className="form-group">
+				<FormGroup>
 					<div className={buttonsClass}>
 						<ButtonSave />
 					</div>
-				</div>
+				</FormGroup>
 
 				<FormMessages className={buttonsClass}/>
 

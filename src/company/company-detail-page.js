@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {setTitle, focusFirst} from '../ui/utils'
-import {Form, Panel, TextField, PlainField} from 'react-forms-ui'
+import {Form, TextField, PlainField} from 'react-forms-ui'
+import {Panel, FormControl} from 'react-bootstrap'
 import {LinkEdit, LinkBack} from '../ui/buttons'
 import ContactDetail from '../contact/contact-detail'
 import Nested from '../shared/nested'
@@ -20,26 +21,27 @@ const CompanyDetail = React.createClass({
 		const buttonsClass = 'col-sm-offset-2 col-sm-10'
 		return (
 			<Form state={this.state} setState={this.setState.bind(this)}>
-				<Panel content="panel-body"
-				       title={<span><span className="text-muted">Company</span> <strong>{values.name}</strong></span>}>
-					<div className="well well-sm well-white">
+				<Panel header={<h3>
+					<span className="text-muted">Company</span> <strong>{values.name}</strong>
+				</h3>}>
+					<Panel>
 
 						<TextField id="name" label="Name" classes={fieldClasses} readonly/>
 
 						<PlainField id="taxId" label="Tax id" classes={fieldClasses} readonly>
-							<p className="form-control-static">{values.taxId ? <code>{values.taxId}</code> : ''}</p>
+							<FormControl.Static>{values.taxId ? <code>{values.taxId}</code> : ''}</FormControl.Static>
 						</PlainField>
 
 						<PlainField id="companyId" label="Company id" classes={fieldClasses} readonly>
-							<p className="form-control-static">{values.companyId ?
-								<code>{values.companyId}</code> : ''}</p>
+							<FormControl.Static>{values.companyId ?
+								<code>{values.companyId}</code> : ''}</FormControl.Static>
 						</PlainField>
 
-					</div>
+					</Panel>
 
 					<ContactDetail form={this} id="invoicingContact" label="Invoicing contact"/>
 
-					<div ref="buttons" className={buttonsClass + 'form-group'}>
+					<div ref="buttons" className={buttonsClass}>
 						<LinkEdit href={'#companies/' + id + '/edit'} title="Edit company data."/>
 						<LinkBack href="#companies" title="Back to companies list."/>
 					</div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {Panel, Form, SelectField, FormMessages} from 'react-forms-ui'
+import {Form, SelectField, FormMessages} from 'react-forms-ui'
+import {Panel, FormGroup} from 'react-bootstrap'
 import {ButtonSave} from '../ui/buttons'
 import {list} from '../api'
 import i18n from '../i18n'
@@ -52,7 +53,7 @@ const SelectFields = React.createClass({
 		return (
 			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel content="panel-body" title={t('home.select.title')}>
+				<Panel header={<h3>{t('home.select.title')}</h3>}>
 					<SelectField id="selectFree" label={t('home.select.selectFree')} classes={fieldClasses}
 					             load={listCompanies} formatItem={itemName}/>
 					<SelectField id="selectRequired" label={t('home.select.selectRequired')} classes={fieldClasses}
@@ -71,11 +72,11 @@ const SelectFields = React.createClass({
 					             classes={fieldClasses} load={listProducts(values)} formatItem={itemName}
 					             disabled={groupEmpty}/>
 
-					<div className="form-group">
+					<FormGroup>
 						<div className={buttonsClass}>
 							<ButtonSave />
 						</div>
-					</div>
+					</FormGroup>
 
 					<FormMessages className={buttonsClass}/>
 

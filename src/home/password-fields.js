@@ -1,6 +1,7 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {Panel, Form, PasswordField, FormMessages} from 'react-forms-ui'
+import {Form, PasswordField, FormMessages} from 'react-forms-ui'
+import {Panel, HelpBlock, FormGroup} from 'react-bootstrap'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
@@ -28,7 +29,7 @@ const PasswordFields = React.createClass({
 		return (
 			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel content="panel-body" title={t('home.password.title')}>
+				<Panel header={<h3>{t('home.password.title')}</h3>}>
 					<PasswordField id="passwordFree" label={t('home.password.passwordFree')} classes={fieldClasses}/>
 					<PasswordField id="passwordRequired" label={t('home.password.passwordRequired')}
 					               classes={fieldClasses}/>
@@ -36,18 +37,18 @@ const PasswordFields = React.createClass({
 					               classes={fieldClasses}/>
 					<PasswordField id="passwordValueRequired" label={t('home.password.passwordValueRequired.label')}
 					               classes={fieldClasses}>
-						<span className="help-block">{t('home.password.passwordValueRequired.help')}</span>
+						<HelpBlock>{t('home.password.passwordValueRequired.help')}</HelpBlock>
 					</PasswordField>
 					<PasswordField id="passwordReadonly" label={t('home.password.passwordReadonly')}
 					               classes={fieldClasses} readonly/>
 					<PasswordField id="passwordReadonlyEmpty" label={t('home.password.passwordReadonlyEmpty')}
 					               classes={fieldClasses} readonly/>
 
-					<div className="form-group">
+					<FormGroup>
 						<div className={buttonsClass}>
 							<ButtonSave />
 						</div>
-					</div>
+					</FormGroup>
 
 					<FormMessages className={buttonsClass}/>
 

@@ -15,7 +15,6 @@ import 'react-forms-ui/lib/react-forms-ui.css'
 import './index.css'
 
 initialize()
-require('bootstrap/js/dropdown')
 import moment from 'moment'
 
 ReactFormsUiOptions.translate = i18n.t.bind(i18n)

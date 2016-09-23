@@ -1,6 +1,7 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {Panel, Form, DateRangeField, FormMessages} from 'react-forms-ui'
+import {Form, DateRangeField, FormMessages} from 'react-forms-ui'
+import {Panel, FormGroup} from 'react-bootstrap'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
@@ -38,7 +39,7 @@ const DateRangeFields = React.createClass({
 		return (
 			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel content="panel-body" title={t('home.daterange.title')}>
+				<Panel header={<h3>{t('home.daterange.title')}</h3>}>
 					<DateRangeField id="drFree" label={t('home.daterange.drFree')} classes={fieldClasses}/>
 					<DateRangeField id="drReq" label={t('home.daterange.drReq.label')}
 					                placeholderFrom={t('home.daterange.drReq.placeholderFrom')}
@@ -54,11 +55,11 @@ const DateRangeFields = React.createClass({
 					<DateRangeField id="drROToEmpty" label={t('home.daterange.drROToEmpty')} classes={fieldClasses}
 					                readonly/>
 
-					<div className="form-group">
+					<FormGroup>
 						<div className={buttonsClass}>
 							<ButtonSave />
 						</div>
-					</div>
+					</FormGroup>
 
 					<FormMessages className={buttonsClass}/>
 

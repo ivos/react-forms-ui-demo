@@ -1,6 +1,7 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {Panel, Form, NumberField, FormMessages} from 'react-forms-ui'
+import {Form, NumberField, FormMessages} from 'react-forms-ui'
+import {Panel, HelpBlock, FormGroup} from 'react-bootstrap'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
@@ -37,7 +38,7 @@ const NumberFields = React.createClass({
 		return (
 			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel content="panel-body" title={t('home.number.title')}>
+				<Panel header={<h3>{t('home.number.title')}</h3>}>
 					<NumberField id="numberFree" label={t('home.number.numberFree')} classes={fieldClasses}/>
 					<NumberField id="numberRequired" label={t('home.number.numberRequired')} classes={fieldClasses}/>
 					<NumberField id="numberValue" label={t('home.number.numberValue.label')} classes={fieldClasses}>
@@ -45,7 +46,7 @@ const NumberFields = React.createClass({
 					</NumberField>
 					<NumberField id="numberValueRequired" label={t('home.number.numberValueRequired.label')}
 					             classes={fieldClasses}>
-						<span className="help-block">{t('home.number.numberValueRequired.help')}</span>
+						<HelpBlock>{t('home.number.numberValueRequired.help')}</HelpBlock>
 					</NumberField>
 					<NumberField id="numberCustomFormat" label={t('home.number.numberCustomFormat.label')}
 					             classes={fieldClasses} format="0.000">
@@ -59,11 +60,11 @@ const NumberFields = React.createClass({
 					<NumberField id="numberReadonlyEmpty" label={t('home.number.numberReadonlyEmpty')}
 					             classes={fieldClasses} readonly/>
 
-					<div className="form-group">
+					<FormGroup>
 						<div className={buttonsClass}>
 							<ButtonSave />
 						</div>
-					</div>
+					</FormGroup>
 
 					<FormMessages className={buttonsClass}/>
 

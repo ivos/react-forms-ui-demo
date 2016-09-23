@@ -1,6 +1,7 @@
 import React from 'react'
 import {emptyToNull} from '../ui/utils'
-import {Panel, Form, TextField, FormMessages} from 'react-forms-ui'
+import {Form, TextField, FormMessages} from 'react-forms-ui'
+import {Panel, HelpBlock, FormGroup} from 'react-bootstrap'
 import {ButtonSave} from '../ui/buttons'
 import i18n from '../i18n'
 const t = i18n.t.bind(i18n)
@@ -45,10 +46,10 @@ const TextFields = React.createClass({
 		return (
 			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
-				<Panel content="panel-body" title={t('home.text.title')}>
+				<Panel header={<h3>{t('home.text.title')}</h3>}>
 					<TextField id="textNotValidated" label={t('home.text.textNotValidated.label')}
 					           classes={fieldClasses}>
-						<span className="help-block">{t('home.text.textNotValidated.help')}</span>
+						<HelpBlock>{t('home.text.textNotValidated.help')}</HelpBlock>
 					</TextField>
 					<TextField id="textFree" label={t('home.text.textFree')} classes={fieldClasses}/>
 					<TextField id="textRequired" label={t('home.text.textRequired')} classes={fieldClasses}/>
@@ -56,12 +57,12 @@ const TextFields = React.createClass({
 					           placeholder={t('home.text.textMinMax.placeholder')} classes={fieldClasses}/>
 					<TextField id="textMinMaxReq" label={t('home.text.textMinMaxReq.label')}
 					           placeholder={t('home.text.textMinMaxReq.placeholder')} classes={fieldClasses}>
-						<span className="help-block">{t('home.text.textMinMaxReq.help')}</span>
+						<HelpBlock>{t('home.text.textMinMaxReq.help')}</HelpBlock>
 					</TextField>
 					<TextField id="textNumbers" label={t('home.text.textNumbers')} classes={fieldClasses}/>
 					<TextField id="textBackend" label={t('home.text.textBackend.label')}
 					           placeholder={t('home.text.textBackend.placeholder')} classes={fieldClasses}>
-						<span className="help-block">{t('home.text.textBackend.help')}</span>
+						<HelpBlock>{t('home.text.textBackend.help')}</HelpBlock>
 					</TextField>
 					<TextField id="textValue" label={t('home.text.textValue')} classes={fieldClasses}/>
 					<TextField id="textValueRequired" label={t('home.text.textValueRequired')} classes={fieldClasses}/>
@@ -70,11 +71,11 @@ const TextFields = React.createClass({
 					<TextField id="textReadonlyEmpty" label={t('home.text.textReadonlyEmpty')} classes={fieldClasses}
 					           readonly/>
 
-					<div className="form-group">
+					<FormGroup>
 						<div className={buttonsClass}>
 							<ButtonSave />
 						</div>
-					</div>
+					</FormGroup>
 
 					<FormMessages className={buttonsClass}/>
 

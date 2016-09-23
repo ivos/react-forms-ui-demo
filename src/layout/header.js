@@ -1,83 +1,60 @@
-import React from 'react';
+import React from 'react'
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import flagCs from '../img/flag-cs.jpg'
 import flagEn from '../img/flag-en.jpg'
 
 export default React.createClass({
 
 	render() {
-		var {active, locale} = this.props;
-		var localeLabels = {
-			en: <span><img src={flagEn} height="14" width="23" alt="English"/>&nbsp;English</span>,
-			cs: <span><img src={flagCs} height="14" width="21" alt="Česky"/>&nbsp;Česky</span>
-		};
-		var currentLocaleLabel = localeLabels[locale];
+		const {active, locale} = this.props
+		const localeLabels = {
+			en: <span><img src={flagEn} height="14" width="23" alt="English"/> English</span>,
+			cs: <span><img src={flagCs} height="14" width="21" alt="Česky"/> Česky</span>
+		}
+		const currentLocaleLabel = localeLabels[locale]
 		return (
-			<nav className="navbar navbar-default navbar-fixed-top" role="navigation">
-				<div className="container-fluid">
-
-					<div className="navbar-header">
-						<button type="button" className="navbar-toggle" data-toggle="collapse"
-						        data-target="#app-navbar-collapse">
-							<span className="sr-only">Toggle navigation</span>
-							<span className="icon-bar"></span>
-							<span className="icon-bar"></span>
-							<span className="icon-bar"></span>
-						</button>
-						<a className="navbar-brand" href="/app/#">React Forms UI</a>
-					</div>
-
-					<div id="app-navbar-collapse" className="collapse navbar-collapse">
-
-						<ul className="nav navbar-nav">
-							<li className={('home' === active)? 'active' : ''}>
-								<a id="home-link" href="#home">Home</a>
-							</li>
-							<li className={('companies' === active)? 'active' : ''}>
-								<a id="companies-link" href="#companies">Companies</a>
-							</li>
-							<li className={('partners' === active)? 'active' : ''}>
-								<a id="partners-link" href="#partners">Partners</a>
-							</li>
-						</ul>
-
-						<ul className="nav navbar-nav navbar-right">
-							<li className="dropdown">
-								<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
-								   aria-haspopup="true" aria-expanded="false">
-									{currentLocaleLabel}
-									&nbsp;<span className="caret"></span></a>
-								<ul className="dropdown-menu">
-									{'en' !== locale &&
-									<li>
-										<a href="#" onClick={this.setLocaleEn}>{localeLabels.en}</a>
-									</li>
-									}
-									{'cs' !== locale &&
-									<li>
-										<a href="#" onClick={this.setLocaleCs}>{localeLabels.cs}</a>
-									</li>
-									}
-								</ul>
-							</li>
-						</ul>
-
-					</div>
-
-				</div>
-			</nav>
-		);
+			<Navbar fixedTop fluid>
+				<Navbar.Header>
+					<Navbar.Brand>
+						<a href="/app/#">React Forms UI</a>
+					</Navbar.Brand>
+					<Navbar.Toggle />
+				</Navbar.Header>
+				<Navbar.Collapse>
+					<Nav>
+						<NavItem eventKey={1} href="#home" active={('home' === active)}>Home</NavItem>
+						<NavItem eventKey={2} href="#companies" active={('companies' === active)}>Companies</NavItem>
+						<NavItem eventKey={3} href="#partners" active={('partners' === active)}>Partners</NavItem>
+					</Nav>
+					<Nav pullRight>
+						<NavDropdown eventKey={4} title={currentLocaleLabel} id="basic-nav-dropdown">
+							{'en' !== locale &&
+							<MenuItem eventKey={4.1} onClick={this.setLocaleEn}>
+								{localeLabels.en}
+							</MenuItem>
+							}
+							{'cs' !== locale &&
+							<MenuItem eventKey={4.1} onClick={this.setLocaleCs}>
+								{localeLabels.cs}
+							</MenuItem>
+							}
+						</NavDropdown>
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
+		)
 	},
 
 	setLocaleEn(event){
-		event.preventDefault();
-		var {onLocaleChange} = this.props;
-		onLocaleChange('en');
+		event.preventDefault()
+		const {onLocaleChange} = this.props
+		onLocaleChange('en')
 	},
 
 	setLocaleCs(event){
-		event.preventDefault();
-		var {onLocaleChange} = this.props;
-		onLocaleChange('cs');
+		event.preventDefault()
+		const {onLocaleChange} = this.props
+		onLocaleChange('cs')
 	}
 
-});
+})
