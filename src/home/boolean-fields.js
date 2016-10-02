@@ -21,9 +21,11 @@ const BooleanFields = React.createClass({
 			<Form state={this.state} setState={this.setState.bind(this)} validations={validations}
 			      onSubmit={this.onSubmit}>
 				<Panel header={<h3>{t('home.boolean.title')}</h3>}>
-					<BooleanField id="bool" label={t('home.boolean.bool')} classes={fieldClasses}/>
-					<BooleanField id="boolChecked" label={t('home.boolean.boolChecked')} classes={fieldClasses}/>
-					<BooleanField id="boolRO" label={t('home.boolean.boolRO')} classes={fieldClasses} readonly/>
+					<FormGroup>
+						<BooleanField id="bool" label={t('home.boolean.bool')} classes={fieldClasses}/>
+						<BooleanField id="boolChecked" label={t('home.boolean.boolChecked')} classes={fieldClasses}/>
+						<BooleanField id="boolRO" label={t('home.boolean.boolRO')} classes={fieldClasses} readonly/>
+					</FormGroup>
 
 					<FormGroup>
 						<div className={buttonsClass}>
