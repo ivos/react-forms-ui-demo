@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {setTitle, focusFirst} from '../ui/utils'
-import {Form, TextField, PlainField} from 'react-forms-ui'
-import {Panel, FormControl} from 'react-bootstrap'
+import {Form, TextField, CustomField} from 'react-forms-ui'
+import {Panel} from 'react-bootstrap'
 import {LinkEdit, LinkBack} from '../ui/buttons'
 import ContactDetail from '../contact/contact-detail'
 import Nested from '../shared/nested'
@@ -28,14 +28,13 @@ const CompanyDetail = React.createClass({
 
 						<TextField id="name" label="Name" classes={fieldClasses} readonly/>
 
-						<PlainField id="taxId" label="Tax id" classes={fieldClasses} readonly>
-							<FormControl.Static>{values.taxId ? <code>{values.taxId}</code> : ''}</FormControl.Static>
-						</PlainField>
+						<CustomField id="taxId" label="Tax id" classes={fieldClasses} readonly>
+							{values.taxId ? <code>{values.taxId}</code> : ''}
+						</CustomField>
 
-						<PlainField id="companyId" label="Company id" classes={fieldClasses} readonly>
-							<FormControl.Static>{values.companyId ?
-								<code>{values.companyId}</code> : ''}</FormControl.Static>
-						</PlainField>
+						<CustomField id="companyId" label="Company id" classes={fieldClasses} readonly>
+							{values.companyId ? <code>{values.companyId}</code> : ''}
+						</CustomField>
 
 					</Panel>
 

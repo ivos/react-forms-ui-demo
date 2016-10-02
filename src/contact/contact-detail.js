@@ -1,5 +1,5 @@
 import React from 'react'
-import {TextField, PlainField, Label} from 'react-forms-ui'
+import {TextField, CustomField, Label} from 'react-forms-ui'
 import {Panel, FormControl, FormGroup} from 'react-bootstrap'
 
 export default React.createClass({
@@ -14,11 +14,9 @@ export default React.createClass({
 			<Panel header={<h3>{label}</h3>}>
 				<TextField id={id + '.name'} label="Name" classes={fieldClasses} readonly/>
 				<TextField id={id + '.phone'} label="Phone" classes={fieldClasses} readonly/>
-				<PlainField id={id + '.email'} label="E-mail" classes={fieldClasses} readonly>
-					<FormControl.Static>
-						<a href={'mailto:' + values.email} target="_blank">{values[id + '.email']}</a>
-					</FormControl.Static>
-				</PlainField>
+				<CustomField id={id + '.email'} label="E-mail" classes={fieldClasses} readonly>
+					<a href={'mailto:' + values.email} target="_blank">{values[id + '.email']}</a>
+				</CustomField>
 
 				<FormGroup>
 					<Label className={labelClass}>Address</Label>
