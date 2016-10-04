@@ -51,14 +51,15 @@ const CompanyDetail = React.createClass({
 
 	componentDidMount() {
 		const {id} = this.props.params
-		read('companies', id).then(data => {
-				const values = Nested.expand(data, 'invoicingContact')
-				this.setState({values}, () => {
-					focusFirst(ReactDOM.findDOMNode(this.refs.buttons))
-					setTitle('Company')
-				})
-			}
-		)
+		read('companies', id)
+			.then(data => {
+					const values = Nested.expand(data, 'invoicingContact')
+					this.setState({values}, () => {
+						focusFirst(ReactDOM.findDOMNode(this.refs.buttons))
+						setTitle('Company')
+					})
+				}
+			)
 	},
 
 })

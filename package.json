@@ -19,8 +19,6 @@
     "url": "https://github.com/ivos/react-forms-ui/issues"
   },
   "dependencies": {
-    "font-awesome": "^4.6.3",
-    "react-bootstrap": "^0.30.3",
     "react-forms-ui": "^0.6.0",
     "react-router": "^2.7.0"
   },

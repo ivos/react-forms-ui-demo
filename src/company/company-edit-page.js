@@ -85,21 +85,34 @@ const CompanyEdit = React.createClass({
 
 	onSubmit() {
 		const {router, params:{id}} = this.props
+		const {setSystemMessage} = this.context
 		let {values} = this.state
 		values = Nested.collapse(values, 'invoicingContact')
 		const data = pick(values, 'id', 'name', 'taxId', 'companyId')
 		data.invoicingContact = values.invoicingContact
 		if (!id) {
-			post('companies', data).then(data => {
-				router.push('/companies/' + data.id)
-			})
+			post('companies', data)
+				.then(data => {
+					router.push('/companies/' + data.id)
+				})
+				.then(() => {
+					setSystemMessage({type: 'success', text: 'Created.'})
+				})
 		} else {
-			put('companies', values.id, data).then(data => {
-				router.push('/companies/' + values.id)
-			})
+			put('companies', values.id, data)
+				.then(data => {
+					router.push('/companies/' + values.id)
+				})
+				.then(() => {
+					setSystemMessage({type: 'success', text: 'Saved.'})
+				})
 		}
 	},
 
 })
+
+CompanyEdit.contextTypes = {
+	setSystemMessage: React.PropTypes.func,
+}
 
 export default withRouter(CompanyEdit)
