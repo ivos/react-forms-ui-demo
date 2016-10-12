@@ -8,6 +8,7 @@ import SelectFields from './select-fields';
 import DateFields from './date-fields';
 import DateRangeFields from './date-range-fields';
 import BooleanFields from './boolean-fields';
+import RadiosFields from './radios-fields';
 import TableForm from './table-form';
 import i18n from '../i18n';
 var t = i18n.t.bind(i18n);
@@ -26,6 +27,7 @@ export default React.createClass({
 				<DateFields/>
 				<DateRangeFields/>
 				<BooleanFields/>
+				<RadiosFields/>
 				<TableForm/>
 
 			</div>

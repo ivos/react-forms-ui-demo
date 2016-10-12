@@ -128,7 +128,17 @@ export default {
 				bool: 'Checkbox',
 				boolChecked: 'Checkbox checked',
 				boolRO: 'Checkbox read-only'
-			}
+			},
+			radios: {
+				title: 'Radios field',
+				radiosFree: 'Radios',
+				radiosRequired: 'Radios req.',
+				radiosVal: 'Radios w/ value',
+				radiosReqVal: 'Radios req. w/ value',
+				radiosReadonly: 'Radios r/o',
+				radiosReadonlyEmpty: 'Radios r/o empty',
+				valueA: 'Value A with a looooooooooooooooong description',
+			},
 		}
 	}
 }

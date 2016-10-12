@@ -128,7 +128,17 @@ export default {
 				bool: 'Checkbox',
 				boolChecked: 'Checkbox zaškrtnutý',
 				boolRO: 'Checkbox needitovatelný'
-			}
+			},
+			radios: {
+				title: 'Rádia',
+				radiosFree: 'Rádia',
+				radiosRequired: 'Rádia pov.',
+				radiosVal: 'Rádia s hodnotou',
+				radiosReqVal: 'Rádia pov. s hodnotou',
+				radiosReadonly: 'Needit. rádia',
+				radiosReadonlyEmpty: 'Needit. rádia prázdná',
+				valueA: 'Hodnota A s dlooooooooooooooooooouhýýýýýýým popisem',
+			},
 		}
 	}
 }
