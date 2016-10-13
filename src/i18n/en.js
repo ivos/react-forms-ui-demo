@@ -139,6 +139,24 @@ export default {
 				radiosReadonlyEmpty: 'Radios r/o empty',
 				valueA: 'Value A with a looooooooooooooooong description',
 			},
+			textArea: {
+				title: 'Text area field',
+				textAreaFree: {
+					label: 'Text area free',
+					help: 'This field has empty validation defined.'
+				},
+				textAreaRequired: 'Text area required',
+				textAreaMinMaxReq: {
+					label: 'Text area min max req',
+					placeholder: 'Text area with min and max required',
+					help: 'Must have 4 to 10 characters.'
+				},
+				textAreaValue: 'Text area w/ value',
+				textAreaValueRequired: 'Required area w/ value',
+				textAreaReadonly: 'Readonly text area',
+				textAreaROMulti: 'Readonly multi-line',
+				textAreaReadonlyEmpty: 'Readonly text area empty'
+			},
 		}
 	}
 }

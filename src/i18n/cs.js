@@ -139,6 +139,24 @@ export default {
 				radiosReadonlyEmpty: 'Needit. rádia prázdná',
 				valueA: 'Hodnota A s dlooooooooooooooooooouhýýýýýýým popisem',
 			},
+			textArea: {
+				title: 'Text area pole',
+				textAreaFree: {
+					label: 'Text area volná',
+					help: 'Toto pole má definovánu prázdnou validaci.'
+				},
+				textAreaRequired: 'Text area pov.',
+				textAreaMinMaxReq: {
+					label: 'Text area min max pov.',
+					placeholder: 'Text area s min a max povinná',
+					help: 'Musí obsahovat 4 až 10 znaků.'
+				},
+				textAreaValue: 'Text area s hodnotou',
+				textAreaValueRequired: 'Pov. area s hodnotou',
+				textAreaReadonly: 'Needit. text area',
+				textAreaROMulti: 'Needit. víceřádková',
+				textAreaReadonlyEmpty: 'Needit. text area prázdná'
+			},
 		}
 	}
 }
