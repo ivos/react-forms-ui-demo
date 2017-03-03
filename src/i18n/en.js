@@ -30,6 +30,11 @@ export default {
 					placeholder: 'Text validated on backend',
 					help: 'A field further validated on submit on backend does not provide success feedback, only error feedback.'
 				},
+				textConditional: {
+					label: 'Text conditional',
+					placeholder: 'Text validated based on a condition',
+					help: 'When Text free is filled, this field must also be filled.'
+				},
 				textValue: 'Text w/ value',
 				textValueRequired: 'Required w/ value',
 				textReadonly: 'Readonly text',

@@ -30,6 +30,11 @@ export default {
 					placeholder: 'Text validovaný na backendu',
 					help: 'Pole validované při odeslání na backendu neposkytuje zpětnou vazbu pro platné hodnoty, pouze pro chyby.'
 				},
+				textConditional: {
+					label: 'Text podmíněný',
+					placeholder: 'Text validovaný na základě podmínky',
+					help: 'Když je Text volný vyplněn, toto pole musí být také vyplněno.'
+				},
 				textValue: 'Text s hodnotou',
 				textValueRequired: 'Povinný text s hodnotou',
 				textReadonly: 'Needitovatelný text',

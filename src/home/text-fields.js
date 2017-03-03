@@ -27,11 +27,18 @@ const validations = {
 		required: true,
 		autoSuccess: false,
 	},
+	textConditional: {
+		fn: (validation, field, value, row, values) => {
+			if (values.textFree && !value) {
+				validation.add('textConditional', 'Required.', 'error', row)
+			}
+		},
+	},
 	textValue: {},
 	textValueRequired: {
 		required: true,
 	},
-	textReadonly: {}
+	textReadonly: {},
 }
 
 const TextFields = React.createClass({
@@ -63,6 +70,10 @@ const TextFields = React.createClass({
 					<TextField id="textBackend" label={t('home.text.textBackend.label')}
 					           placeholder={t('home.text.textBackend.placeholder')} classes={fieldClasses}>
 						<HelpBlock>{t('home.text.textBackend.help')}</HelpBlock>
+					</TextField>
+					<TextField id="textConditional" label={t('home.text.textConditional.label')}
+					           placeholder={t('home.text.textConditional.placeholder')} classes={fieldClasses}>
+						<HelpBlock>{t('home.text.textConditional.help')}</HelpBlock>
 					</TextField>
 					<TextField id="textValue" label={t('home.text.textValue')} classes={fieldClasses}/>
 					<TextField id="textValueRequired" label={t('home.text.textValueRequired')} classes={fieldClasses}/>
